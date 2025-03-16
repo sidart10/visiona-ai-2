@@ -67,6 +67,7 @@ export async function GET(req: NextRequest) {
       
       let status = model.status;
       let progress = 0;
+      let errorMessage = null;
       
       // Map Replicate status to our status
       if (prediction.status === "succeeded") {
@@ -74,30 +75,70 @@ export async function GET(req: NextRequest) {
         progress = 100;
       } else if (prediction.status === "failed") {
         status = "Failed";
+        // Extract error message if available
+        if (prediction.error) {
+          errorMessage = typeof prediction.error === 'string' 
+            ? prediction.error 
+            : JSON.stringify(prediction.error);
+        }
+      } else if (prediction.status === "canceled") {
+        status = "Failed";
+        errorMessage = "Training was canceled";
       } else if (prediction.status === "processing" || prediction.status === "starting") {
-        status = "Processing";
+        // If we're in processing state for too long without progress, check if there might be an issue
+        const createdAt = new Date(prediction.created_at);
+        const now = new Date();
+        const hoursSinceCreation = (now.getTime() - createdAt.getTime()) / (1000 * 60 * 60);
         
-        // Calculate progress if available
-        if (prediction.metrics && typeof prediction.metrics === 'object' && 'training_progress' in prediction.metrics) {
-          const trainingProgress = prediction.metrics.training_progress as number;
-          progress = Math.round(trainingProgress * 100);
+        if (hoursSinceCreation > 2 && !prediction.metrics) {
+          // If processing for more than 2 hours with no metrics, something might be wrong
+          status = "Processing";
+          progress = 0;
+        } else {
+          status = "Processing";
+          
+          // Calculate progress if available
+          if (prediction.metrics && typeof prediction.metrics === 'object' && 'training_progress' in prediction.metrics) {
+            const trainingProgress = prediction.metrics.training_progress as number;
+            progress = Math.round(trainingProgress * 100);
+          } else if (prediction.logs) {
+            // Try to extract progress from logs as fallback
+            const logs = prediction.logs.toString();
+            const progressMatch = logs.match(/step (\d+)\/(\d+)/i);
+            if (progressMatch && progressMatch.length >= 3) {
+              const current = parseInt(progressMatch[1]);
+              const total = parseInt(progressMatch[2]);
+              if (!isNaN(current) && !isNaN(total) && total > 0) {
+                progress = Math.round((current / total) * 100);
+              }
+            }
+          }
         }
       }
       
       // Update model in database if status changed
-      if (status !== model.status) {
+      if (status !== model.status || errorMessage) {
         let versionId = null;
         if (prediction.output && typeof prediction.output === 'object' && 'version' in prediction.output) {
           versionId = prediction.output.version;
         }
         
+        const updateData: any = {
+          status,
+          updated_at: new Date().toISOString(),
+        };
+        
+        if (versionId) {
+          updateData.version_id = versionId;
+        }
+        
+        if (errorMessage) {
+          updateData.error_message = errorMessage;
+        }
+        
         await supabase
           .from("models")
-          .update({
-            status,
-            updated_at: new Date().toISOString(),
-            version_id: versionId,
-          })
+          .update(updateData)
           .eq("id", model.id);
       }
       
@@ -107,11 +148,34 @@ export async function GET(req: NextRequest) {
         progress,
         trigger_word: model.trigger_word,
         replicate_status: prediction.status,
+        error_message: errorMessage,
         created_at: model.created_at,
         updated_at: new Date().toISOString(),
       });
-    } catch (error) {
-      console.error("Error checking Replicate training status:", error);
+    } catch (error: any) {
+      console.error("Error checking Replicate prediction status:", error);
+      
+      // Check if it's a 404 error, meaning the prediction doesn't exist
+      if (error.message && error.message.includes("404")) {
+        // Mark the model as failed since the prediction doesn't exist
+        await supabase
+          .from("models")
+          .update({
+            status: "Failed",
+            error_message: "Training job not found on Replicate",
+            updated_at: new Date().toISOString(),
+          })
+          .eq("id", model.id);
+        
+        return NextResponse.json({
+          id: model.id,
+          status: "Failed",
+          error_message: "Training job not found on Replicate",
+          trigger_word: model.trigger_word,
+          created_at: model.created_at,
+          updated_at: new Date().toISOString(),
+        });
+      }
       
       // Return current status from database
       return NextResponse.json({
@@ -120,7 +184,7 @@ export async function GET(req: NextRequest) {
         trigger_word: model.trigger_word,
         created_at: model.created_at,
         updated_at: model.updated_at,
-        error: "Could not check status with Replicate",
+        error: "Could not check status with Replicate: " + error.message,
       });
     }
   } catch (error) {

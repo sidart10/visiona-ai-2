@@ -31,7 +31,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Info, ChevronDown } from "lucide-react"
-import { uploadPhotos, createModel, fetchUserProfile, fetchUserModels, deleteModel, formatModelsForUI } from "@/utils/api"
+import { uploadPhotos, createModel, fetchUserProfile, fetchUserModels, deleteModel, formatModelsForUI, debugPhotoAccess } from "@/utils/api"
 import { toast } from "react-toastify"
 
 // Badge Component
@@ -778,6 +778,8 @@ export default function TrainPage() {
     try {
       // Create a new model
       const photoIds = uploadedPhotos.map((photo) => photo.id)
+      console.log("Starting model training with photoIds:", photoIds)
+      
       const modelResponse = await createModel({
         name: modelName || triggerWord,
         triggerWord: triggerWord,
@@ -785,6 +787,14 @@ export default function TrainPage() {
       })
 
       if (!modelResponse.success) {
+        // If there's a photo access error, debug it
+        if (modelResponse.error?.includes("photos do not exist") || 
+            modelResponse.error?.includes("don't belong to you")) {
+          console.log("Photo access error detected, running debug...")
+          const debugResult = await debugPhotoAccess(photoIds)
+          console.log("Photo access debug result:", debugResult)
+        }
+        
         throw new Error(modelResponse.error || "Failed to create model")
       }
 

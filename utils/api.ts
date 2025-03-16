@@ -346,4 +346,30 @@ export function formatModelsForUI(models: Model[]): UserModel[] {
     isActive: isModelActive(model.status),
     thumbnailUrl: "/placeholder.svg?height=150&width=150"
   }));
+}
+
+/**
+ * Debug photo access issues
+ * @param photoIds Array of photo IDs to check
+ * @returns Diagnostic information about the photos
+ */
+export async function debugPhotoAccess(photoIds: string[]): Promise<ApiResponse<any>> {
+  try {
+    const response = await fetch('/api/debug/photos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ photoIds }),
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to debug photo access');
+    }
+    
+    return response.json();
+  } catch (error) {
+    return { success: false, ...handleApiError(error) };
+  }
 } 

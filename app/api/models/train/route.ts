@@ -47,7 +47,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log("Training request received with params:", {
+      triggerWord,
+      photoCount: photos?.length || 0,
+      trainingSteps,
+      loraRank,
+      optimizer,
+      learningRate,
+      resolution,
+      batchSize
+    });
+
     if (!photos || !Array.isArray(photos) || photos.length < 10) {
+      console.log("Photo validation failed: ", { 
+        photosProvided: photos ? photos.length : 0,
+        isArray: Array.isArray(photos),
+        firstFewPhotos: Array.isArray(photos) ? photos.slice(0, 3) : null
+      });
       return NextResponse.json(
         { error: "At least 10 photos are required for training" },
         { status: 400 }
@@ -60,11 +76,20 @@ export async function POST(req: NextRequest) {
     
     // Download each photo and add it to the ZIP
     try {
+      console.log("Attempting to download photos for ZIP creation");
       for (let i = 0; i < photos.length; i++) {
         const photoUrl = photos[i];
-        const response = await axios.get(photoUrl, { responseType: 'arraybuffer' });
-        const filename = `photo_${i+1}.jpg`;
-        zipFolder?.file(filename, response.data);
+        console.log(`Processing photo ${i+1}/${photos.length}: ${photoUrl.substring(0, 50)}...`);
+        
+        try {
+          const response = await axios.get(photoUrl, { responseType: 'arraybuffer' });
+          console.log(`Successfully downloaded photo ${i+1} (size: ${response.data.byteLength} bytes)`);
+          const filename = `photo_${i+1}.jpg`;
+          zipFolder?.file(filename, response.data);
+        } catch (photoError: any) {
+          console.error(`Error downloading photo ${i+1} (${photoUrl.substring(0, 50)}...):`, photoError);
+          throw new Error(`Failed to download photo at index ${i}: ${photoError.message}`);
+        }
       }
     } catch (error) {
       console.error("Error downloading photos for ZIP:", error);
@@ -109,70 +134,84 @@ export async function POST(req: NextRequest) {
     const signedUrl = data.signedUrl;
 
     // Start training with Replicate
-    const training = await replicate.predictions.create({
-      version: "stability-ai/sdxl-lora",
-      input: {
-        input_images: signedUrl,
-        trigger_word: triggerWord,
-        training_steps: parseInt(trainingSteps.toString()),
-        learning_rate: parseFloat(learningRate.toString()),
-        rank: parseInt(loraRank.toString()),
-        resolution: parseInt(resolution),
-        batch_size: parseInt(batchSize.toString())
-      },
-      webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`,
-      webhook_events_filter: ["completed"]
-    });
-
-    // Save model reference in database
-    const { data: model, error: modelError } = await supabase
-      .from("models")
-      .insert({
-        user_id: user.id,
-        model_id: training.id,
-        trigger_word: triggerWord,
-        status: "Processing",
-        parameters: {
-          trainingSteps,
-          loraRank,
-          optimizer,
-          learningRate,
-          resolution,
-          batchSize
+    try {
+      const training = await replicate.predictions.create({
+        // Use the full version ID for SDXL LoRA
+        version: "a33uaqfkenracy1nohk5tgmuu9husbbr2q2qwtz0c3kxlyk5",
+        input: {
+          input_images: signedUrl,
+          trigger_word: triggerWord,
+          // Ensure parameters are within safe ranges
+          training_steps: Math.min(Math.max(parseInt(trainingSteps.toString()), 100), 2000),
+          learning_rate: Math.min(Math.max(parseFloat(learningRate.toString()), 0.0001), 0.001),
+          rank: Math.min(Math.max(parseInt(loraRank.toString()), 4), 64),
+          resolution: parseInt(resolution),
+          batch_size: Math.min(Math.max(parseInt(batchSize.toString()), 1), 4)
         },
-        created_at: new Date().toISOString(),
-      })
-      .select()
-      .single();
+        webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`,
+        webhook_events_filter: ["completed"]
+      });
 
-    if (modelError) {
-      console.error("Error saving model:", modelError);
+      // Save model reference in database
+      const { data: model, error: modelError } = await supabase
+        .from("models")
+        .insert({
+          user_id: user.id,
+          model_id: training.id,
+          trigger_word: triggerWord,
+          status: "Processing",
+          parameters: {
+            trainingSteps,
+            loraRank,
+            optimizer,
+            learningRate,
+            resolution,
+            batchSize
+          },
+          created_at: new Date().toISOString(),
+        })
+        .select()
+        .single();
+
+      if (modelError) {
+        console.error("Error saving model:", modelError);
+        return NextResponse.json(
+          { error: "Failed to save model information" },
+          { status: 500 }
+        );
+      }
+
+      // Save photo references for this model
+      for (const photoUrl of photos) {
+        await supabase
+          .from("model_photos")
+          .insert({
+            model_id: model.id,
+            photo_url: photoUrl
+          });
+      }
+
+      return NextResponse.json({
+        success: true,
+        model: {
+          id: model.id,
+          trigger_word: triggerWord,
+          status: "Processing",
+          replicate_id: training.id,
+        },
+        message: "Model training started successfully"
+      });
+    } catch (error: any) {
+      console.error("Error with Replicate API:", error);
+      // Return a more specific error message if available
       return NextResponse.json(
-        { error: "Failed to save model information" },
+        { 
+          error: error.message || "Failed to start model training with Replicate",
+          details: error.response?.data || error.toString()
+        },
         { status: 500 }
       );
     }
-
-    // Save photo references for this model
-    for (const photoUrl of photos) {
-      await supabase
-        .from("model_photos")
-        .insert({
-          model_id: model.id,
-          photo_url: photoUrl
-        });
-    }
-
-    return NextResponse.json({
-      success: true,
-      model: {
-        id: model.id,
-        trigger_word: triggerWord,
-        status: "Processing",
-        replicate_id: training.id,
-      },
-      message: "Model training started successfully"
-    });
 
   } catch (error) {
     console.error("Error starting model training:", error);
