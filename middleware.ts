@@ -1,29 +1,38 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
-import { NextRequest, NextResponse } from "next/server"
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-// Default Next.js middleware to allow all requests
-export function middleware(request: NextRequest) {
-  return NextResponse.next()
-}
+// Define routes that don't require authentication
+const isPublicRoute = createRouteMatcher([
+  '/',
+  '/auth(.*)',
+  '/api/webhooks(.*)', 
+  '/landing',
+  '/features',
+  '/pricing',
+  '/about',
+  '/contact',
+]);
 
-/**
- * Uncomment the following code to enable authentication with Clerk
- */
+// Define routes that should be ignored by authentication
+const isIgnoredRoute = createRouteMatcher([
+  '/api/public(.*)',
+]);
 
-// const isProtectedRoute = createRouteMatcher(['/protected'])
-
-// export default clerkMiddleware(async (auth, req) => {
-//     if (isProtectedRoute(req)) {
-//       // Handle protected routes check here
-//       return NextResponse.redirect(req.nextUrl.origin)
-//     }
-
-//     return NextResponse.next()
-// })  
+// Export middleware with function-based protection
+export default clerkMiddleware(async (auth, req) => {
+  // If it's a public or ignored route, do nothing
+  if (isPublicRoute(req) || isIgnoredRoute(req)) {
+    return;
+  }
+  
+  // For all other routes, require authentication
+  await auth.protect();
+});
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)|api/webhooks).*)",
+    // Skip Next.js internals and all static files
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
   ],
-}
+};
