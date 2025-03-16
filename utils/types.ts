@@ -104,9 +104,21 @@ export interface UserImage {
 export interface ApiResponse<T> {
   success: boolean;
   data?: T;
-  profile?: T; // For user profile responses
   error?: string;
   message?: string;
+  
+  // For specific response types
+  profile?: UserProfile;
+  models?: T[];
+  photos?: T[];
+  generations?: T[];
+  photo?: {
+    id: string;
+    url: string;
+    storage_path: string;
+    filename: string;
+  };
+  model?: Model;
 }
 
 export interface PaginatedResponse<T> {

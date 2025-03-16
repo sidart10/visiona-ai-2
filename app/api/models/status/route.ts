@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Get model ID from query parameter
+    // Get model ID from query params
     const { searchParams } = new URL(req.url);
     const modelId = searchParams.get("id");
 
@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Get the model from the database
+    // Get model from database
     const { data: model, error: modelError } = await supabase
       .from("models")
       .select("*")
@@ -45,83 +45,85 @@ export async function GET(req: NextRequest) {
 
     if (modelError || !model) {
       return NextResponse.json(
-        { error: "Model not found or you don't have permission" },
+        { error: "Model not found or access denied" },
         { status: 404 }
       );
     }
 
-    // If the model is already completed or failed, return the current status
-    if (model.status !== "training") {
+    // If model is already Ready or Failed, return current status
+    if (model.status === "Ready" || model.status === "Failed") {
       return NextResponse.json({
-        model: {
-          id: model.id,
-          name: model.name,
-          status: model.status,
-          replicate_id: model.replicate_id,
-          replicate_version: model.replicate_version,
-          created_at: model.created_at,
-          updated_at: model.updated_at,
-          photo_count: model.photo_count,
-        }
+        id: model.id,
+        status: model.status,
+        trigger_word: model.trigger_word,
+        created_at: model.created_at,
+        updated_at: model.updated_at,
       });
     }
 
-    // Check status on Replicate
-    const trainingStatus = await replicate.trainings.get(model.replicate_id);
-
-    // Map Replicate status to our application status
-    let appStatus = model.status;
-    if (trainingStatus.status === "succeeded") {
-      appStatus = "ready";
+    // Check status with Replicate
+    try {
+      const training = await replicate.trainings.get(model.model_id);
       
-      // Update the model in the database
-      const { error: updateError } = await supabase
-        .from("models")
-        .update({
-          status: "ready",
-          replicate_version: trainingStatus.version,
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", modelId)
-        .eq("user_id", user.id);
-
-      if (updateError) {
-        console.error("Error updating model status:", updateError);
-        // Continue even if update fails
-      }
-    } else if (trainingStatus.status === "failed") {
-      appStatus = "failed";
+      let status = model.status;
+      let progress = 0;
       
-      // Update the model in the database
-      const { error: updateError } = await supabase
-        .from("models")
-        .update({
-          status: "failed",
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", modelId)
-        .eq("user_id", user.id);
-
-      if (updateError) {
-        console.error("Error updating model status:", updateError);
-        // Continue even if update fails
+      // Map Replicate status to our status
+      if (training.status === "succeeded") {
+        status = "Ready";
+        progress = 100;
+      } else if (training.status === "failed") {
+        status = "Failed";
+      } else if (training.status === "processing") {
+        status = "Processing";
+        
+        // Calculate progress if available
+        if (training.metrics && typeof training.metrics === 'object' && 'training_progress' in training.metrics) {
+          const trainingProgress = training.metrics.training_progress as number;
+          progress = Math.round(trainingProgress * 100);
+        }
       }
-    }
-
-    return NextResponse.json({
-      model: {
+      
+      // Update model in database if status changed
+      if (status !== model.status) {
+        let versionId = null;
+        if (training.version && typeof training.version === 'object') {
+          // Safely access the id property after type checking
+          versionId = 'id' in training.version ? (training.version as any).id : null;
+        }
+        
+        await supabase
+          .from("models")
+          .update({
+            status,
+            updated_at: new Date().toISOString(),
+            version_id: versionId,
+          })
+          .eq("id", model.id);
+      }
+      
+      return NextResponse.json({
         id: model.id,
-        name: model.name,
-        status: appStatus,
-        replicate_id: model.replicate_id,
-        replicate_version: trainingStatus.version || model.replicate_version,
-        progress: trainingStatus.progress || 0,
+        status,
+        progress,
+        trigger_word: model.trigger_word,
+        replicate_status: training.status,
         created_at: model.created_at,
         updated_at: new Date().toISOString(),
-        photo_count: model.photo_count,
-      }
-    });
-
+      });
+    } catch (error) {
+      console.error("Error checking Replicate training status:", error);
+      
+      // Return current status from database
+      return NextResponse.json({
+        id: model.id,
+        status: model.status,
+        trigger_word: model.trigger_word,
+        created_at: model.created_at,
+        updated_at: model.updated_at,
+        error: "Could not check status with Replicate",
+      });
+    }
   } catch (error) {
     console.error("Error checking model status:", error);
     return NextResponse.json(
@@ -129,4 +131,7 @@ export async function GET(req: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}
+
+// Update to use App Router config
+export const dynamic = 'force-dynamic'; 

@@ -1,146 +1,130 @@
 import { NextRequest, NextResponse } from "next/server";
-import { currentUser, auth } from "@clerk/nextjs/server";
-import { supabaseAdmin, getOrCreateUser } from "@/utils/supabase-admin";
+import { currentUser } from "@clerk/nextjs/server";
+import { createClient } from "@supabase/supabase-js";
+
+// Initialize Supabase client
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    // First try to get the user using the auth() method
-    const session = await auth();
+    // Get current user from Clerk
+    const user = await currentUser();
     
-    // If auth() doesn't provide a user ID, fall back to currentUser()
-    let clerkUserId = session?.userId;
-    let user;
-    
-    if (!clerkUserId) {
-      user = await currentUser();
-      if (!user || !user.id) {
-        return NextResponse.json(
-          { error: "Unauthorized", success: false },
-          { status: 401 }
-        );
-      }
-      clerkUserId = user.id;
-    } else {
-      // If we have userId from auth(), get full user object if needed
-      user = await currentUser();
-    }
-
-    // Get or create the user in Supabase
-    try {
-      const email = user?.emailAddresses?.[0]?.emailAddress || '';
-      const userData = await getOrCreateUser(clerkUserId, email);
-
-      // Get counts for user's data
-      const [
-        { count: photosCount, error: photosError },
-        { count: modelsCount, error: modelsError },
-        { count: generationsCount, error: generationsError }
-      ] = await Promise.all([
-        supabaseAdmin
-          .from("photos")
-          .select("*", { count: "exact", head: true })
-          .eq("user_id", userData.id),
-        supabaseAdmin
-          .from("models")
-          .select("*", { count: "exact", head: true })
-          .eq("user_id", userData.id),
-        supabaseAdmin
-          .from("generations")
-          .select("*", { count: "exact", head: true })
-          .eq("user_id", userData.id)
-      ]);
-
-      if (photosError || modelsError || generationsError) {
-        console.error("Error fetching counts:", { photosError, modelsError, generationsError });
-        return NextResponse.json(
-          { error: "Failed to fetch user data", success: false },
-          { status: 500 }
-        );
-      }
-
-      // Get today's generations count for quota display
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      const { count: todayGenerationsCount, error: todayGenerationsError } = await supabaseAdmin
-        .from("generations")
-        .select("*", { count: "exact", head: true })
-        .eq("user_id", userData.id)
-        .gte("created_at", today.toISOString());
-
-      if (todayGenerationsError) {
-        console.error("Error counting today's generations:", todayGenerationsError);
-        return NextResponse.json(
-          { error: "Failed to check generation quota", success: false },
-          { status: 500 }
-        );
-      }
-
-      // Define quotas based on subscription status
-      const isSubscribed = userData.subscription_status === 'premium';
-      
-      const MAX_FREE_MODELS = 5;
-      const MAX_FREE_GENERATIONS_PER_DAY = 20;
-      
-      const MAX_PREMIUM_MODELS = 100;
-      const MAX_PREMIUM_GENERATIONS_PER_DAY = 1000;
-      
-      const modelQuota = {
-        total: isSubscribed ? MAX_PREMIUM_MODELS : MAX_FREE_MODELS,
-        used: modelsCount || 0,
-        remaining: isSubscribed 
-          ? Math.max(0, MAX_PREMIUM_MODELS - (modelsCount || 0))
-          : Math.max(0, MAX_FREE_MODELS - (modelsCount || 0))
-      };
-      
-      const generationQuota = {
-        total: isSubscribed ? MAX_PREMIUM_GENERATIONS_PER_DAY : MAX_FREE_GENERATIONS_PER_DAY,
-        used: todayGenerationsCount || 0,
-        remaining: isSubscribed
-          ? Math.max(0, MAX_PREMIUM_GENERATIONS_PER_DAY - (todayGenerationsCount || 0))
-          : Math.max(0, MAX_FREE_GENERATIONS_PER_DAY - (todayGenerationsCount || 0))
-      };
-
-      // Include user information from Clerk
-      const userInfo = {
-        id: userData.id,
-        email: user?.emailAddresses?.[0]?.emailAddress || userData.email || '',
-        firstName: user?.firstName || userData.first_name || '',
-        lastName: user?.lastName || userData.last_name || '',
-        imageUrl: user?.imageUrl || userData.image_url || '',
-        created_at: userData.created_at,
-        subscription: {
-          status: isSubscribed ? "premium" : "free",
-        },
-        stats: {
-          photos: photosCount || 0,
-          models: modelsCount || 0,
-          generations: generationsCount || 0
-        },
-        quotas: {
-          models: modelQuota,
-          generations: generationQuota
-        }
-      };
-
-      // Return success response
-      return NextResponse.json({
-        success: true,
-        profile: userInfo
-      });
-    } catch (dbError: any) {
-      console.error("Database error:", dbError);
+    if (!user) {
       return NextResponse.json(
-        { error: "Database error: " + (dbError.message || "Unknown error"), success: false },
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+    
+    // Check if user exists in Supabase
+    const { data: supabaseUser, error: queryError } = await supabase
+      .from("users")
+      .select("*")
+      .eq("clerk_id", user.id)
+      .maybeSingle();
+    
+    if (queryError) {
+      console.error("Error querying user:", queryError);
+      return NextResponse.json(
+        { error: "Error accessing user database" },
         { status: 500 }
       );
     }
-  } catch (error: any) {
+    
+    // If user doesn't exist in Supabase, create them
+    if (!supabaseUser) {
+      // Create user record
+      const { data: newUser, error: insertError } = await supabase
+        .from("users")
+        .insert({
+          clerk_id: user.id,
+          email: user.emailAddresses[0]?.emailAddress || "",
+        })
+        .select()
+        .single();
+      
+      if (insertError) {
+        console.error("Error creating user:", insertError);
+        return NextResponse.json(
+          { error: "Failed to create user record" },
+          { status: 500 }
+        );
+      }
+      
+      // Return the newly created user profile
+      return NextResponse.json({
+        success: true,
+        profile: {
+          id: newUser.id,
+          email: newUser.email,
+          created_at: newUser.created_at,
+          subscription: {
+            status: "free",
+          },
+          stats: {
+            models: 0,
+            generations: 0,
+          },
+          quotas: {
+            models: {
+              total: 5,
+              remaining: 5,
+            },
+            generations: {
+              daily: 20,
+              remaining: 20,
+            }
+          }
+        }
+      });
+    }
+    
+    // Get user stats
+    const [
+      { count: modelsCount }, 
+      { count: generationsCount }
+    ] = await Promise.all([
+      supabase.from("models").select("*", { count: "exact", head: true }).eq("user_id", user.id),
+      supabase.from("generations").select("*", { count: "exact", head: true }).eq("user_id", user.id),
+    ]);
+    
+    // Return user profile with stats
+    return NextResponse.json({
+      success: true,
+      profile: {
+        id: supabaseUser.id,
+        email: supabaseUser.email,
+        created_at: supabaseUser.created_at,
+        subscription: {
+          status: "free", // Replace with actual logic from Stripe if implemented
+        },
+        stats: {
+          models: modelsCount || 0,
+          generations: generationsCount || 0,
+        },
+        quotas: {
+          models: {
+            total: 5, // Free tier limit
+            remaining: 5 - (modelsCount || 0),
+          },
+          generations: {
+            daily: 20, // Free tier daily limit
+            remaining: 20 - (generationsCount || 0),
+          }
+        }
+      }
+    });
+    
+  } catch (error) {
     console.error("Error fetching user profile:", error);
     return NextResponse.json(
-      { error: error.message || "Internal server error", success: false },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

@@ -5,6 +5,7 @@ import TanstackClientProvider from '@/components/providers/tanstack-client-provi
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ClerkProvider } from "@clerk/nextjs"
+import UserSync from '@/components/user-sync'
 
 // Initialize the Inter font
 const inter = Inter({
@@ -28,6 +29,7 @@ export default function RootLayout({
         <ClerkProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
             <TanstackClientProvider>
+              <UserSync />
               {children}
               <ToastContainer
                 position="bottom-right"

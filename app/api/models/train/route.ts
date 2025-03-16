@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { createClient } from "@supabase/supabase-js";
 import Replicate from "replicate";
+import JSZip from "jszip";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 // Initialize clients
 const supabase = createClient(
@@ -25,55 +28,97 @@ export async function POST(req: NextRequest) {
     }
 
     // Parse request body
-    const { modelName, photoIds } = await req.json();
+    const {
+      photos,
+      triggerWord,
+      trainingSteps = 1500,
+      loraRank = 16,
+      optimizer = "adamw8bit",
+      learningRate = 0.0004,
+      resolution = "512",
+      batchSize = 1
+    } = await req.json();
 
     // Validate input
-    if (!modelName) {
+    if (!triggerWord) {
       return NextResponse.json(
-        { error: "Model name is required" },
+        { error: "Trigger word is required" },
         { status: 400 }
       );
     }
 
-    if (!photoIds || !Array.isArray(photoIds) || photoIds.length < 10) {
+    if (!photos || !Array.isArray(photos) || photos.length < 10) {
       return NextResponse.json(
         { error: "At least 10 photos are required for training" },
         { status: 400 }
       );
     }
 
-    // Get user's photos from database
-    const { data: photos, error: photosError } = await supabase
-      .from("photos")
-      .select("*")
-      .eq("user_id", user.id)
-      .in("id", photoIds);
-
-    if (photosError || !photos || photos.length < 10) {
+    // Create a ZIP file containing all the photos
+    const zip = new JSZip();
+    const zipFolder = zip.folder("training_photos");
+    
+    // Download each photo and add it to the ZIP
+    try {
+      for (let i = 0; i < photos.length; i++) {
+        const photoUrl = photos[i];
+        const response = await axios.get(photoUrl, { responseType: 'arraybuffer' });
+        const filename = `photo_${i+1}.jpg`;
+        zipFolder?.file(filename, response.data);
+      }
+    } catch (error) {
+      console.error("Error downloading photos for ZIP:", error);
       return NextResponse.json(
-        { error: "Failed to fetch required photos or insufficient photos found" },
-        { status: 400 }
+        { error: "Failed to download photos for training" },
+        { status: 500 }
+      );
+    }
+    
+    // Generate ZIP file
+    const zipContent = await zip.generateAsync({ type: "nodebuffer" });
+    
+    // Upload the ZIP file to Supabase
+    const zipFileName = `${user.id}/${Date.now()}_${uuidv4()}_training.zip`;
+    const { error: zipUploadError } = await supabase.storage
+      .from("training")
+      .upload(zipFileName, zipContent, {
+        contentType: "application/zip",
+        upsert: false
+      });
+      
+    if (zipUploadError) {
+      console.error("Error uploading ZIP file:", zipUploadError);
+      return NextResponse.json(
+        { error: "Failed to prepare training data" },
+        { status: 500 }
+      );
+    }
+    
+    // Get a signed URL for the ZIP file (valid for 1 hour)
+    const { data: { signedUrl } } = await supabase.storage
+      .from("training")
+      .createSignedUrl(zipFileName, 3600);
+      
+    if (!signedUrl) {
+      return NextResponse.json(
+        { error: "Failed to generate signed URL for training data" },
+        { status: 500 }
       );
     }
 
-    // Extract photo URLs for training
-    const photoUrls = photos.map(photo => photo.url);
-
-    // Start training with Replicate (using Flux LoRA trainer)
+    // Start training with Replicate
     const training = await replicate.trainings.create({
-      // Flux LoRA trainer - replace with actual model ID
-      version: "flux-lora-training/1.0",
       input: {
-        instance_prompt: `a photo of ${modelName} person`,
-        class_prompt: "a photo of person",
-        instance_data: photoUrls,
-        max_train_steps: 1500,
-        learning_rate: 1e-4,
-        train_text_encoder: true,
-        use_8bit_adam: false,
+        input_images: signedUrl,
+        trigger_word: triggerWord,
+        training_steps: parseInt(trainingSteps.toString()),
+        learning_rate: parseFloat(learningRate.toString()),
+        rank: parseInt(loraRank.toString()),
+        resolution: parseInt(resolution),
+        batch_size: parseInt(batchSize.toString())
       },
-      webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/training-complete`,
-      webhook_events_filter: ["completed", "failed"]
+      model: "stability-ai/sdxl-lora",
+      webhook_completed: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`
     });
 
     // Save model reference in database
@@ -81,12 +126,18 @@ export async function POST(req: NextRequest) {
       .from("models")
       .insert({
         user_id: user.id,
-        name: modelName,
-        status: "training",
-        replicate_id: training.id,
-        replicate_version: null, // Will be updated when training completes
+        model_id: training.id,
+        trigger_word: triggerWord,
+        status: "Processing",
+        parameters: {
+          trainingSteps,
+          loraRank,
+          optimizer,
+          learningRate,
+          resolution,
+          batchSize
+        },
         created_at: new Date().toISOString(),
-        photo_count: photos.length,
       })
       .select()
       .single();
@@ -99,27 +150,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Link photos to model
-    const photoLinks = photoIds.map(photoId => ({
-      model_id: model.id,
-      photo_id: photoId,
-    }));
-
-    const { error: linkError } = await supabase
-      .from("model_photos")
-      .insert(photoLinks);
-
-    if (linkError) {
-      console.error("Error linking photos to model:", linkError);
-      // Continue even if linking fails
+    // Save photo references for this model
+    for (const photoUrl of photos) {
+      await supabase
+        .from("model_photos")
+        .insert({
+          model_id: model.id,
+          photo_url: photoUrl
+        });
     }
 
     return NextResponse.json({
       success: true,
       model: {
         id: model.id,
-        name: modelName,
-        status: "training",
+        trigger_word: triggerWord,
+        status: "Processing",
         replicate_id: training.id,
       },
       message: "Model training started successfully"

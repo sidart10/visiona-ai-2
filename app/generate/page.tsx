@@ -41,7 +41,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Input } from "@/components/ui/input"
 import { Upload, X } from "lucide-react"
-import { generateImages as apiGenerateImages, fetchUserModels, fetchUserProfile } from "@/utils/api"
+import { generateImages as apiGenerateImages, fetchUserModels, fetchUserProfile, formatModelsForUI } from "@/utils/api"
 import { toast } from "react-toastify"
 
 // Badge Component
@@ -390,26 +390,35 @@ export default function GeneratePage() {
       const modelsData = await fetchUserModels({ limit: 10, page: 1 })
       
       if (modelsData.models && modelsData.models.length > 0) {
-        const formattedModels = modelsData.models.map(model => ({
-          id: model.id,
-          name: model.name || model.trigger_word,
-          triggerWord: model.trigger_word,
-          thumbnailUrl: "/placeholder.svg?height=100&width=100",
-          description: `Model created on ${new Date(model.created_at).toLocaleDateString()}`,
-        }))
+        // Format models using the helper function
+        const formattedModels = formatModelsForUI(modelsData.models);
         
-        setModels(formattedModels)
-        // Set the first model as selected by default
-        if (formattedModels.length > 0 && !selectedModel) {
-          setSelectedModel(formattedModels[0].id)
+        // Filter to only show completed models
+        const availableModels = formattedModels.filter(model => model.isActive);
+        
+        if (availableModels.length > 0) {
+          setModels(availableModels);
+          
+          // If there's no selected model or the selected model is no longer available,
+          // set the first available model as selected
+          if (!selectedModel || !availableModels.some(m => m.id === selectedModel)) {
+            setSelectedModel(availableModels[0].id);
+          }
+        } else {
+          // No completed models found
+          setModels([]);
+          setSelectedModel("");
+          console.log("No completed models found for user");
         }
       } else {
-        // No models found, may need to guide user to create one
-        console.log("No models found for user")
+        // No models found at all
+        setModels([]);
+        setSelectedModel("");
+        console.log("No models found for user");
       }
     } catch (error) {
-      console.error("Error loading user models:", error)
-      toast.error("Failed to load your models")
+      console.error("Error loading user models:", error);
+      toast.error("Failed to load your models");
     }
   }
 
@@ -422,7 +431,23 @@ export default function GeneratePage() {
     if (!models || models.length === 0) {
       return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "" };
     }
-    return models.find((model) => model.id === selectedModel) || models[0];
+    
+    const selectedModelObject = models.find((model) => model.id === selectedModel);
+    
+    // If we have a valid selection, return it
+    if (selectedModelObject) {
+      return selectedModelObject;
+    }
+    
+    // If we don't have a valid selection but have models available, 
+    // select the first one automatically
+    if (models.length > 0) {
+      setSelectedModel(models[0].id);
+      return models[0];
+    }
+    
+    // Fallback if nothing is found
+    return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "" };
   }
 
   // Handle style selection
@@ -478,66 +503,97 @@ export default function GeneratePage() {
 
   // Handle image generation
   const handleGenerateImages = async () => {
-    if (!prompt) {
-      toast.warning("Please enter a prompt first")
-      return
+    // Validate that we have a model selected
+    if (!selectedModel) {
+      toast.warning("Please select a model first");
+      setShowModelSelector(true); // Open the model selector
+      return;
     }
     
-    const modelDetails = getSelectedModelDetails()
-    if (!modelDetails.id) {
-      toast.warning("Please select a model first")
+    // Validate that we have a prompt
+    if (!prompt || prompt.trim() === "") {
+      toast.warning("Please enter a prompt");
+      if (promptInputRef.current) {
+        promptInputRef.current.focus();
+      }
+      return;
+    }
+
+    // Check if we have enough remaining generations
+    if (userProfile.dailyGenerations >= userProfile.dailyGenerationsLimit) {
+      toast.error(
+        userProfile.plan === "premium"
+          ? "You've reached your daily limit. Try again tomorrow."
+          : "You've reached your free tier limit. Upgrade to Premium for more generations."
+      )
       return
     }
 
     setIsGenerating(true)
-    setGeneratedImages([])
-
+    
     try {
-      // Get selected aspect ratio dimensions
-      const aspectRatioDimensions = aspectRatio.split(":").map(Number)
-      const aspectRatioValue = aspectRatioDimensions[0] / aspectRatioDimensions[1]
-      
-      let width = 512
-      let height = 512
-      
-      // Adjust dimensions based on aspect ratio
-      if (aspectRatioValue > 1) {
-        // Landscape
-        height = Math.round(width / aspectRatioValue)
-      } else if (aspectRatioValue < 1) {
-        // Portrait
-        width = Math.round(height * aspectRatioValue)
+      // Get the model details with trigger word
+      const modelDetails = models.find(model => model.id === selectedModel);
+      if (!modelDetails) {
+        throw new Error("Selected model not found");
       }
       
-      // Call our API to generate images
-      const result = await apiGenerateImages({
-        prompt,
-        modelId: modelDetails.id,
-        negativePrompt: negativePrompt,
-        count: imageCount,
-        width,
-        height,
-        steps: inferenceSteps,
-        guidanceScale,
-        seed: randomSeed ? Math.floor(Math.random() * 1000000) : (seed || 0)
-      })
+      const triggerWord = modelDetails.triggerWord;
       
-      if (result.success && result.generations) {
-        // Update UI with the generated images
-        setGeneratedImages(
-          result.generations.map(gen => ({
-            id: gen.id,
-            src: gen.image_url,
-            prompt: gen.prompt
-          }))
-        )
+      // Combine trigger word with the prompt if it's not already included
+      let fullPrompt = prompt;
+      if (triggerWord && !prompt.toLowerCase().includes(triggerWord.toLowerCase())) {
+        fullPrompt = `${triggerWord}, ${prompt}`;
+      }
+      
+      const result = await apiGenerateImages({
+        prompt: fullPrompt,
+        negativePrompt,
+        modelId: selectedModel,
+        count: imageCount,
+        guidanceScale: guidanceScale,
+        aspectRatio,
+      })
+
+      if (result.success) {
+        // Generate temporary image URLs
+        const tempImages = new Array(imageCount).fill(0).map((_, i) => ({
+          id: `temp-${Date.now()}-${i}`,
+          url: "/placeholder.svg",
+          prompt: fullPrompt,
+        }))
+
+        // Clear existing images
+        setGeneratedImages([])
+
+        // Set loading state
+        setGeneratedImagesLoading(true)
+
+        // Simulate a delay for loading
+        setTimeout(() => {
+          setGeneratedImages(
+            result.images.map((img, i) => ({
+              id: `gen-${Date.now()}-${i}`,
+              url: img.url,
+              prompt: fullPrompt,
+            }))
+          )
+          setGeneratedImagesLoading(false)
+          
+          // Increment used generations
+          setUserProfile({
+            ...userProfile,
+            dailyGenerations: userProfile.dailyGenerations + 1
+          })
+        }, 500)
+
         toast.success("Images generated successfully!")
       } else {
         toast.error(result.error || "Failed to generate images")
       }
     } catch (error) {
       console.error("Error generating images:", error)
-      toast.error("Error generating images. Please try again later.")
+      toast.error("Failed to generate images. Please try again.")
     } finally {
       setIsGenerating(false)
     }
@@ -762,15 +818,23 @@ export default function GeneratePage() {
             <div className="mb-8">
               <div className="relative">
                 {/* Model selector button */}
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex flex-col w-full mb-3">
                   <Button
                     variant="outline"
-                    className="flex items-center bg-gray-900 border-gray-700 hover:bg-gray-800 hover:border-gray-600 w-full"
+                    className={`flex items-center ${
+                      models && models.length > 0 && selectedModel 
+                        ? "bg-gray-900 border-gray-700 hover:bg-gray-800 hover:border-gray-600" 
+                        : "bg-amber-500/10 border-amber-500/30 text-amber-400 hover:bg-amber-500/20"
+                    } w-full`}
                     onClick={() => setShowModelSelector(!showModelSelector)}
                   >
-                    <User size={16} className="mr-2 text-[#1eb8cd]" />
+                    <User size={16} className={`mr-2 ${selectedModel ? "text-[#1eb8cd]" : "text-amber-400"}`} />
                     <span className="mr-1">Model:</span>
-                    <span className="font-medium text-[#1eb8cd]">{getSelectedModelDetails().name}</span>
+                    {selectedModel ? (
+                      <span className="font-medium text-[#1eb8cd]">{getSelectedModelDetails().name}</span>
+                    ) : (
+                      <span className="font-medium text-amber-400">Please select a model</span>
+                    )}
                     {models && models.length > 0 && <ChevronDown size={16} className="ml-2" />}
                   </Button>
                   
@@ -814,7 +878,7 @@ export default function GeneratePage() {
                   
                   {(!models || models.length === 0) && (
                     <div className="mt-2 text-sm text-amber-400">
-                      <p>You don't have any models yet. <Link href="/train" className="underline">Train a model</Link> to get started.</p>
+                      <p>You don't have any completed models yet. <Link href="/train" className="underline">Train a model</Link> to get started.</p>
                     </div>
                   )}
                 </div>

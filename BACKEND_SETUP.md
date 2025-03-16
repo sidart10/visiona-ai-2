@@ -135,11 +135,64 @@ To deploy the application:
 3. Configure the environment variables in the Vercel dashboard
 4. Deploy the application
 
-## Troubleshooting
+## Setting Up Supabase Storage Buckets
 
-If you encounter issues:
+After creating your Supabase project and running the SQL schema, you need to set up the storage buckets:
 
-1. Check that all API keys are correctly set in your `.env.local` file
-2. Ensure Supabase tables are created correctly
-3. Verify that Clerk webhooks are properly configured
-4. Check the browser console and server logs for errors 
+1. Either create them manually in the Supabase dashboard:
+   - Create a `photos` bucket for storing user-uploaded photos (public access)
+   - Create a `training` bucket for storing zipped training files (private access)
+   - Create a `generations` bucket for storing generated images (public access)
+
+2. Or use the provided API endpoint to create them automatically:
+
+```bash
+curl -X POST https://your-domain.com/api/admin/setup-storage \
+  -H "x-admin-key: YOUR_ADMIN_SECRET"
+```
+
+Set the `ADMIN_SECRET` environment variable to a secure value in your `.env.local` file.
+
+## Troubleshooting Image Upload and Training Issues
+
+If you encounter issues with image uploads or model training:
+
+1. Check that your Supabase storage buckets are properly configured
+2. Ensure all environment variables are correctly set in `.env.local`
+3. Check the browser console and server logs for errors
+4. Test the API endpoints directly:
+
+```bash
+# Test photo upload (replace with appropriate values)
+curl -X POST https://your-domain.com/api/photos/upload \
+  -H "Authorization: Bearer YOUR_CLERK_JWT" \
+  -F "photo0=@/path/to/image.jpg"
+
+# Test model training
+curl -X POST https://your-domain.com/api/models/train \
+  -H "Authorization: Bearer YOUR_CLERK_JWT" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
+    "triggerWord": "mymodel",
+    "trainingSteps": 1500
+  }'
+
+# Check model status
+curl -X GET https://your-domain.com/api/models/status?id=YOUR_MODEL_ID \
+  -H "Authorization: Bearer YOUR_CLERK_JWT"
+```
+
+## Image Upload and Training Workflow
+
+The training workflow has been updated to:
+
+1. Allow users to upload multiple images (10-20 recommended) through the UI
+2. Store these images in the Supabase `photos` bucket
+3. When starting training:
+   - Photos are downloaded and zipped
+   - The ZIP file is uploaded to the `training` bucket
+   - A signed URL is generated for Replicate to access the ZIP
+   - Training begins on Replicate using Flux LoRA
+   - Progress is tracked through polling
+   - When complete, model details are stored for generating images 

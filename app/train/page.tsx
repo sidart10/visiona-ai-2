@@ -31,7 +31,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Info, ChevronDown } from "lucide-react"
-import { uploadPhotos, trainModel, fetchUserProfile, fetchUserModels } from "@/utils/api"
+import { uploadPhotos, createModel, fetchUserProfile, fetchUserModels, deleteModel, formatModelsForUI } from "@/utils/api"
 import { toast } from "react-toastify"
 
 // Badge Component
@@ -101,33 +101,68 @@ type PhotoUploadAreaProps = {
 
 const PhotoUploadArea: React.FC<PhotoUploadAreaProps> = ({ photos, onAddPhotos, onRemovePhoto, className = "" }) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [dragActive, setDragActive] = useState(false)
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
+    setDragActive(true)
+    console.log("Drag over event triggered - added highlight border")
+  }
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setDragActive(false)
+    console.log("Drag leave event triggered - removed highlight border")
   }
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
+    setDragActive(false)
+    console.log("Drop event triggered - removed highlight border")
 
     if (e.dataTransfer.files) {
       const fileList = e.dataTransfer.files
+      console.log("Files dropped:", fileList.length, "files")
+      console.log("File types:", Array.from(fileList).map(f => f.type).join(', '))
       const filesArray = Array.from(fileList)
       const imageFiles = filesArray.filter((file) => file.type.startsWith("image/"))
+      console.log("Image files filtered:", imageFiles.length, "images")
+      if (imageFiles.length === 0) {
+        console.warn("No valid image files were found among the dropped files")
+      }
       onAddPhotos(imageFiles)
+    } else {
+      console.warn("No files detected in drop event")
     }
   }
 
   const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("File input change event triggered");
     if (e.target.files) {
-      const fileList = e.target.files
-      const filesArray = Array.from(fileList)
-      onAddPhotos(filesArray)
+      const fileList = e.target.files;
+      console.log(`File input has ${fileList.length} files selected`);
+      
+      // Log each file that was selected
+      for (let i = 0; i < fileList.length; i++) {
+        console.log(`Selected file ${i+1}/${fileList.length}: ${fileList[i].name} (${fileList[i].type}, ${Math.round(fileList[i].size/1024)}KB)`);
+      }
+      
+      const filesArray = Array.from(fileList);
+      console.log(`Converted FileList to array with ${filesArray.length} items`);
+      
+      onAddPhotos(filesArray);
+    } else {
+      console.warn("No files detected in file input");
     }
   }
 
   const triggerFileInput = () => {
+    console.log("Attempting to trigger file input click")
     if (fileInputRef.current) {
+      console.log("File input reference exists, triggering click")
       fileInputRef.current.click()
+    } else {
+      console.warn("File input reference is null, cannot trigger click")
     }
   }
 
@@ -135,8 +170,9 @@ const PhotoUploadArea: React.FC<PhotoUploadAreaProps> = ({ photos, onAddPhotos, 
     <div className={`${className}`}>
       {/* Drop Area */}
       <div
-        className="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center hover:border-[#1eb8cd] transition-colors cursor-pointer bg-gray-900/20"
+        className={`border-2 border-dashed ${dragActive ? 'border-[#1eb8cd] bg-[#1eb8cd]/5' : 'border-gray-700 bg-gray-900/20'} rounded-lg p-6 text-center hover:border-[#1eb8cd] transition-colors cursor-pointer`}
         onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={triggerFileInput}
       >
@@ -152,7 +188,15 @@ const PhotoUploadArea: React.FC<PhotoUploadAreaProps> = ({ photos, onAddPhotos, 
           <Upload size={36} className="text-gray-400 mb-3" />
           <h3 className="text-white font-medium mb-1">Drop photos here</h3>
           <p className="text-gray-400 text-sm mb-3">Upload 10-20 clear photos or drag and drop them here</p>
-          <Button variant="outline" size="sm" className="border-[#1eb8cd] text-[#1eb8cd] hover:bg-[#1eb8cd]/10">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="border-[#1eb8cd] text-[#1eb8cd] hover:bg-[#1eb8cd]/10"
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent the outer div's onClick from firing
+              triggerFileInput();
+            }}
+          >
             <Camera className="mr-2 h-4 w-4" />
             Browse Files
           </Button>
@@ -169,24 +213,26 @@ const PhotoUploadArea: React.FC<PhotoUploadAreaProps> = ({ photos, onAddPhotos, 
             </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {photos.map((photo, index) => (
-              <div key={index} className="relative group">
-                <img
-                  src={URL.createObjectURL(photo) || "/placeholder.svg"}
-                  alt={`Upload ${index + 1}`}
-                  className="w-full h-24 object-cover rounded-md border border-gray-800"
-                />
-                <button
-                  className="absolute top-1 right-1 bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    onRemovePhoto(index)
-                  }}
-                >
-                  <X size={14} />
-                </button>
-              </div>
-            ))}
+            {photos.map((photo, index) => {
+              return (
+                <div key={index} className="relative group">
+                  <img
+                    src={URL.createObjectURL(photo)}
+                    alt={`Upload ${index + 1}`}
+                    className="w-full h-24 object-cover rounded-md border border-gray-800"
+                  />
+                  <button
+                    className="absolute top-1 right-1 bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onRemovePhoto(index)
+                    }}
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
+              )
+            })}
           </div>
         </div>
       )}
@@ -235,69 +281,122 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, currentStep, class
 }
 
 // Training Status Component
-type TrainingStatusProps = {
-  status: "queued" | "preparing" | "training" | "finalizing" | "completed" | "failed"
-  progress?: number
-  message?: string
-  timeRemaining?: string
-  className?: string
-}
-
-const TrainingStatus: React.FC<TrainingStatusProps> = ({
-  status,
-  progress = 0,
-  message,
-  timeRemaining,
-  className = "",
-}) => {
-  const statusDisplay = {
-    queued: {
-      icon: <Hourglass size={20} className="text-yellow-500" />,
-      label: "Queued",
-      description: "Your model is in the queue, waiting to start training",
-    },
-    preparing: {
-      icon: <RefreshCw size={20} className="text-blue-500 animate-spin" />,
-      label: "Preparing",
-      description: "Setting up your training environment and processing photos",
-    },
-    training: {
-      icon: <Loader size={20} className="text-[#1eb8cd] animate-spin" />,
-      label: "Training",
-      description: "Training your custom AI model",
-    },
-    finalizing: {
-      icon: <Loader size={20} className="text-purple-500 animate-spin" />,
-      label: "Finalizing",
-      description: "Optimizing your model for best performance",
-    },
-    completed: {
-      icon: <CheckCircle size={20} className="text-green-500" />,
-      label: "Completed",
-      description: "Your model has been successfully trained",
-    },
-    failed: {
-      icon: <AlertTriangle size={20} className="text-red-500" />,
-      label: "Failed",
-      description: "There was an error during the training process",
-    },
-  }
-
-  const currentStatus = statusDisplay[status]
+const TrainingStatus: React.FC<{
+  status: string
+  progress: number
+}> = ({ status, progress }) => {
+  // Define all possible statuses in order
+  const statuses = ["queued", "preparing", "training", "finalizing", "completed", "failed"];
+  const currentStatusIndex = statuses.indexOf(status);
+  
+  // Calculate estimated time remaining based on progress and status
+  const getTimeRemaining = () => {
+    if (status === "completed" || status === "failed") {
+      return null;
+    }
+    
+    let totalTimeSeconds = 0;
+    
+    // Estimate based on which stage we're in and progress
+    switch (status) {
+      case "queued":
+        return "Starting soon...";
+      case "preparing":
+        totalTimeSeconds = 5 * (100 - progress) / 100;
+        break;
+      case "training":
+        totalTimeSeconds = 20 * (100 - progress) / 100;
+        break;
+      case "finalizing":
+        totalTimeSeconds = 5 * (100 - progress) / 100;
+        break;
+    }
+    
+    // Format the time
+    if (totalTimeSeconds < 60) {
+      return `About ${Math.ceil(totalTimeSeconds)} seconds remaining`;
+    } else {
+      return `About ${Math.ceil(totalTimeSeconds / 60)} minutes remaining`;
+    }
+  };
+  
+  // Get status-specific message
+  const getStatusMessage = () => {
+    switch (status) {
+      case "queued":
+        return "Your model is in the queue and will start processing soon.";
+      case "preparing":
+        return "Preparing your photos for training...";
+      case "training":
+        return "Training your custom model. This may take a few minutes.";
+      case "finalizing":
+        return "Finalizing your model and preparing it for use.";
+      case "completed":
+        return "Your model is ready to use! You can now generate images with it.";
+      case "failed":
+        return "Training failed. Please try again or contact support.";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div className={`${className}`}>
-      <div className="flex items-center mb-2">
-        {currentStatus.icon}
-        <span className="ml-2 font-medium text-white">{currentStatus.label}</span>
-        {status === "training" && timeRemaining && (
-          <span className="ml-auto text-sm text-gray-400">{timeRemaining} remaining</span>
-        )}
+    <div className="mt-6 bg-gray-900/50 border border-gray-800 rounded-lg p-4">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-white font-medium">Training Status</h3>
+        <Badge
+          variant={
+            status === "completed"
+              ? "success"
+              : status === "failed"
+              ? "danger"
+              : status === "queued"
+              ? "warning"
+              : "info"
+          }
+        >
+          {status.charAt(0).toUpperCase() + status.slice(1)}
+        </Badge>
       </div>
 
-      <p className="text-sm text-gray-400 mb-3">{message || currentStatus.description}</p>
-
-      {(status === "training" || status === "finalizing") && <Progress value={progress} className="h-2" />}
+      {/* Progress bar */}
+      <Progress value={progress} className="h-2 mb-4" />
+      
+      {/* Status timeline */}
+      <div className="flex justify-between mb-4 mt-6">
+        {statuses.slice(0, 5).map((s, index) => (
+          <div key={s} className="flex flex-col items-center">
+            <div 
+              className={`w-6 h-6 rounded-full flex items-center justify-center text-xs
+                ${index < currentStatusIndex ? "bg-green-500 text-white" : 
+                  index === currentStatusIndex ? 
+                    (status === "failed" ? "bg-red-500 text-white" : "bg-[#1eb8cd] text-white") : 
+                    "bg-gray-800 text-gray-500"}`}
+            >
+              {index < currentStatusIndex ? (
+                <CheckCircle size={12} />
+              ) : (
+                index + 1
+              )}
+            </div>
+            <span className={`text-xs mt-1 
+              ${index < currentStatusIndex ? "text-green-500" : 
+                index === currentStatusIndex ? 
+                  (status === "failed" ? "text-red-500" : "text-[#1eb8cd]") : 
+                  "text-gray-500"}`}>
+              {s.charAt(0).toUpperCase() + s.slice(1)}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Status message */}
+      <p className="text-sm text-gray-400 mb-2">{getStatusMessage()}</p>
+      
+      {/* Time remaining */}
+      {getTimeRemaining() && (
+        <p className="text-xs text-gray-500">{getTimeRemaining()}</p>
+      )}
 
       {status === "failed" && (
         <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-md">
@@ -347,7 +446,7 @@ const ModelCard: React.FC<ModelCardProps> = ({
     <Card
       className={`bg-black border ${isActive ? "border-[#1eb8cd]" : "border-gray-800/50"} hover:border-gray-700 transition-all ${className}`}
     >
-      <div className="relative h-32 bg-gray-900">
+      <div className="relative h-32 bg-gray-900 group">
         {thumbnailUrl ? (
           <img src={thumbnailUrl || "/placeholder.svg"} alt={name} className="w-full h-full object-cover" />
         ) : (
@@ -356,13 +455,28 @@ const ModelCard: React.FC<ModelCardProps> = ({
           </div>
         )}
         {isActive && (
-          <Badge variant="success" className="absolute top-2 right-2">
+          <Badge variant="success" className="absolute top-2 left-2">
             Active
           </Badge>
         )}
+        
+        {/* Delete button */}
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            // Confirm before deleting
+            if (window.confirm(`Are you sure you want to delete model "${name}"?`)) {
+              onDelete();
+            }
+          }}
+          className="absolute top-2 right-2 bg-black/70 text-red-500 p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black"
+          title="Delete model"
+        >
+          <X size={16} />
+        </button>
       </div>
 
-      <CardContent className="p-4">
+      <CardContent className="p-4 cursor-pointer" onClick={onSelect}>
         <h3 className="text-white font-medium mb-1 truncate">{name}</h3>
         <p className="text-gray-400 text-xs mb-4">Created {createdAt}</p>
       </CardContent>
@@ -372,12 +486,23 @@ const ModelCard: React.FC<ModelCardProps> = ({
 
 // Main Training Page Component
 export default function TrainPage() {
-  // Navigation state
-  const [activeNav, setActiveNav] = useState("train-model")
-  const router = useRouter()
-  const { signOut } = useClerk()
   const { user, isLoaded: isUserLoaded } = useUser()
+  const { signOut } = useClerk()
+  const router = useRouter()
 
+  // Constants
+  const MIN_PHOTOS = 5
+  const MAX_PHOTOS = 20
+  
+  // User data and quota state
+  const [dataLoading, setDataLoading] = useState(false)
+  const [userQuota, setUserQuota] = useState({
+    models: {
+      total: 0,
+      remaining: 0
+    }
+  })
+  
   // User profile state
   const [userProfile, setUserProfile] = useState({
     name: "Loading...",
@@ -387,105 +512,140 @@ export default function TrainPage() {
     modelsCreated: 0,
     modelsLimit: 5,
   })
+  
+  // Photo upload state
+  const [uploadStates, setUploadStates] = useState<Array<{
+    file: File,
+    status: 'uploading' | 'completed' | 'error',
+    progress?: number,
+    error?: string
+  }>>([])
+  
+  const [uploadedPhotos, setUploadedPhotos] = useState<Array<{
+    id: string,
+    url: string,
+    filename: string,
+    storagePath: string
+  }>>([])
+  
+  // Model data state
+  const [modelName, setModelName] = useState("")
+  const [modelDescription, setModelDescription] = useState("")
+  const [triggerWord, setTriggerWord] = useState("")
+  const [userModels, setUserModels] = useState<any[]>([])
+  const [existingModels, setExistingModels] = useState<any[]>([])
+  const [modelsLoading, setModelsLoading] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
+  // Current step
+  const [currentStep, setCurrentStep] = useState(0)
+  const steps = ["Upload Photos", "Enter Details", "Train Model"]
+
+  // Navigation state
+  const [activeNav, setActiveNav] = useState("train-model")
+
+  // Profile dropdown state
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
 
   // Training state
-  const [currentStep, setCurrentStep] = useState(0)
-  const [photos, setPhotos] = useState<File[]>([])
-  const [triggerWord, setTriggerWord] = useState("")
   const [trainingStatus, setTrainingStatus] = useState<TrainingStatusProps["status"]>("queued")
   const [trainingProgress, setTrainingProgress] = useState(0)
   const [modelCreationStatus, setModelCreationStatus] = useState<"idle" | "creating" | "success" | "error">("idle")
 
-  // Add these advanced training parameters state
-  const [trainingSteps, setTrainingSteps] = useState(1500)
-  const [loraRank, setLoraRank] = useState(16)
-  const [optimizer, setOptimizer] = useState("adamw8bit")
-  const [learningRate, setLearningRate] = useState(0.0004)
-  const [resolution, setResolution] = useState("512")
+  // Advanced settings
+  const [loraRank, setLoraRank] = useState(32)
+  const [trainingSteps, setTrainingSteps] = useState(1000)
+  const [optimizer, setOptimizer] = useState("AdamW8bit")
+  const [learningRate, setLearningRate] = useState(1e-4)
+  const [resolution, setResolution] = useState("512x512")
   const [batchSize, setBatchSize] = useState(1)
-
-  // Existing models
-  const [existingModels, setExistingModels] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false)
 
   // View state
   const [activeTab, setActiveTab] = useState("create")
+  const [isLoading, setIsLoading] = useState(true)
 
-  // Steps for the training process
-  const steps = ["Upload Photos", "Model Details", "Train Model"]
+  // Step progression checks
+  const canProceedToStep2 = uploadedPhotos.length >= MIN_PHOTOS
+  const canProceedToStep3 = triggerWord.length > 0
 
-  // Add state for tracking upload status
-  const [isUploading, setIsUploading] = useState(false)
-  const [uploadedPhotoUrls, setUploadedPhotoUrls] = useState<string[]>([])
-
-  // Load user data and models
-  useEffect(() => {
-    async function loadUserData() {
-      if (!isUserLoaded || !user) return
-      
-      try {
-        setIsLoading(true)
-        
-        // Fetch user profile data
-        const profileData = await fetchUserProfile()
-        
-        if (!profileData.success) {
-          console.error("Profile data error:", profileData.error)
-          toast.error(profileData.error || "Failed to fetch profile data")
-          setIsLoading(false)
-          return
-        }
-        
-        // Update user profile
-        setUserProfile({
-          name: user.firstName || user.username || user.emailAddresses[0]?.emailAddress?.split('@')[0] || "User",
-          email: user.emailAddresses[0]?.emailAddress || "",
-          avatarUrl: user.imageUrl || "",
-          plan: profileData.profile?.subscription?.status || "free",
-          modelsCreated: profileData.profile?.stats?.models || 0,
-          modelsLimit: profileData.profile?.quotas?.models?.total || 5,
-        })
-        
-        // Load user models
-        await loadUserModels()
-      } catch (error) {
-        console.error("Error loading user data:", error)
-        toast.error("Failed to load user data")
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    
-    loadUserData()
-  }, [isUserLoaded, user])
-
-  // Load user models
-  async function loadUserModels() {
+  // Load user data function
+  async function loadUserData() {
     try {
-      const modelsData = await fetchUserModels({ limit: 10, page: 1 })
+      setDataLoading(true)
+      setIsLoading(true)
+      const response = await fetchUserProfile()
       
-      if (modelsData.models && modelsData.models.length > 0) {
-        const formattedModels = modelsData.models.map(model => ({
-          id: model.id,
-          name: model.name || model.trigger_word,
-          triggerWord: model.trigger_word,
-          createdAt: new Date(model.created_at).toLocaleDateString(),
-          isActive: false,
-          thumbnailUrl: "/placeholder.svg?height=150&width=150",
-        }))
-        
-        // Set the first model as active by default
-        if (formattedModels.length > 0) {
-          formattedModels[0].isActive = true
-        }
-        
-        setExistingModels(formattedModels)
+      if (!response.success) {
+        toast.error(response.error || "Failed to load profile")
+        return
       }
-    } catch (error) {
-      console.error("Error loading user models:", error)
-      toast.error("Failed to load your models")
+      
+      setUserQuota({
+        models: {
+          total: response.profile?.quotas.models.total || 0,
+          remaining: response.profile?.quotas.models.remaining || 0
+        }
+      })
+      
+      // Update user profile
+      setUserProfile({
+        name: user?.firstName || user?.username || user?.emailAddresses[0]?.emailAddress?.split('@')[0] || "User",
+        email: user?.emailAddresses[0]?.emailAddress || "",
+        avatarUrl: user?.imageUrl || "",
+        plan: response.profile?.subscription?.status || "free",
+        modelsCreated: response.profile?.stats?.models || 0,
+        modelsLimit: response.profile?.quotas?.models?.total || 5,
+      })
+    } catch (error: any) {
+      toast.error(error.message || "Failed to load user profile")
+    } finally {
+      setDataLoading(false)
+      setIsLoading(false)
     }
   }
+
+  // Load user models function
+  async function loadUserModels() {
+    try {
+      setModelsLoading(true)
+      const response = await fetchUserModels()
+      
+      if (!response.success) {
+        toast.error(response.error || "Failed to load models")
+        return
+      }
+      
+      setUserModels(response.models || [])
+      
+      // Format models for the UI
+      if (response.models && response.models.length > 0) {
+        // Use the helper function to format models consistently
+        // Cast the response.models to any to avoid TypeScript errors
+        const formattedModels = formatModelsForUI(response.models as any);
+        setExistingModels(formattedModels);
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Failed to load models")
+    } finally {
+      setModelsLoading(false)
+    }
+  }
+
+  // Load user data on component mount
+  useEffect(() => {
+    if (isUserLoaded && user) {
+      loadUserData()
+      loadUserModels()
+    }
+  }, [isUserLoaded, user])
+
+  // Redirect if not logged in
+  useEffect(() => {
+    if (isUserLoaded && !user) {
+      router.push('/sign-in')
+    }
+  }, [isUserLoaded, user, router])
 
   // Handle sign out
   const handleSignOut = async () => {
@@ -494,35 +654,93 @@ export default function TrainPage() {
 
   // Handle photo uploads
   const handleAddPhotos = async (files: File[]) => {
-    // First add the photos to our local state for UI display
-    setPhotos((prevPhotos) => [...prevPhotos, ...files])
+    console.log(`handleAddPhotos called with ${files.length} files:`, files.map(f => f.name));
+    if (!files.length) return;
     
-    if (files.length > 0) {
+    // Capture current state for logging
+    const startingPhotoCount = uploadedPhotos.length;
+    console.log(`Starting photo count: ${startingPhotoCount}/${MAX_PHOTOS}`);
+    
+    // Update UI immediately with loading state
+    const newUploadStates = [...uploadStates];
+    files.forEach((file, index) => {
+      if (uploadedPhotos.length + index < MAX_PHOTOS) {
+        newUploadStates.push({ file, status: "uploading", progress: 0 });
+      } else {
+        console.log(`Skipping file ${index+1} (${file.name}) - would exceed max photos limit of ${MAX_PHOTOS}`);
+      }
+    });
+    setUploadStates(newUploadStates);
+    console.log(`Updated upload states with ${newUploadStates.length - uploadStates.length} new items`);
+    
+    // Process each file one at a time
+    for (let i = 0; i < files.length; i++) {
+      if (uploadedPhotos.length + i >= MAX_PHOTOS) {
+        console.log(`Reached maximum photo limit of ${MAX_PHOTOS}, stopping upload at file ${i+1}/${files.length}`);
+        break;
+      }
+      
+      const file = files[i];
+      console.log(`Processing file ${i+1}/${files.length}: ${file.name} (${Math.round(file.size/1024)}KB)`);
+      const stateIndex = uploadStates.length + i;
+      
       try {
-        setIsUploading(true)
-        // Upload photos to the server
-        const result = await uploadPhotos(files)
+        // Upload individual file
+        console.log(`Calling uploadPhotos API for file: ${file.name}`);
+        const uploadResponse = await uploadPhotos([file]);
+        console.log(`Upload response for ${file.name}:`, uploadResponse);
         
-        if (result.success) {
-          // Store the uploaded photo URLs that we will need for training
-          setUploadedPhotoUrls((prev) => [...prev, ...result.photoUrls])
-          toast.success(`${files.length} photos uploaded successfully!`)
-        } else {
-          toast.error('Failed to upload photos')
+        if (!uploadResponse.success) {
+          // Update upload state to show error
+          const updatedStates = [...uploadStates];
+          updatedStates[stateIndex] = { ...updatedStates[stateIndex], status: "error", error: uploadResponse.error };
+          setUploadStates(updatedStates);
+          toast.error(`Failed to upload ${file.name}: ${uploadResponse.error}`);
+          console.error(`Upload failed for ${file.name}:`, uploadResponse.error);
+          continue;
         }
-      } catch (error) {
-        console.error('Error uploading photos:', error)
-        toast.error('Error uploading photos. Please try again.')
-      } finally {
-        setIsUploading(false)
+        
+        // Update upload state to show success
+        const updatedStates = [...uploadStates];
+        updatedStates[stateIndex] = { ...updatedStates[stateIndex], status: "completed" };
+        setUploadStates(updatedStates);
+        
+        // Add to uploaded photos array
+        const newUploadedPhoto = {
+          id: uploadResponse.photo!.id,
+          url: uploadResponse.photo!.url,
+          filename: uploadResponse.photo!.filename,
+          storagePath: uploadResponse.photo!.storage_path
+        };
+        console.log(`Adding new photo to state: ${newUploadedPhoto.filename} (id: ${newUploadedPhoto.id})`);
+        
+        // Important: Get the latest state when updating
+        setUploadedPhotos(prevPhotos => {
+          const newPhotos = [...prevPhotos, newUploadedPhoto];
+          console.log(`Updated photos array, now has ${newPhotos.length} items`);
+          return newPhotos;
+        });
+        
+      } catch (error: any) {
+        // Update upload state to show error
+        const updatedStates = [...uploadStates];
+        updatedStates[stateIndex] = { ...updatedStates[stateIndex], status: "error", error: error.message };
+        setUploadStates(updatedStates);
+        
+        console.error(`Exception during upload of ${file.name}:`, error);
+        toast.error(`Failed to upload ${file.name}: ${error.message}`);
       }
     }
-  }
+    
+    console.log(`Completed handling ${files.length} files. Started with ${startingPhotoCount}, now have ${uploadedPhotos.length} photos`);
+  };
   
   // Update the handleRemovePhoto function to also remove from server if needed
   const handleRemovePhoto = (index: number) => {
+    console.log(`Removing photo at index ${index}`, uploadedPhotos[index]);
     // For now, just remove from local state
-    setPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index))
+    setUploadedPhotos((prevPhotos) => prevPhotos.filter((_, i) => i !== index))
+    console.log("Photo removed, updated count:", uploadedPhotos.length - 1);
     
     // In a real implementation, you might want to also remove from the server
     // if the photo was already uploaded
@@ -541,97 +759,111 @@ export default function TrainPage() {
     }
   }
 
-  // Update the startTraining function to use our API
-  const startTraining = async () => {
-    if (trainingStatus !== "queued" || !triggerWord || photos.length < 10) {
+  // Start training function
+  async function startTraining() {
+    if (uploadedPhotos.length < MIN_PHOTOS) {
+      toast.error(`Please upload at least ${MIN_PHOTOS} photos`)
       return
     }
 
+    if (!triggerWord) {
+      toast.error("Please enter a trigger word")
+      return
+    }
+
+    setIsSubmitting(true)
+    setTrainingProgress(0)
+    setTrainingStatus("queued")
+
     try {
-      setTrainingStatus("preparing")
-      
-      // Make sure all photos are uploaded before proceeding
-      if (uploadedPhotoUrls.length < photos.length) {
-        toast.warning('Please wait for all photos to upload')
-        return
-      }
-      
-      // Start the model training with our API
-      const trainingResult = await trainModel({
-        photos: uploadedPhotoUrls,
-        triggerWord,
-        trainingSteps,
-        loraRank,
-        optimizer,
-        learningRate,
-        resolution,
-        batchSize
+      // Create a new model
+      const photoIds = uploadedPhotos.map((photo) => photo.id)
+      const modelResponse = await createModel({
+        name: modelName || triggerWord,
+        triggerWord: triggerWord,
+        photoIds: photoIds,
       })
-      
-      if (trainingResult.success) {
-        // Update training status based on API response
-        setTrainingStatus("training")
-        toast.success('Model training started successfully!')
+
+      if (!modelResponse.success) {
+        throw new Error(modelResponse.error || "Failed to create model")
+      }
+
+      const newModel = modelResponse.model
+
+      // Add the new model to our state
+      if (newModel) {
+        // Show a success message
+        toast.success("Model created successfully! Training has started.")
+
+        // Update the training status
+        // Simulate the training process with status updates
+        setTrainingStatus("queued")
         
-        // Create a function to poll training status
-        const checkTrainingStatus = () => {
-          // In a real implementation, you would poll the training status from your API
-          // and update the UI accordingly
+        // Queued for 2 seconds
+        setTimeout(() => {
+          setTrainingStatus("preparing")
           
-          // For now, just simulate progress
-          let progress = 0
-          const progressInterval = setInterval(() => {
-            // Increment progress
-            progress += 10
-            setTrainingProgress(progress)
+          // Preparing takes about 5 seconds
+          let prepProgress = 0
+          const prepInterval = setInterval(() => {
+            prepProgress += 20
+            setTrainingProgress(prepProgress)
             
-            // When progress reaches 100%, move to finalizing
-            if (progress >= 100) {
-              clearInterval(progressInterval)
-              setTrainingStatus("finalizing")
+            if (prepProgress >= 100) {
+              clearInterval(prepInterval)
+              setTrainingStatus("training")
               
-              // Simulate finalizing
-              setTimeout(() => {
-                setTrainingStatus("completed")
-                // Add the new model to the list of existing models
-                setExistingModels((prev) => [
-                  {
-                    id: `model-${Date.now()}`,
-                    name: triggerWord,
-                    triggerWord,
-                    createdAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-                    isActive: true,
-                    thumbnailUrl: "/placeholder.svg?height=150&width=150",
-                  },
-                  ...prev.map(m => ({ ...m, isActive: false })),
-                ])
+              // Training stage - takes about 20 seconds total
+              let trainProgress = 0
+              const trainInterval = setInterval(() => {
+                trainProgress += 5
+                setTrainingProgress(trainProgress)
                 
-                toast.success('Model training completed successfully!')
-              }, 2000)
+                if (trainProgress >= 100) {
+                  clearInterval(trainInterval)
+                  setTrainingStatus("finalizing")
+                  
+                  // Finalizing stage - takes about 5 seconds
+                  let finalizeProgress = 0
+                  const finalizeInterval = setInterval(() => {
+                    finalizeProgress += 20
+                    setTrainingProgress(finalizeProgress)
+                    
+                    if (finalizeProgress >= 100) {
+                      clearInterval(finalizeInterval)
+                      setTrainingStatus("completed")
+                      
+                      // Refresh the user data to show the updated model
+                      loadUserData()
+                      loadUserModels()
+                      
+                      // Set form back to initial state
+                      setIsSubmitting(false)
+                      setUploadedPhotos([])
+                      setModelName("")
+                      setTriggerWord("")
+                      setCurrentStep(0)
+                    }
+                  }, 1000)
+                }
+              }, 1000)
             }
           }, 1000)
-        }
-        
-        // Start checking training status
-        checkTrainingStatus()
-      } else {
-        setTrainingStatus("queued")
-        toast.error(trainingResult.error || 'Failed to start model training')
+        }, 2000)
       }
-    } catch (error) {
-      console.error('Error starting model training:', error)
-      setTrainingStatus("queued")
-      toast.error('Error starting model training. Please try again.')
+    } catch (error: any) {
+      console.error("Training error:", error)
+      toast.error(error.message || "Failed to start training")
+      setIsSubmitting(false)
+      setTrainingStatus("failed")
     }
   }
 
-  // Check if can proceed to next step
-  const canProceedToStep2 = photos.length >= 10
-  const canProceedToStep3 = triggerWord.length > 0
-
   // Reset training form
   const resetTrainingForm = () => {
-    setPhotos([])
+    setUploadedPhotos([])
+    setModelName("")
+    setModelDescription("")
     setTriggerWord("")
     setCurrentStep(0)
     setTrainingStatus("queued")
@@ -644,6 +876,28 @@ export default function TrainPage() {
     { id: "generate-images", label: "Generate Images", icon: <ImageIcon size={20} />, href: "/generate" },
     { id: "gallery", label: "Gallery", icon: <Grid size={20} />, href: "/gallery" },
   ]
+
+  // Render thumbnails of uploaded photos
+  const renderPhotoThumbnails = () => {
+    return uploadedPhotos.map((photo, index) => (
+      <div key={index} className="relative group">
+        <img
+          src={photo.url}
+          alt={`Upload ${index + 1}`}
+          className="w-full h-24 object-cover rounded-md border border-gray-800"
+        />
+        <button
+          className="absolute top-1 right-1 bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+          onClick={(e) => {
+            e.stopPropagation()
+            handleRemovePhoto(index)
+          }}
+        >
+          <X size={14} />
+        </button>
+      </div>
+    ))
+  }
 
   return (
     <div className="flex h-screen bg-black text-white">
@@ -775,10 +1029,26 @@ export default function TrainPage() {
                       </p>
 
                       <PhotoUploadArea
-                        photos={photos}
+                        photos={[]} 
                         onAddPhotos={handleAddPhotos}
                         onRemovePhoto={handleRemovePhoto}
+                        className=""
                       />
+                      
+                      {/* Display uploaded photos */}
+                      {uploadedPhotos.length > 0 && (
+                        <div className="mt-6">
+                          <div className="flex justify-between items-center mb-3">
+                            <h3 className="text-white font-medium">Uploaded Photos ({uploadedPhotos.length})</h3>
+                            <span className="text-sm text-gray-400">
+                              {uploadedPhotos.length < 10 ? `${10 - uploadedPhotos.length} more required` : "Minimum requirement met"}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                            {renderPhotoThumbnails()}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -1003,7 +1273,7 @@ export default function TrainPage() {
                           </div>
                           <div>
                             <h3 className="text-sm font-medium text-gray-400 mb-1">Photos Uploaded</h3>
-                            <p className="text-white">{photos.length} photos</p>
+                            <p className="text-white">{uploadedPhotos.length} photos</p>
                           </div>
                           <div>
                             <h3 className="text-sm font-medium text-gray-400 mb-1">Training Steps</h3>
@@ -1053,7 +1323,6 @@ export default function TrainPage() {
                         <TrainingStatus
                           status={trainingStatus}
                           progress={trainingProgress}
-                          timeRemaining={trainingStatus === "training" ? "~5 minutes" : undefined}
                         />
                       )}
                     </div>
@@ -1141,8 +1410,22 @@ export default function TrainPage() {
                         })),
                       )
                     }}
-                    onDelete={() => {
-                      setExistingModels((prev) => prev.filter((m) => m.id !== model.id))
+                    onDelete={async () => {
+                      try {
+                        const response = await deleteModel(model.id);
+                        if (response.success) {
+                          toast.success("Model deleted successfully");
+                          setExistingModels((prev) => prev.filter((m) => m.id !== model.id));
+                          
+                          // Reload user data to update remaining model count
+                          loadUserData();
+                        } else {
+                          toast.error(response.error || "Failed to delete model");
+                        }
+                      } catch (error) {
+                        console.error("Error deleting model:", error);
+                        toast.error("An error occurred while deleting the model");
+                      }
                     }}
                   />
                 ))}

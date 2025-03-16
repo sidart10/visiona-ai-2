@@ -11,35 +11,37 @@ CREATE TABLE IF NOT EXISTS users (
 -- Table: photos
 CREATE TABLE IF NOT EXISTS photos (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    file_url TEXT NOT NULL,
+    user_id VARCHAR(255) NOT NULL, -- Clerk user ID
+    storage_path TEXT NOT NULL, -- Path in Supabase storage
+    file_url TEXT NOT NULL, -- Public URL for the photo
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table: models
 CREATE TABLE IF NOT EXISTS models (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    model_id TEXT NOT NULL, -- Unique identifier of the trained model from Replicate
-    name VARCHAR(100) DEFAULT 'My Model', -- Name of the model
+    user_id VARCHAR(255) NOT NULL, -- Clerk user ID
+    model_id TEXT NOT NULL, -- Replicate training ID
     trigger_word VARCHAR(50) NOT NULL,
     status VARCHAR(50) DEFAULT 'Processing', -- Statuses: Processing, Ready, Failed
-    parameters JSONB NOT NULL, -- Stores training parameters for Replicate
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    parameters JSONB NOT NULL, -- Stores training parameters (trainingSteps, loraRank, etc.)
+    version_id TEXT, -- Replicate version ID after successful training
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table: model_photos (joining table between models and photos)
 CREATE TABLE IF NOT EXISTS model_photos (
     id SERIAL PRIMARY KEY,
     model_id INT REFERENCES models(id) ON DELETE CASCADE,
-    photo_id INT REFERENCES photos(id) ON DELETE CASCADE,
+    photo_url TEXT NOT NULL, -- URL of photo used for training
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Table: generations
 CREATE TABLE IF NOT EXISTS generations (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id VARCHAR(255) NOT NULL, -- Clerk user ID
     model_id INT REFERENCES models(id) ON DELETE SET NULL,
     prompt TEXT NOT NULL,
     enhanced_prompt TEXT,
@@ -50,7 +52,7 @@ CREATE TABLE IF NOT EXISTS generations (
 -- Table: payments
 CREATE TABLE IF NOT EXISTS payments (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    user_id VARCHAR(255) NOT NULL, -- Clerk user ID
     stripe_charge_id VARCHAR(255) UNIQUE NOT NULL,
     amount NUMERIC(10,2) NOT NULL,
     currency VARCHAR(10) NOT NULL,
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS payments (
 -- Table: audit_logs (for security and tracking events)
 CREATE TABLE IF NOT EXISTS audit_logs (
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(id) ON DELETE SET NULL,
+    user_id VARCHAR(255), -- Clerk user ID
     action VARCHAR(255) NOT NULL,
     details JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -83,26 +85,28 @@ CREATE POLICY users_policy ON users
     USING (clerk_id = auth.uid()::text);
 
 CREATE POLICY photos_policy ON photos
-    USING (user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text));
+    USING (user_id = auth.uid()::text);
 
 CREATE POLICY models_policy ON models
-    USING (user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text));
+    USING (user_id = auth.uid()::text);
 
 CREATE POLICY model_photos_policy ON model_photos
     USING (model_id IN (
         SELECT id FROM models 
-        WHERE user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text)
+        WHERE user_id = auth.uid()::text
     ));
 
 CREATE POLICY generations_policy ON generations
-    USING (user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text));
+    USING (user_id = auth.uid()::text);
 
 CREATE POLICY payments_policy ON payments
-    USING (user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text));
+    USING (user_id = auth.uid()::text);
 
 -- Audit logs can only be viewed by the user they belong to
 CREATE POLICY audit_logs_policy ON audit_logs
-    USING (user_id = (SELECT id FROM users WHERE clerk_id = auth.uid()::text));
+    USING (user_id = auth.uid()::text);
 
--- Create Storage buckets for photos and generated images
--- (Note: This is a comment as storage buckets are typically created via Supabase UI or SDK) 
+-- Create Storage buckets
+-- 1. 'photos' bucket for storing user uploaded photos
+-- 2. 'training' bucket for storing zipped training files
+-- 3. 'generations' bucket for storing generated images 
