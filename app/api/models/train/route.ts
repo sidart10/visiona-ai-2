@@ -95,19 +95,22 @@ export async function POST(req: NextRequest) {
     }
     
     // Get a signed URL for the ZIP file (valid for 1 hour)
-    const { data: { signedUrl } } = await supabase.storage
+    const { data } = await supabase.storage
       .from("training")
       .createSignedUrl(zipFileName, 3600);
       
-    if (!signedUrl) {
+    if (!data || !data.signedUrl) {
       return NextResponse.json(
         { error: "Failed to generate signed URL for training data" },
         { status: 500 }
       );
     }
 
+    const signedUrl = data.signedUrl;
+
     // Start training with Replicate
-    const training = await replicate.trainings.create({
+    const training = await replicate.predictions.create({
+      version: "stability-ai/sdxl-lora",
       input: {
         input_images: signedUrl,
         trigger_word: triggerWord,
@@ -117,8 +120,8 @@ export async function POST(req: NextRequest) {
         resolution: parseInt(resolution),
         batch_size: parseInt(batchSize.toString())
       },
-      model: "stability-ai/sdxl-lora",
-      webhook_completed: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`
+      webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`,
+      webhook_events_filter: ["completed"]
     });
 
     // Save model reference in database

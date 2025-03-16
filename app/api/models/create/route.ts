@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { createClient } from "@supabase/supabase-js";
+import Replicate from "replicate";
+import JSZip from "jszip";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
-// Initialize Supabase client
+// Initialize clients
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
+
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN!,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -21,64 +28,30 @@ export async function POST(req: NextRequest) {
       );
     }
     
-    // Check if user exists in Supabase
-    const { data: supabaseUser, error: queryError } = await supabase
-      .from("users")
-      .select("id")
-      .eq("clerk_id", user.id)
-      .maybeSingle();
-    
-    if (queryError) {
-      console.error("Error querying user:", queryError);
-      return NextResponse.json(
-        { error: "Error accessing user database" },
-        { status: 500 }
-      );
-    }
-    
-    // If user doesn't exist in Supabase, create them
-    let userId: string;
-    
-    if (!supabaseUser) {
-      // Create user record
-      const { data: newUser, error: insertError } = await supabase
-        .from("users")
-        .insert({
-          clerk_id: user.id,
-          email: user.emailAddresses[0]?.emailAddress || "",
-        })
-        .select()
-        .single();
-      
-      if (insertError) {
-        console.error("Error creating user:", insertError);
-        return NextResponse.json(
-          { error: "Failed to create user record" },
-          { status: 500 }
-        );
-      }
-      
-      userId = newUser.id;
-    } else {
-      userId = supabaseUser.id;
-    }
-    
     // Parse request body
     const body = await req.json();
-    const { name, description, photoIds, triggerWord } = body;
+    const { 
+      photoIds, 
+      triggerWord,
+      trainingSteps = 1000,
+      loraRank = 32,
+      optimizer = "adamw8bit",
+      learningRate = 0.0004,
+      resolution = "512",
+      batchSize = 1
+    } = body;
     
-    // Validate input - use triggerWord as fallback for name
-    const modelName = name || triggerWord;
-    if (!modelName) {
+    // Validate input
+    if (!triggerWord) {
       return NextResponse.json(
-        { error: "Model name or trigger word is required" },
+        { error: "Trigger word is required" },
         { status: 400 }
       );
     }
     
-    if (!photoIds || !Array.isArray(photoIds) || photoIds.length < 5) {
+    if (!photoIds || !Array.isArray(photoIds) || photoIds.length < 10) {
       return NextResponse.json(
-        { error: "At least 5 photos are required" },
+        { error: "At least 10 photos are required for training" },
         { status: 400 }
       );
     }
@@ -86,8 +59,8 @@ export async function POST(req: NextRequest) {
     // Verify that photos exist and belong to the user
     const { data: photos, error: photosError } = await supabase
       .from("photos")
-      .select("id")
-      .eq("user_id", userId)
+      .select("id, storage_path")
+      .eq("user_id", user.id)
       .in("id", photoIds);
     
     if (photosError) {
@@ -105,134 +78,131 @@ export async function POST(req: NextRequest) {
       );
     }
     
-    // Check user's model quota
-    const { count: modelsCount, error: countError } = await supabase
-      .from("models")
-      .select("*", { count: "exact", head: true })
-      .eq("user_id", userId);
+    // Create a ZIP file containing all the photos
+    const zip = new JSZip();
+    const zipFolder = zip.folder("training_photos");
     
-    if (countError) {
-      console.error("Error checking model quota:", countError);
+    // Download each photo and add it to the ZIP
+    try {
+      for (let i = 0; i < photos.length; i++) {
+        const photo = photos[i];
+        const { data: fileData } = await supabase.storage
+          .from("photos")
+          .download(photo.storage_path);
+        
+        if (!fileData) {
+          throw new Error(`Failed to download photo ${photo.id}`);
+        }
+        
+        const filename = `photo_${i+1}.jpg`;
+        zipFolder?.file(filename, fileData);
+      }
+    } catch (error) {
+      console.error("Error downloading photos for ZIP:", error);
       return NextResponse.json(
-        { error: "Failed to check model quota" },
+        { error: "Failed to download photos for training" },
         { status: 500 }
       );
     }
     
-    // For now, using a simple free tier limit of 5 models
-    const MAX_FREE_TIER_MODELS = 5;
-    if ((modelsCount || 0) >= MAX_FREE_TIER_MODELS) {
+    // Generate ZIP file
+    const zipContent = await zip.generateAsync({ type: "nodebuffer" });
+    
+    // Upload the ZIP file to Supabase
+    const zipFileName = `${user.id}/${Date.now()}_${uuidv4()}_training.zip`;
+    const { error: zipUploadError } = await supabase.storage
+      .from("training")
+      .upload(zipFileName, zipContent, {
+        contentType: "application/zip",
+        upsert: false
+      });
+      
+    if (zipUploadError) {
+      console.error("Error uploading ZIP file:", zipUploadError);
       return NextResponse.json(
-        { error: "You have reached the maximum number of models for your plan" },
-        { status: 403 }
+        { error: "Failed to prepare training data" },
+        { status: 500 }
       );
     }
     
-    // Create new model in database
-    console.log("Attempting to create model with data:", {
-      id: uuidv4(),
-      user_id: userId,
-      name: modelName,
-      description: description || "",
-      status: "pending",
-      // Log that we're trying to use trigger_word
-      trigger_word: triggerWord || modelName // This might be causing the error if column doesn't exist
-    });
-    
-    // Check the database schema to see if trigger_word column exists
-    try {
-      const { data: schemaInfo, error: schemaError } = await supabase
-        .from('models')
-        .select('*')
-        .limit(1);
+    // Get a signed URL for the ZIP file (valid for 1 hour)
+    const { data } = await supabase.storage
+      .from("training")
+      .createSignedUrl(zipFileName, 3600);
       
-      if (schemaError) {
-        console.error("Error checking schema:", schemaError);
-      } else {
-        console.log("Model table first record:", schemaInfo[0]);
-        console.log("Available columns in models table:", schemaInfo[0] ? Object.keys(schemaInfo[0]) : "No records found");
-      }
-    } catch (schemaCheckError) {
-      console.error("Failed to check schema:", schemaCheckError);
+    if (!data || !data.signedUrl) {
+      return NextResponse.json(
+        { error: "Failed to generate signed URL for training data" },
+        { status: 500 }
+      );
     }
     
-    // Try creating the model without the trigger_word field for now
-    const modelDataToInsert = {
-      id: uuidv4(),
-      user_id: userId,
-      name: modelName,
-      description: description || "",
-      status: "pending"
-    };
-    
-    // Only add trigger_word if it's confirmed to exist in the schema
-    // This is a temporary fix until we confirm the schema issue
-    // const { data: model, error: modelError } = await supabase
-    //   .from("models")
-    //   .insert({
-    //     id: uuidv4(),
-    //     user_id: userId,
-    //     name: modelName,
-    //     description: description || "",
-    //     status: "pending",
-    //     trigger_word: triggerWord || modelName // Use triggerWord if provided, otherwise use modelName
-    //   })
-    //   .select()
-    //   .single();
-    
+    const signedUrl = data.signedUrl;
+
+    // Start training with Replicate
+    const prediction = await replicate.predictions.create({
+      version: "stability-ai/sdxl-lora",
+      input: {
+        input_images: signedUrl,
+        trigger_word: triggerWord,
+        training_steps: parseInt(trainingSteps.toString()),
+        learning_rate: parseFloat(learningRate.toString()),
+        rank: parseInt(loraRank.toString()),
+        resolution: parseInt(resolution),
+        batch_size: parseInt(batchSize.toString())
+      },
+      webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`,
+      webhook_events_filter: ["completed"]
+    });
+
+    // Save model reference in database
     const { data: model, error: modelError } = await supabase
       .from("models")
-      .insert(modelDataToInsert)
+      .insert({
+        user_id: user.id,
+        model_id: prediction.id,
+        trigger_word: triggerWord,
+        status: "Processing",
+        parameters: {
+          trainingSteps,
+          loraRank,
+          optimizer,
+          learningRate,
+          resolution,
+          batchSize
+        },
+        created_at: new Date().toISOString(),
+      })
       .select()
       .single();
-    
+
     if (modelError) {
-      console.error("Error creating model:", modelError);
+      console.error("Error saving model:", modelError);
       return NextResponse.json(
-        { error: "Failed to create model" },
+        { error: "Failed to save model information" },
         { status: 500 }
       );
     }
-    
-    // Associate photos with the model
-    const modelPhotos = photoIds.map(photoId => ({
-      model_id: model.id,
-      photo_id: photoId,
-      user_id: userId
-    }));
-    
-    const { error: associationError } = await supabase
-      .from("model_photos")
-      .insert(modelPhotos);
-    
-    if (associationError) {
-      console.error("Error associating photos with model:", associationError);
-      // Rollback the model creation
-      await supabase.from("models").delete().eq("id", model.id);
-      return NextResponse.json(
-        { error: "Failed to associate photos with model" },
-        { status: 500 }
-      );
+
+    // Save photo references for this model
+    for (const photoId of photoIds) {
+      await supabase
+        .from("model_photos")
+        .insert({
+          model_id: model.id,
+          photo_id: photoId
+        });
     }
-    
-    // Schedule the model for training (in a real app, you would enqueue a job)
-    // Here we'll just update the status to simulate this
-    await supabase
-      .from("models")
-      .update({ status: "training" })
-      .eq("id", model.id);
-    
+
     return NextResponse.json({
       success: true,
       model: {
         id: model.id,
-        name: model.name,
-        description: model.description,
-        status: "training",
-        created_at: model.created_at,
-        // Since trigger_word doesn't exist in the database yet, use the value from request instead
-        trigger_word: triggerWord || modelName 
-      }
+        trigger_word: triggerWord,
+        status: "Processing",
+        replicate_id: prediction.id,
+      },
+      message: "Model training started successfully"
     });
     
   } catch (error) {

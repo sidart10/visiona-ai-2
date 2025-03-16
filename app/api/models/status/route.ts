@@ -63,23 +63,23 @@ export async function GET(req: NextRequest) {
 
     // Check status with Replicate
     try {
-      const training = await replicate.trainings.get(model.model_id);
+      const prediction = await replicate.predictions.get(model.model_id);
       
       let status = model.status;
       let progress = 0;
       
       // Map Replicate status to our status
-      if (training.status === "succeeded") {
+      if (prediction.status === "succeeded") {
         status = "Ready";
         progress = 100;
-      } else if (training.status === "failed") {
+      } else if (prediction.status === "failed") {
         status = "Failed";
-      } else if (training.status === "processing") {
+      } else if (prediction.status === "processing" || prediction.status === "starting") {
         status = "Processing";
         
         // Calculate progress if available
-        if (training.metrics && typeof training.metrics === 'object' && 'training_progress' in training.metrics) {
-          const trainingProgress = training.metrics.training_progress as number;
+        if (prediction.metrics && typeof prediction.metrics === 'object' && 'training_progress' in prediction.metrics) {
+          const trainingProgress = prediction.metrics.training_progress as number;
           progress = Math.round(trainingProgress * 100);
         }
       }
@@ -87,9 +87,8 @@ export async function GET(req: NextRequest) {
       // Update model in database if status changed
       if (status !== model.status) {
         let versionId = null;
-        if (training.version && typeof training.version === 'object') {
-          // Safely access the id property after type checking
-          versionId = 'id' in training.version ? (training.version as any).id : null;
+        if (prediction.output && typeof prediction.output === 'object' && 'version' in prediction.output) {
+          versionId = prediction.output.version;
         }
         
         await supabase
@@ -107,7 +106,7 @@ export async function GET(req: NextRequest) {
         status,
         progress,
         trigger_word: model.trigger_word,
-        replicate_status: training.status,
+        replicate_status: prediction.status,
         created_at: model.created_at,
         updated_at: new Date().toISOString(),
       });
