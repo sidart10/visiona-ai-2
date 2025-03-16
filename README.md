@@ -1,7 +1,4 @@
-[![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
 
-
-# CodeGuide Starter Pro
 
 A modern web application starter template built with Next.js 14, featuring authentication, database integration, and payment processing capabilities.
 
