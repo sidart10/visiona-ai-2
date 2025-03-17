@@ -100,6 +100,14 @@ export interface UserImage {
   createdAt: string;
 }
 
+// Photo fix result interface
+export interface PhotoFixResult {
+  success: boolean;
+  count?: number;
+  fixed_ids?: string[];
+  error?: string;
+}
+
 // API Response interfaces
 export interface ApiResponse<T> {
   success: boolean;
@@ -119,6 +127,17 @@ export interface ApiResponse<T> {
     filename: string;
   };
   model?: Model;
+  
+  // For debug endpoints
+  fix_result?: PhotoFixResult;
+  user_id?: string;
+  found_photos?: number;
+  total_requested?: number;
+  owned_by_others?: number;
+  other_user_ids?: string[];
+  non_existent_photos?: string[];
+  user_photos?: any[];
+  other_user_photos?: any[];
 }
 
 export interface PaginatedResponse<T> {

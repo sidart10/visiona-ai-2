@@ -1,0 +1,8 @@
+[2025-03-17T01:27:00.341Z] Replicate API error during model creation
+{
+  "timestamp": "2025-03-17T01:27:00.341Z",
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "headers": {}
+}
+

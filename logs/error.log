@@ -1,0 +1,46 @@
+[ERROR] [2025-03-17T01:27:00.341Z] API Error: Replicate API error during model creation
+Additional context: {
+  "timestamp": "2025-03-17T01:27:00.341Z",
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "headers": {}
+}
+
+[ERROR] [2025-03-17T01:41:20.521Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:385:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/codeguide-starter-pro/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-17T01:41:20.524Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+

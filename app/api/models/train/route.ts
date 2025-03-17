@@ -5,6 +5,7 @@ import Replicate from "replicate";
 import JSZip from "jszip";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import logger from "@/lib/logger";
 
 // Initialize clients
 const supabase = createClient(
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("Training request received with params:", {
+    logger.info("Training request received", {
       triggerWord,
       photoCount: photos?.length || 0,
       trainingSteps,
@@ -55,14 +56,15 @@ export async function POST(req: NextRequest) {
       optimizer,
       learningRate,
       resolution,
-      batchSize
+      batchSize,
+      userId: user.id
     });
 
     if (!photos || !Array.isArray(photos) || photos.length < 10) {
-      console.log("Photo validation failed: ", { 
+      logger.info("Photo validation failed", { 
         photosProvided: photos ? photos.length : 0,
         isArray: Array.isArray(photos),
-        firstFewPhotos: Array.isArray(photos) ? photos.slice(0, 3) : null
+        firstFewPhotos: Array.isArray(photos) ? photos.slice(0, 3).map(p => p.substring(0, 30) + '...') : null
       });
       return NextResponse.json(
         { error: "At least 10 photos are required for training" },
@@ -76,23 +78,29 @@ export async function POST(req: NextRequest) {
     
     // Download each photo and add it to the ZIP
     try {
-      console.log("Attempting to download photos for ZIP creation");
+      logger.info("Starting photo download for ZIP creation", { photoCount: photos.length });
+      
       for (let i = 0; i < photos.length; i++) {
         const photoUrl = photos[i];
-        console.log(`Processing photo ${i+1}/${photos.length}: ${photoUrl.substring(0, 50)}...`);
+        logger.info(`Processing photo ${i+1}/${photos.length}`, {
+          urlPreview: photoUrl.substring(0, 30) + '...'
+        });
         
         try {
           const response = await axios.get(photoUrl, { responseType: 'arraybuffer' });
-          console.log(`Successfully downloaded photo ${i+1} (size: ${response.data.byteLength} bytes)`);
+          logger.info(`Downloaded photo ${i+1}`, { size: response.data.byteLength });
+          
           const filename = `photo_${i+1}.jpg`;
           zipFolder?.file(filename, response.data);
         } catch (photoError: any) {
-          console.error(`Error downloading photo ${i+1} (${photoUrl.substring(0, 50)}...):`, photoError);
+          logger.error(`Error downloading photo ${i+1}`, photoError, {
+            urlPreview: photoUrl.substring(0, 30) + '...'
+          });
           throw new Error(`Failed to download photo at index ${i}: ${photoError.message}`);
         }
       }
     } catch (error) {
-      console.error("Error downloading photos for ZIP:", error);
+      logger.error("Error downloading photos for ZIP", error);
       return NextResponse.json(
         { error: "Failed to download photos for training" },
         { status: 500 }
@@ -100,10 +108,14 @@ export async function POST(req: NextRequest) {
     }
     
     // Generate ZIP file
+    logger.info("Generating ZIP file");
     const zipContent = await zip.generateAsync({ type: "nodebuffer" });
+    logger.info("ZIP file generated", { size: zipContent.length });
     
     // Upload the ZIP file to Supabase
     const zipFileName = `${user.id}/${Date.now()}_${uuidv4()}_training.zip`;
+    
+    logger.info("Uploading ZIP file to storage", { path: zipFileName });
     const { error: zipUploadError } = await supabase.storage
       .from("training")
       .upload(zipFileName, zipContent, {
@@ -112,12 +124,14 @@ export async function POST(req: NextRequest) {
       });
       
     if (zipUploadError) {
-      console.error("Error uploading ZIP file:", zipUploadError);
+      logger.error("Error uploading ZIP file to storage", zipUploadError);
       return NextResponse.json(
         { error: "Failed to prepare training data" },
         { status: 500 }
       );
     }
+    
+    logger.info("ZIP file uploaded successfully");
     
     // Get a signed URL for the ZIP file (valid for 1 hour)
     const { data } = await supabase.storage
@@ -125,6 +139,7 @@ export async function POST(req: NextRequest) {
       .createSignedUrl(zipFileName, 3600);
       
     if (!data || !data.signedUrl) {
+      logger.error("Failed to generate signed URL for training data");
       return NextResponse.json(
         { error: "Failed to generate signed URL for training data" },
         { status: 500 }
@@ -132,12 +147,17 @@ export async function POST(req: NextRequest) {
     }
 
     const signedUrl = data.signedUrl;
+    logger.info("Generated signed URL for training ZIP", {
+      url: signedUrl.substring(0, 30) + '...'
+    });
 
     // Start training with Replicate
     try {
-      const training = await replicate.predictions.create({
-        // Use the full version ID for SDXL LoRA
-        version: "a33uaqfkenracy1nohk5tgmuu9husbbr2q2qwtz0c3kxlyk5",
+      // Prepare the prediction input parameters
+      const validVersionId = "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef";
+      const predictionInput: any = {
+        // Use the environment variable with fallback to a valid full version ID
+        version: process.env.REPLICATE_FLUX_VERSION || validVersionId,
         input: {
           input_images: signedUrl,
           trigger_word: triggerWord,
@@ -147,10 +167,29 @@ export async function POST(req: NextRequest) {
           rank: Math.min(Math.max(parseInt(loraRank.toString()), 4), 64),
           resolution: parseInt(resolution),
           batch_size: Math.min(Math.max(parseInt(batchSize.toString()), 1), 4)
-        },
-        webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/webhooks/replicate/completed`,
-        webhook_events_filter: ["completed"]
+        }
+      };
+      
+      // Only include webhook if app URL is a valid HTTPS URL
+      const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+      if (appUrl && appUrl.startsWith('https://')) {
+        logger.info("Configuring webhook", { url: `${appUrl}/api/webhooks/replicate/completed` });
+        predictionInput.webhook = `${appUrl}/api/webhooks/replicate/completed`;
+        predictionInput.webhook_events_filter = ["completed"];
+      } else {
+        logger.info('Skipping webhook configuration - valid HTTPS URL required');
+      }
+      
+      // Log the full prediction parameters
+      logger.replicate('Preparing prediction request', {
+        version: predictionInput.version,
+        input: predictionInput.input,
+        webhook: predictionInput.webhook
       });
+      
+      logger.info(`Making Replicate API call with version: ${predictionInput.version}`);
+      const training = await replicate.predictions.create(predictionInput);
+      logger.info("Replicate training started successfully", { predictionId: training.id });
 
       // Save model reference in database
       const { data: model, error: modelError } = await supabase
@@ -174,12 +213,14 @@ export async function POST(req: NextRequest) {
         .single();
 
       if (modelError) {
-        console.error("Error saving model:", modelError);
+        logger.error("Error saving model to database", modelError);
         return NextResponse.json(
           { error: "Failed to save model information" },
           { status: 500 }
         );
       }
+
+      logger.info("Model saved to database", { modelId: model.id });
 
       // Save photo references for this model
       for (const photoUrl of photos) {
@@ -190,6 +231,8 @@ export async function POST(req: NextRequest) {
             photo_url: photoUrl
           });
       }
+
+      logger.info("Photo references saved for model");
 
       return NextResponse.json({
         success: true,
@@ -202,21 +245,72 @@ export async function POST(req: NextRequest) {
         message: "Model training started successfully"
       });
     } catch (error: any) {
-      console.error("Error with Replicate API:", error);
-      // Return a more specific error message if available
+      // Enhanced error logging with axios-style error handling
+      logger.error("Replicate API error during model training", error);
+      
+      // Capture complete response data if available
+      let errorData = null;
+      let errorMessage = error.message || "Unknown error";
+      
+      if (error.response) {
+        // Extract the response data (this handles both axios and fetch-style responses)
+        try {
+          errorData = typeof error.response.data === 'object' 
+            ? error.response.data 
+            : JSON.parse(error.response.data);
+        } catch (parseError: any) {
+          // If can't parse as JSON, use as string
+          errorData = {
+            raw: error.response.data,
+            parseError: parseError.message
+          };
+        }
+        
+        // Get a better error message if available
+        if (errorData?.detail || errorData?.title) {
+          errorMessage = errorData.detail || errorData.title;
+        }
+        
+        // Log the complete error information
+        logger.error("Replicate API detailed error", {
+          status: error.response.status,
+          statusText: error.response.statusText,
+          data: errorData,
+          url: error.response.url || error.config?.url,
+          method: error.response.method || error.config?.method
+        });
+      }
+      
+      // Get version from outer scope for error details
+      const versionUsed = process.env.REPLICATE_FLUX_VERSION || 
+                          "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef";
+      
+      // Enhanced error reporting with much more detailed information
       return NextResponse.json(
         { 
-          error: error.message || "Failed to start model training with Replicate",
-          details: error.response?.data || error.toString()
+          error: "Failed to start model training with Replicate",
+          message: errorMessage,
+          details: {
+            statusCode: error.response?.status,
+            statusText: error.response?.statusText,
+            data: errorData,
+            versionUsed: versionUsed,
+            // Include basic input parameters for debugging
+            inputParams: {
+              triggerWord,
+              trainingSteps,
+              resolution
+            }
+          }
         },
-        { status: 500 }
+        { status: error.response?.status || 500 }
       );
     }
 
-  } catch (error) {
-    console.error("Error starting model training:", error);
+  } catch (error: any) {
+    logger.error("Error starting model training", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: error.message || "Internal server error" },
       { status: 500 }
     );
   }

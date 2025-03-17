@@ -1,0 +1,376 @@
+[INFO] [2025-03-17T01:26:57.429Z] Photo IDs received from frontend {
+  "photoIds": [
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271
+  ],
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+[INFO] [2025-03-17T01:26:57.539Z] User mapping found {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseId": 1
+}
+[INFO] [2025-03-17T01:26:57.539Z] Validating photo ownership {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1,
+  "photoCount": 10
+}
+[INFO] [2025-03-17T01:26:57.611Z] Photos found in database {
+  "count": 10
+}
+[INFO] [2025-03-17T01:26:57.611Z] Processing photo 1/10 {
+  "photoId": 262,
+  "storagePath": "uploads/1/e831ae20-8ff6-439a-bf17-8655030e37ee.jpg"
+}
+[INFO] [2025-03-17T01:26:57.612Z] Got public URL for photo 1 {
+  "photoId": 262,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:57.809Z] Saved photo 1 to temporary location {
+  "photoId": 262,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_1.jpg",
+  "size": 1280383
+}
+[INFO] [2025-03-17T01:26:57.809Z] Processing photo 2/10 {
+  "photoId": 263,
+  "storagePath": "uploads/1/e11014a1-cc4c-479f-90c2-d8e0e8cd39d7.jpg"
+}
+[INFO] [2025-03-17T01:26:57.809Z] Got public URL for photo 2 {
+  "photoId": 263,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:57.853Z] Saved photo 2 to temporary location {
+  "photoId": 263,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_2.jpg",
+  "size": 733812
+}
+[INFO] [2025-03-17T01:26:57.853Z] Processing photo 3/10 {
+  "photoId": 264,
+  "storagePath": "uploads/1/7005493a-f123-48cd-9138-ee65a45b1645.JPG"
+}
+[INFO] [2025-03-17T01:26:57.854Z] Got public URL for photo 3 {
+  "photoId": 264,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:57.921Z] Saved photo 3 to temporary location {
+  "photoId": 264,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_3.jpg",
+  "size": 93190
+}
+[INFO] [2025-03-17T01:26:57.921Z] Processing photo 4/10 {
+  "photoId": 265,
+  "storagePath": "uploads/1/3c84f2e4-365d-403f-835b-6dbf99e7c68c.jpg"
+}
+[INFO] [2025-03-17T01:26:57.921Z] Got public URL for photo 4 {
+  "photoId": 265,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.020Z] Saved photo 4 to temporary location {
+  "photoId": 265,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_4.jpg",
+  "size": 575734
+}
+[INFO] [2025-03-17T01:26:58.020Z] Processing photo 5/10 {
+  "photoId": 266,
+  "storagePath": "uploads/1/62ec2fe2-0a11-40f3-a056-7a8e1d3526f8.jpg"
+}
+[INFO] [2025-03-17T01:26:58.020Z] Got public URL for photo 5 {
+  "photoId": 266,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.073Z] Saved photo 5 to temporary location {
+  "photoId": 266,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_5.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-17T01:26:58.073Z] Processing photo 6/10 {
+  "photoId": 267,
+  "storagePath": "uploads/1/3df993b1-e832-4a13-9cbb-d3bb2d58817f.jpg"
+}
+[INFO] [2025-03-17T01:26:58.073Z] Got public URL for photo 6 {
+  "photoId": 267,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.171Z] Saved photo 6 to temporary location {
+  "photoId": 267,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_6.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-17T01:26:58.171Z] Processing photo 7/10 {
+  "photoId": 268,
+  "storagePath": "uploads/1/9b470c38-5626-4eb9-9b2e-cb68e2e3d1d0.JPG"
+}
+[INFO] [2025-03-17T01:26:58.171Z] Got public URL for photo 7 {
+  "photoId": 268,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.285Z] Saved photo 7 to temporary location {
+  "photoId": 268,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_7.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-17T01:26:58.285Z] Processing photo 8/10 {
+  "photoId": 269,
+  "storagePath": "uploads/1/a91f2feb-c426-404c-8916-ae6ae218e275.jpg"
+}
+[INFO] [2025-03-17T01:26:58.285Z] Got public URL for photo 8 {
+  "photoId": 269,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.333Z] Saved photo 8 to temporary location {
+  "photoId": 269,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_8.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-17T01:26:58.333Z] Processing photo 9/10 {
+  "photoId": 270,
+  "storagePath": "uploads/1/4875d862-6136-4ae2-8b46-5a1942c3569a.jpg"
+}
+[INFO] [2025-03-17T01:26:58.333Z] Got public URL for photo 9 {
+  "photoId": 270,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.424Z] Saved photo 9 to temporary location {
+  "photoId": 270,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_9.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-17T01:26:58.424Z] Processing photo 10/10 {
+  "photoId": 271,
+  "storagePath": "uploads/1/4eb71b17-64af-4f81-9abe-6f30225b52de.JPG"
+}
+[INFO] [2025-03-17T01:26:58.424Z] Got public URL for photo 10 {
+  "photoId": 271,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:26:58.534Z] Saved photo 10 to temporary location {
+  "photoId": 271,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41/photo_10.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-17T01:26:58.534Z] Photo download summary {
+  "successful": 10,
+  "failed": 0,
+  "total": 10
+}
+[INFO] [2025-03-17T01:26:58.534Z] Creating ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d2ed6b-4d85-44d0-bebc-adabd1752696.zip"
+}
+[INFO] [2025-03-17T01:26:58.556Z] Zip command is available, using system ZIP 
+[INFO] [2025-03-17T01:26:58.792Z] ZIP creation output {
+  "stdout": "  adding: photo_8.jpg (deflated 1%)\n  adding: photo_9.jpg (deflated 1%)\n  adding: photo_1.jpg (deflated 0%)\n  adding: photo_10.jpg (deflated 5%)\n  adding: photo_2.jpg (deflated 0%)\n  adding: photo_3.jpg (deflated 9%)\n  adding: photo_7.jpg (deflated 5%)\n  adding: photo_6.jpg (deflated 1%)\n  adding: photo_4.jpg (deflated 0%)\n  adding: photo_5.jpg (deflated 1%)\n",
+  "stderr": ""
+}
+[INFO] [2025-03-17T01:26:58.794Z] ZIP file read from disk {
+  "size": 9934992
+}
+[INFO] [2025-03-17T01:26:59.885Z] ZIP file uploaded to storage {
+  "path": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742174818794_e1b35ce7-689c-4a84-86ab-e40b35dd7cce_training.zip"
+}
+[INFO] [2025-03-17T01:27:00.032Z] Generated signed URL for training ZIP {
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:27:00.032Z] Starting model training with Replicate 
+[INFO] [2025-03-17T01:27:00.033Z] Skipping webhook configuration - valid HTTPS URL required 
+[INFO] [2025-03-17T01:27:00.033Z] Making Replicate API call with version: ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef 
+[INFO] [2025-03-17T01:27:00.343Z] Cleaned up temporary directory {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d7fd78-a27a-4fbd-a026-13caec46fc41"
+}
+[INFO] [2025-03-17T01:27:00.344Z] Cleaned up ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-b7d2ed6b-4d85-44d0-bebc-adabd1752696.zip"
+}
+[INFO] [2025-03-17T01:41:16.990Z] Photo IDs received from frontend {
+  "photoIds": [
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281
+  ],
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+[INFO] [2025-03-17T01:41:17.142Z] User mapping found {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseId": 1
+}
+[INFO] [2025-03-17T01:41:17.142Z] Validating photo ownership {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1,
+  "photoCount": 10
+}
+[INFO] [2025-03-17T01:41:17.212Z] Photos found in database {
+  "count": 10
+}
+[INFO] [2025-03-17T01:41:17.212Z] Processing photo 1/10 {
+  "photoId": 272,
+  "storagePath": "uploads/1/e5b2ff53-1ef2-48d0-9eee-7862fc0e58f6.jpg"
+}
+[INFO] [2025-03-17T01:41:17.212Z] Got public URL for photo 1 {
+  "photoId": 272,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.429Z] Saved photo 1 to temporary location {
+  "photoId": 272,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_1.jpg",
+  "size": 1280383
+}
+[INFO] [2025-03-17T01:41:17.430Z] Processing photo 2/10 {
+  "photoId": 273,
+  "storagePath": "uploads/1/db91e696-b097-49e7-a500-400dc4fba84d.jpg"
+}
+[INFO] [2025-03-17T01:41:17.430Z] Got public URL for photo 2 {
+  "photoId": 273,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.584Z] Saved photo 2 to temporary location {
+  "photoId": 273,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_2.jpg",
+  "size": 733812
+}
+[INFO] [2025-03-17T01:41:17.584Z] Processing photo 3/10 {
+  "photoId": 274,
+  "storagePath": "uploads/1/f2e56836-d78f-4cea-8e0e-01b4f75a7ab6.JPG"
+}
+[INFO] [2025-03-17T01:41:17.584Z] Got public URL for photo 3 {
+  "photoId": 274,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.746Z] Saved photo 3 to temporary location {
+  "photoId": 274,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_3.jpg",
+  "size": 93190
+}
+[INFO] [2025-03-17T01:41:17.746Z] Processing photo 4/10 {
+  "photoId": 275,
+  "storagePath": "uploads/1/65767ae0-ffe9-4048-a29f-d82e554bd875.jpg"
+}
+[INFO] [2025-03-17T01:41:17.747Z] Got public URL for photo 4 {
+  "photoId": 275,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.835Z] Saved photo 4 to temporary location {
+  "photoId": 275,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_4.jpg",
+  "size": 575734
+}
+[INFO] [2025-03-17T01:41:17.835Z] Processing photo 5/10 {
+  "photoId": 276,
+  "storagePath": "uploads/1/225ef4c4-e730-4e14-9d35-61ca4354d85f.jpg"
+}
+[INFO] [2025-03-17T01:41:17.835Z] Got public URL for photo 5 {
+  "photoId": 276,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.905Z] Saved photo 5 to temporary location {
+  "photoId": 276,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_5.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-17T01:41:17.905Z] Processing photo 6/10 {
+  "photoId": 277,
+  "storagePath": "uploads/1/dc2f18fd-bef2-4290-907f-93c92a0fdbcb.jpg"
+}
+[INFO] [2025-03-17T01:41:17.905Z] Got public URL for photo 6 {
+  "photoId": 277,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:17.960Z] Saved photo 6 to temporary location {
+  "photoId": 277,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_6.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-17T01:41:17.960Z] Processing photo 7/10 {
+  "photoId": 278,
+  "storagePath": "uploads/1/a9989654-8378-40bd-bcd9-554564c0a7c0.JPG"
+}
+[INFO] [2025-03-17T01:41:17.960Z] Got public URL for photo 7 {
+  "photoId": 278,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:18.062Z] Saved photo 7 to temporary location {
+  "photoId": 278,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_7.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-17T01:41:18.062Z] Processing photo 8/10 {
+  "photoId": 279,
+  "storagePath": "uploads/1/28793170-5bf0-497d-a5be-26782f85f239.jpg"
+}
+[INFO] [2025-03-17T01:41:18.062Z] Got public URL for photo 8 {
+  "photoId": 279,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:18.191Z] Saved photo 8 to temporary location {
+  "photoId": 279,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_8.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-17T01:41:18.191Z] Processing photo 9/10 {
+  "photoId": 280,
+  "storagePath": "uploads/1/1675c082-40c1-4220-b7fd-18135bff7424.jpg"
+}
+[INFO] [2025-03-17T01:41:18.191Z] Got public URL for photo 9 {
+  "photoId": 280,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:18.257Z] Saved photo 9 to temporary location {
+  "photoId": 280,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_9.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-17T01:41:18.257Z] Processing photo 10/10 {
+  "photoId": 281,
+  "storagePath": "uploads/1/cf240a6b-618d-406c-bde0-201a0c35f3c2.JPG"
+}
+[INFO] [2025-03-17T01:41:18.258Z] Got public URL for photo 10 {
+  "photoId": 281,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:18.383Z] Saved photo 10 to temporary location {
+  "photoId": 281,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1/photo_10.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-17T01:41:18.383Z] Photo download summary {
+  "successful": 10,
+  "failed": 0,
+  "total": 10
+}
+[INFO] [2025-03-17T01:41:18.383Z] Creating ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-ad116a9d-7968-4a49-beb0-ddcf492f1669.zip"
+}
+[INFO] [2025-03-17T01:41:18.395Z] Zip command is available, using system ZIP 
+[INFO] [2025-03-17T01:41:18.633Z] ZIP creation output {
+  "stdout": "  adding: photo_8.jpg (deflated 1%)\n  adding: photo_9.jpg (deflated 1%)\n  adding: photo_1.jpg (deflated 0%)\n  adding: photo_10.jpg (deflated 5%)\n  adding: photo_2.jpg (deflated 0%)\n  adding: photo_3.jpg (deflated 9%)\n  adding: photo_7.jpg (deflated 5%)\n  adding: photo_6.jpg (deflated 1%)\n  adding: photo_4.jpg (deflated 0%)\n  adding: photo_5.jpg (deflated 1%)\n",
+  "stderr": ""
+}
+[INFO] [2025-03-17T01:41:18.635Z] ZIP file read from disk {
+  "size": 9934992
+}
+[INFO] [2025-03-17T01:41:20.015Z] ZIP file uploaded to storage {
+  "path": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742175678636_0ac6b734-4f26-4141-85a6-61aaa0e5a1d2_training.zip"
+}
+[INFO] [2025-03-17T01:41:20.158Z] Generated signed URL for training ZIP {
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-17T01:41:20.158Z] Starting model training with Replicate 
+[INFO] [2025-03-17T01:41:20.158Z] Skipping webhook configuration - valid HTTPS URL required 
+[INFO] [2025-03-17T01:41:20.159Z] Making Replicate API call with version: ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef 
+[INFO] [2025-03-17T01:41:20.527Z] Cleaned up temporary directory {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-370265f4-3bcf-4da3-91de-0c898090bbb1"
+}
+[INFO] [2025-03-17T01:41:20.528Z] Cleaned up ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-ad116a9d-7968-4a49-beb0-ddcf492f1669.zip"
+}

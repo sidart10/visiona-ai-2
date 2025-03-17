@@ -281,10 +281,12 @@ const StepIndicator: React.FC<StepIndicatorProps> = ({ steps, currentStep, class
 }
 
 // Training Status Component
-const TrainingStatus: React.FC<{
-  status: string
-  progress: number
-}> = ({ status, progress }) => {
+type TrainingStatusProps = {
+  status: string;
+  progress: number;
+}
+
+const TrainingStatus: React.FC<TrainingStatusProps> = ({ status, progress }) => {
   // Define all possible statuses in order
   const statuses = ["queued", "preparing", "training", "finalizing", "completed", "failed"];
   const currentStatusIndex = statuses.indexOf(status);
@@ -780,6 +782,7 @@ export default function TrainPage() {
       const photoIds = uploadedPhotos.map((photo) => photo.id)
       console.log("Starting model training with photoIds:", photoIds)
       
+      // The model creation API now handles photo ownership issues automatically
       const modelResponse = await createModel({
         name: modelName || triggerWord,
         triggerWord: triggerWord,
@@ -787,86 +790,82 @@ export default function TrainPage() {
       })
 
       if (!modelResponse.success) {
-        // If there's a photo access error, debug it
-        if (modelResponse.error?.includes("photos do not exist") || 
-            modelResponse.error?.includes("don't belong to you")) {
-          console.log("Photo access error detected, running debug...")
-          const debugResult = await debugPhotoAccess(photoIds)
-          console.log("Photo access debug result:", debugResult)
-        }
-        
         throw new Error(modelResponse.error || "Failed to create model")
       }
+      
+      // Handle successful model creation
+      handleSuccessfulModelCreation(modelResponse.model)
+    } catch (error: any) {
+      // Handle any errors that were thrown
+      console.error("Error in model training:", error)
+      toast.error(error.message || "An error occurred during model training")
+      setIsSubmitting(false)
+      setTrainingStatus("failed")
+    }
+  }
 
-      const newModel = modelResponse.model
+  // Helper function to handle successful model creation
+  function handleSuccessfulModelCreation(newModel: any) {
+    if (!newModel) return
+    
+    // Show a success message
+    toast.success("Model created successfully! Training has started.")
 
-      // Add the new model to our state
-      if (newModel) {
-        // Show a success message
-        toast.success("Model created successfully! Training has started.")
-
-        // Update the training status
-        // Simulate the training process with status updates
-        setTrainingStatus("queued")
+    // Update the training status
+    // Simulate the training process with status updates
+    setTrainingStatus("queued")
+    
+    // Queued for 2 seconds
+    setTimeout(() => {
+      setTrainingStatus("preparing")
+      
+      // Preparing takes about 5 seconds
+      let prepProgress = 0
+      const prepInterval = setInterval(() => {
+        prepProgress += 20
+        setTrainingProgress(prepProgress)
         
-        // Queued for 2 seconds
-        setTimeout(() => {
-          setTrainingStatus("preparing")
+        if (prepProgress >= 100) {
+          clearInterval(prepInterval)
+          setTrainingStatus("training")
           
-          // Preparing takes about 5 seconds
-          let prepProgress = 0
-          const prepInterval = setInterval(() => {
-            prepProgress += 20
-            setTrainingProgress(prepProgress)
+          // Training stage - takes about 20 seconds total
+          let trainProgress = 0
+          const trainInterval = setInterval(() => {
+            trainProgress += 5
+            setTrainingProgress(trainProgress)
             
-            if (prepProgress >= 100) {
-              clearInterval(prepInterval)
-              setTrainingStatus("training")
+            if (trainProgress >= 100) {
+              clearInterval(trainInterval)
+              setTrainingStatus("finalizing")
               
-              // Training stage - takes about 20 seconds total
-              let trainProgress = 0
-              const trainInterval = setInterval(() => {
-                trainProgress += 5
-                setTrainingProgress(trainProgress)
+              // Finalizing stage - takes about 5 seconds
+              let finalizeProgress = 0
+              const finalizeInterval = setInterval(() => {
+                finalizeProgress += 20
+                setTrainingProgress(finalizeProgress)
                 
-                if (trainProgress >= 100) {
-                  clearInterval(trainInterval)
-                  setTrainingStatus("finalizing")
+                if (finalizeProgress >= 100) {
+                  clearInterval(finalizeInterval)
+                  setTrainingStatus("completed")
                   
-                  // Finalizing stage - takes about 5 seconds
-                  let finalizeProgress = 0
-                  const finalizeInterval = setInterval(() => {
-                    finalizeProgress += 20
-                    setTrainingProgress(finalizeProgress)
-                    
-                    if (finalizeProgress >= 100) {
-                      clearInterval(finalizeInterval)
-                      setTrainingStatus("completed")
-                      
-                      // Refresh the user data to show the updated model
-                      loadUserData()
-                      loadUserModels()
-                      
-                      // Set form back to initial state
-                      setIsSubmitting(false)
-                      setUploadedPhotos([])
-                      setModelName("")
-                      setTriggerWord("")
-                      setCurrentStep(0)
-                    }
-                  }, 1000)
+                  // Refresh the user data to show the updated model
+                  loadUserData()
+                  loadUserModels()
+                  
+                  // Set form back to initial state
+                  setIsSubmitting(false)
+                  setUploadedPhotos([])
+                  setModelName("")
+                  setTriggerWord("")
+                  setCurrentStep(0)
                 }
               }, 1000)
             }
           }, 1000)
-        }, 2000)
-      }
-    } catch (error: any) {
-      console.error("Training error:", error)
-      toast.error(error.message || "Failed to start training")
-      setIsSubmitting(false)
-      setTrainingStatus("failed")
-    }
+        }
+      }, 1000)
+    }, 2000)
   }
 
   // Reset training form

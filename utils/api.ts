@@ -100,13 +100,17 @@ export async function uploadPhotos(files: File[]): Promise<ApiResponse<{ photo: 
   try {
     console.log(`uploadPhotos called with ${files.length} files:`, files.map(f => f.name));
     
-    // Only process the first file for now - this is the root cause of the issue
-    // We're only using files[0] even though multiple files may be passed
+    if (files.length === 0) {
+      throw new Error('No files provided for upload');
+    }
+    
+    // Process each file - we'll upload just the first file and return its result
+    // This function is called for each file individually from the handleAddPhotos function
     const formData = new FormData();
     
     // Append the file to the form data
     formData.append('file', files[0]);
-    console.log(`Appending only the first file to FormData: ${files[0].name}`);
+    console.log(`Preparing to upload file: ${files[0].name}`);
     
     // Debug: show what's actually in the FormData
     console.log('FormData entries:');
@@ -350,17 +354,21 @@ export function formatModelsForUI(models: Model[]): UserModel[] {
 
 /**
  * Debug photo access issues
- * @param photoIds Array of photo IDs to check
- * @returns Diagnostic information about the photos
+ * @param photoIds Array of photo IDs to check access for
+ * @param options Options for debugging photo access, including a fix option
+ * @returns Debug information about photo access
  */
-export async function debugPhotoAccess(photoIds: string[]): Promise<ApiResponse<any>> {
+export async function debugPhotoAccess(photoIds: string[], options = { fix: false }): Promise<ApiResponse<any>> {
   try {
+    const { fix } = options;
+    console.log(`Debugging photo access for ${photoIds.length} photos, fix=${fix}`);
+    
     const response = await fetch('/api/debug/photos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ photoIds }),
+      body: JSON.stringify({ photoIds, fix }),
     });
     
     if (!response.ok) {
@@ -368,8 +376,17 @@ export async function debugPhotoAccess(photoIds: string[]): Promise<ApiResponse<
       throw new Error(errorData.error || 'Failed to debug photo access');
     }
     
-    return response.json();
+    const result = await response.json();
+    console.log('Debug result:', result);
+    
+    // If we fixed any photos, display a notification
+    if (fix && result.fix_result?.success) {
+      console.log(`Fixed ownership for ${result.fix_result.count} photos`);
+    }
+    
+    return { success: true, ...result };
   } catch (error) {
+    console.error('Error in debugPhotoAccess:', error);
     return { success: false, ...handleApiError(error) };
   }
 } 

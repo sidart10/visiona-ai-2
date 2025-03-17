@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     let userId: string;
     
     if (!supabaseUser) {
+      console.log(`User ${user.id} not found in database, creating new record...`);
       // Create user record
       const { data: newUser, error: insertError } = await supabase
         .from("users")
@@ -60,8 +61,10 @@ export async function POST(req: NextRequest) {
       }
       
       userId = newUser.id;
+      console.log(`Created new user with ID: ${userId} for Clerk ID: ${user.id}`);
     } else {
       userId = supabaseUser.id;
+      console.log(`Found existing user with ID: ${userId} for Clerk ID: ${user.id}`);
     }
     
     // Verify content type
@@ -128,11 +131,12 @@ export async function POST(req: NextRequest) {
       file_size: file.size,
       content_type: file.type
     });
+    console.log(`Type of user_id: ${typeof userId}, value: ${userId}`);
     
     const { data: photoData, error: saveError } = await supabase
       .from("photos")
       .insert({
-        user_id: userId,
+        user_id: userId.toString(),
         storage_path: storagePath,
         original_filename: file.name,
         file_size: file.size,
@@ -151,6 +155,8 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+    
+    console.log(`Successfully saved photo with ID: ${photoData.id} for user ID: ${userId}`);
     
     // Get public URL for the image
     const { data: publicURL } = supabase

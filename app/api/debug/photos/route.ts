@@ -20,8 +20,8 @@ export async function POST(req: NextRequest) {
       );
     }
     
-    // Parse request body to get photo IDs
-    const { photoIds } = await req.json();
+    // Parse request body to get photo IDs and fix option
+    const { photoIds, fix = false } = await req.json();
     
     if (!photoIds || !Array.isArray(photoIds)) {
       return NextResponse.json(
@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
     
     console.log("Debug: Checking photo access for user", user.id);
     console.log("Debug: Photo IDs to check:", photoIds);
+    console.log("Debug: Fix option enabled:", fix);
     
     // First try to find these photos with the user filter
     const { data: userPhotos, error: userPhotosError } = await supabase
@@ -63,6 +64,65 @@ export async function POST(req: NextRequest) {
     // Check if there are any photos that don't exist at all
     const existingPhotoIds = (allPhotos || []).map(p => p.id);
     const nonExistentPhotoIds = photoIds.filter(id => !existingPhotoIds.includes(id));
+
+    // If fix option is enabled, try to reassign photos to the current user
+    let fixResult = null;
+    if (fix && otherUserPhotos.length > 0) {
+      console.log(`Attempting to fix ownership for ${otherUserPhotos.length} photos...`);
+      
+      // Find the user's Supabase ID
+      const { data: supabaseUser } = await supabase
+        .from("users")
+        .select("id, clerk_id")
+        .eq("clerk_id", user.id)
+        .maybeSingle();
+      
+      console.log("Supabase user found:", supabaseUser);
+      
+      if (supabaseUser) {
+        const correctUserId = supabaseUser.id;
+        console.log(`Found correct user ID: ${correctUserId} for Clerk ID: ${user.id}`);
+        console.log(`Type of correctUserId: ${typeof correctUserId}`);
+        
+        // Log the photos we're trying to fix
+        console.log("Photos to fix:", otherUserPhotos);
+        
+        // Update photos to belong to the current user
+        const photoIdsToFix = otherUserPhotos.map(p => p.id);
+        console.log("Photo IDs to fix:", photoIdsToFix);
+        
+        // Update with explicit toString() to ensure string comparison
+        const { data: updateResult, error: updateError } = await supabase
+          .from("photos")
+          .update({ user_id: correctUserId.toString() })
+          .in("id", photoIdsToFix)
+          .select("id, user_id");
+        
+        if (updateError) {
+          console.error("Error fixing photo ownership:", updateError);
+          fixResult = { success: false, error: updateError.message };
+        } else {
+          console.log(`Update result:`, updateResult);
+          
+          // Double-check if update worked by querying again
+          const { data: verifyPhotos } = await supabase
+            .from("photos")
+            .select("id, user_id")
+            .in("id", photoIdsToFix);
+          
+          console.log("Verification after update:", verifyPhotos);
+          
+          fixResult = { 
+            success: true, 
+            count: updateResult.length,
+            fixed_ids: updateResult.map(p => p.id)
+          };
+        }
+      } else {
+        console.error("Could not find Supabase user ID for current user");
+        fixResult = { success: false, error: "User ID not found" };
+      }
+    }
     
     // Return diagnostic information
     return NextResponse.json({
@@ -73,7 +133,8 @@ export async function POST(req: NextRequest) {
       other_user_ids: otherUserIds,
       non_existent_photos: nonExistentPhotoIds,
       user_photos: userPhotos || [],
-      other_user_photos: otherUserPhotos || []
+      other_user_photos: otherUserPhotos || [],
+      fix_result: fixResult
     });
     
   } catch (error) {
