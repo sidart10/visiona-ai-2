@@ -254,16 +254,9 @@ export async function POST(req: NextRequest) {
       console.log("⏳ Starting image generation with Replicate");
       
       // Determine which version ID to use
-      const versionToUse = model.replicate_version || model.version_id;
-      if (!versionToUse) {
-        console.log("❌ No valid version ID found for model:", model.id);
-        return NextResponse.json(
-          { error: "Model does not have a valid version ID" },
-          { status: 400 }
-        );
-      }
+      const versionToUse = model.id;
       
-      console.log("✅ Using version:", versionToUse);
+      console.log("✅ Using model ID as version:", versionToUse);
       
       for (let i = 0; i < imagesToGenerate; i++) {
         console.log(`⏳ Creating prediction ${i+1}/${imagesToGenerate}`);
