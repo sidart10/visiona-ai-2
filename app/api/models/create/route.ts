@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { currentUser } from "@clerk/nextjs/server";
 import { createClient } from "@supabase/supabase-js";
-import Replicate from "replicate";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import * as fs from 'fs';
@@ -21,14 +20,17 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN!,
-});
-
 export async function POST(req: NextRequest) {
   // Create a temporary directory for our photos
   const tempDir = path.join(os.tmpdir(), `training-${uuidv4()}`);
   const zipFilePath = path.join(os.tmpdir(), `training-${uuidv4()}.zip`);
+  
+  // Debug environment variables
+  logger.info("Checking environment variables", {
+    hasReplicateToken: !!process.env.REPLICATE_API_TOKEN,
+    tokenPrefix: process.env.REPLICATE_API_TOKEN ? process.env.REPLICATE_API_TOKEN.substring(0, 4) + '...' : 'NOT SET',
+    replicateUsername: process.env.REPLICATE_USERNAME || 'NOT SET'
+  });
   
   try {
     // Create the temporary directory
@@ -49,6 +51,7 @@ export async function POST(req: NextRequest) {
     // Parse request body
     const body = await req.json();
     const { 
+      name,
       photoIds, 
       triggerWord,
       trainingSteps = 1000,
@@ -335,7 +338,7 @@ export async function POST(req: NextRequest) {
     const zipContent = fs.readFileSync(zipFilePath);
     logger.info(`ZIP file read from disk`, { size: zipContent.length });
     
-    // Upload the ZIP file to Supabase
+    // Upload the ZIP file to Supabase with explicit content type
     const zipFileName = `${user.id}/${Date.now()}_${uuidv4()}_training.zip`;
     const { error: zipUploadError } = await supabase.storage
       .from("training")
@@ -353,6 +356,31 @@ export async function POST(req: NextRequest) {
     }
     
     logger.info(`ZIP file uploaded to storage`, { path: zipFileName });
+    
+    // Check ZIP file structure
+    logger.info("Verifying ZIP file structure");
+    try {
+      const zip = new AdmZip(zipFilePath);
+      const zipEntries = zip.getEntries();
+      
+      // Log number of files and their types
+      const fileTypes = zipEntries.map(entry => ({
+        name: entry.name,
+        size: entry.header.size,
+        compressed: entry.header.compressedSize,
+        isDirectory: entry.isDirectory
+      }));
+      
+      logger.info(`ZIP file contains ${zipEntries.length} entries`, { 
+        fileTypes: fileTypes.slice(0, 10), // Log first 10 files only
+        totalFiles: zipEntries.length,
+        imageFiles: zipEntries.filter(e => 
+          e.name.endsWith('.jpg') || e.name.endsWith('.jpeg') || e.name.endsWith('.png')
+        ).length
+      });
+    } catch (zipCheckError) {
+      logger.error("Error checking ZIP file structure", zipCheckError);
+    }
     
     // Get a signed URL for the ZIP file (valid for 1 hour)
     const { data } = await supabase.storage
@@ -376,156 +404,307 @@ export async function POST(req: NextRequest) {
     logger.info("Starting model training with Replicate");
     
     // Prepare the prediction input parameters
-    const validVersionId = "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef";
-    const predictionInput: any = {
-      // Use the environment variable with fallback to a valid full version ID
-      version: process.env.REPLICATE_FLUX_VERSION || validVersionId,
+    const fullVersionId = process.env.REPLICATE_FLUX_VERSION || "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef";
+    
+    // Split the version string into components for different API formats
+    const versionString = "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef";
+    const versionParts = versionString.split(':');
+    const versionId = versionParts.length > 1 ? versionParts[1] : versionString;
+    const modelIdentifier = versionParts.length > 1 ? versionParts[0] : "ostris/flux-dev-lora-trainer";
+    
+    // No need to extract just the hash part
+    // No need for destination model name as this is a fine-tuning model that works with predictions API
+    
+    // Log the full training parameters (except API token)
+    logger.replicate('Preparing prediction request', {
+      version: fullVersionId,
       input: {
         input_images: signedUrl,
         trigger_word: triggerWord,
-        // Ensure parameters are within safe ranges
         training_steps: Math.min(Math.max(parseInt(trainingSteps.toString()), 100), 2000),
         learning_rate: Math.min(Math.max(parseFloat(learningRate.toString()), 0.0001), 0.001),
-        rank: Math.min(Math.max(parseInt(loraRank.toString()), 4), 64),
+        lora_rank: Math.min(Math.max(parseInt(loraRank.toString()), 4), 64),
         resolution: parseInt(resolution),
         batch_size: Math.min(Math.max(parseInt(batchSize.toString()), 1), 4)
       }
-    };
-    
-    // Only include webhook if app URL is a valid HTTPS URL
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL;
-    if (appUrl && appUrl.startsWith('https://')) {
-      logger.info(`Configuring webhook`, { url: `${appUrl}/api/webhooks/replicate/completed` });
-      predictionInput.webhook = `${appUrl}/api/webhooks/replicate/completed`;
-      predictionInput.webhook_events_filter = ["completed"];
-    } else {
-      logger.info('Skipping webhook configuration - valid HTTPS URL required');
-    }
-    
-    // Log the full prediction parameters (except API token)
-    logger.replicate('Preparing prediction request', {
-      version: predictionInput.version,
-      input: predictionInput.input,
-      webhook: predictionInput.webhook
     });
     
     try {
-      logger.info(`Making Replicate API call with version: ${predictionInput.version}`);
-      const prediction = await replicate.predictions.create(predictionInput);
-      logger.info(`Replicate training started successfully`, { predictionId: prediction.id });
+      logger.info(`Making Replicate API call for prediction with fine-tuning`);
       
-      // Save model reference in database
-      const { data: model, error: modelError } = await supabase
-        .from("models")
-        .insert({
-          user_id: supabaseUserId.toString(),
-          model_id: prediction.id,
-          trigger_word: triggerWord,
-          status: "Processing",
-          parameters: {
-            trainingSteps,
-            loraRank,
-            optimizer,
-            learningRate,
-            resolution,
-            batchSize
-          },
-          created_at: new Date().toISOString(),
-        })
-        .select()
-        .single();
-
-      if (modelError) {
-        logger.error("Error saving model to database", modelError);
-        return NextResponse.json(
-          { error: "Failed to save model information" },
-          { status: 500 }
-        );
+      // Test the signed URL accessibility
+      try {
+        logger.info("Testing signed URL accessibility");
+        const urlCheckResponse = await fetch(signedUrl, {
+          method: 'HEAD',
+          // No credentials - simulating an external service call
+        });
+        
+        logger.info(`Signed URL check result: ${urlCheckResponse.status} ${urlCheckResponse.statusText}`, {
+          headers: Object.fromEntries(Array.from(urlCheckResponse.headers)),
+          url: signedUrl.substring(0, 60) + '...',
+          contentType: urlCheckResponse.headers.get('content-type'),
+          contentLength: urlCheckResponse.headers.get('content-length')
+        });
+        
+        if (!urlCheckResponse.ok) {
+          logger.error("Signed URL is not accessible!");
+        }
+      } catch (urlError) {
+        logger.error("Error testing signed URL:", urlError);
       }
       
-      logger.info(`Model saved to database`, { modelId: model.id });
-
-      // Save photo references for this model
-      for (const photoId of photoIds) {
-        await supabase
-          .from("model_photos")
-          .insert({
-            model_id: model.id,
-            photo_id: photoId,
-            user_id: supabaseUserId.toString()
-          });
+      // Parse resolution correctly
+      let resolutionValue = resolution;
+      if (resolution.includes('x')) {
+        // If we have a format like "512x512", extract just the first number
+        resolutionValue = resolution.split('x')[0];
       }
       
-      logger.info("Photo references saved for the model");
-
-      return NextResponse.json({
-        success: true,
-        model: {
-          id: model.id,
-          trigger_word: triggerWord,
-          status: "Processing",
-          replicate_id: prediction.id,
-        },
-        message: "Model training started successfully"
-      });
-    } catch (error: any) {
-      // Enhanced error logging with axios-style error handling
-      logger.error("Replicate API error during model creation", error);
+      // Ensure optimizer is lowercase to match Replicate's expectations
+      const optimizerValue = optimizer.toLowerCase();
       
-      // Capture complete response data if available
-      let errorData = null;
-      let errorMessage = error.message || "Unknown error";
+      // Clean and validate all input parameters
+      const trainingStepsValue = Math.min(Math.max(parseInt(trainingSteps.toString()), 100), 2000);
+      const learningRateValue = Math.min(Math.max(parseFloat(learningRate.toString()), 0.0001), 0.001);
+      const loraRankValue = Math.min(Math.max(parseInt(loraRank.toString()), 4), 64);
+      const resolutionIntValue = parseInt(resolutionValue);
+      const batchSizeValue = Math.min(Math.max(parseInt(batchSize.toString()), 1), 4);
       
-      if (error.response) {
-        // Extract the response data (this handles both axios and fetch-style responses)
-        try {
-          errorData = typeof error.response.data === 'object' 
-            ? error.response.data 
-            : JSON.parse(error.response.data);
-        } catch (parseError: any) {
-          // If can't parse as JSON, use as string
-          errorData = {
-            raw: error.response.data,
-            parseError: parseError.message
-          };
-        }
-        
-        // Get a better error message if available
-        if (errorData?.detail || errorData?.title) {
-          errorMessage = errorData.detail || errorData.title;
-        }
-        
-        // Log the complete error information
-        logger.error("Replicate API detailed error", {
-          status: error.response.status,
-          statusText: error.response.statusText,
-          data: errorData,
-          url: error.response.url || error.config?.url,
-          method: error.response.method || error.config?.method
+      // Validate trigger word - ensure it's alphanumeric and doesn't contain spaces
+      const cleanTriggerWord = triggerWord.trim();
+      if (cleanTriggerWord.includes(' ')) {
+        logger.info("Trigger word contains spaces, which may cause issues", { 
+          original: triggerWord, 
+          cleaned: cleanTriggerWord.replace(/\s+/g, '') 
         });
       }
       
-      // Enhanced error reporting with much more detailed information
-      return NextResponse.json(
-        { 
-          error: "Failed to start model training with Replicate",
-          message: errorMessage,
-          details: {
-            statusCode: error.response?.status,
-            statusText: error.response?.statusText,
-            data: errorData,
-            versionUsed: predictionInput.version,
-            // Include key input parameters for debugging
-            inputParams: {
-              triggerWord: predictionInput.input.trigger_word,
-              trainingSteps: predictionInput.input.training_steps,
-              resolution: predictionInput.input.resolution,
-              zipFileSize: zipContent?.length || "unknown"
-            }
+      // Log trigger word details for debugging
+      logger.info("Trigger word analysis:", {
+        original: triggerWord,
+        trimmed: cleanTriggerWord,
+        length: cleanTriggerWord.length,
+        hasSpaces: cleanTriggerWord.includes(' '),
+        hasSpecialChars: /[^a-zA-Z0-9]/.test(cleanTriggerWord)
+      });
+      
+      // Declare prediction at a scope accessible to both try blocks
+      let training;
+      
+      try {
+        // Log what we're going to do
+        logger.info("Making direct fetch to Replicate Training API...");
+        const apiToken = process.env.REPLICATE_API_TOKEN;
+        
+        if (!apiToken) {
+          throw new Error("Missing Replicate API token");
+        }
+        
+        // Get the username from environment variable or default to the user ID
+        const replicateUsername = process.env.REPLICATE_API_USERNAME || process.env.REPLICATE_USERNAME || "visiona";
+        
+        // Use the same model name logic as above but simplify it for replicate API compatibility
+        const modelNameForDestination = name 
+          ? name.trim().replace(/\s+/g, '-').toLowerCase() 
+          : cleanTriggerWord.toLowerCase();
+        
+        // Create a simple destination without timestamp - Replicate will handle the versioning
+        // This format must be "username/modelname" exactly as per the Replicate docs
+        const destination = `${replicateUsername}/${modelNameForDestination}` as `${string}/${string}`;
+        
+        // Add detailed environment variable logging
+        logger.info("Replicate API configuration details:", {
+          tokenExists: !!process.env.REPLICATE_API_TOKEN,
+          tokenPrefix: process.env.REPLICATE_API_TOKEN ? process.env.REPLICATE_API_TOKEN.substring(0, 4) + '...' : 'NOT SET',
+          replicateApiUsername: process.env.REPLICATE_API_USERNAME || 'NOT SET',
+          replicateUsername: process.env.REPLICATE_USERNAME || 'NOT SET',
+          usedUsername: replicateUsername,
+          destination: destination
+        });
+        
+        logger.info(`Using simplified destination format: ${destination}`, { 
+          originalName: name || cleanTriggerWord,
+          sanitizedName: modelNameForDestination
+        });
+        
+        // Create the model first on Replicate before using it as a destination
+        logger.info("First creating model on Replicate via /v1/models...");
+        const createModelResponse = await fetch(
+          `https://api.replicate.com/v1/models`, 
+          {
+            method: "POST",
+            headers: {
+              "Authorization": `Token ${apiToken}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              owner: replicateUsername,
+              name: modelNameForDestination,
+              description: `Model trained on ${name || cleanTriggerWord} images`,
+              visibility: "private",
+              hardware: "cpu"
+            })
           }
-        },
-        { status: error.response?.status || 500 }
+        );
+        
+        const createModelResponseText = await createModelResponse.text();
+        
+        logger.info(`Create model response: ${createModelResponse.status} ${createModelResponse.statusText}`, {
+          responseBody: createModelResponseText.substring(0, 500)
+        });
+        
+        // Continue even if model already exists (which would give a 409 conflict error)
+        if (!createModelResponse.ok && createModelResponse.status !== 409) {
+          // If it's not just a "model already exists" error, log it and continue anyway
+          logger.error("Error creating model on Replicate", {
+            status: createModelResponse.status,
+            statusText: createModelResponse.statusText,
+            body: createModelResponseText
+          });
+        }
+        
+        // Add a short delay to allow model creation to propagate
+        logger.info("Adding delay to allow model creation to propagate...");
+        await new Promise(resolve => setTimeout(resolve, 2000)); // 2 second delay
+        
+        // Now use the model-specific fine-tuning endpoint which is the only approach that works
+        logger.info("Using model-specific fine-tuning endpoint...");
+        
+        const trainingResponse = await fetch(
+          `https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/${versionId}/trainings`, 
+          {
+            method: "POST",
+            headers: {
+              "Authorization": `Token ${apiToken}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              destination: destination,
+              input: {
+                training_steps: trainingStepsValue,
+                lora_rank: loraRankValue,
+                optimizer: optimizerValue,
+                batch_size: batchSizeValue,
+                resolution: resolutionIntValue,
+                autocaption: true,
+                input_images: signedUrl,
+                trigger_word: cleanTriggerWord,
+                learning_rate: learningRateValue
+              }
+            })
+          }
+        );
+        
+        const trainingResponseText = await trainingResponse.text();
+        
+        logger.info(`Training API response: ${trainingResponse.status} ${trainingResponse.statusText}`, {
+          responseBody: trainingResponseText.substring(0, 500)
+        });
+        
+        if (!trainingResponse.ok) {
+          throw new Error(`Training API error: ${trainingResponse.status} ${trainingResponseText}`);
+        }
+        
+        const training = JSON.parse(trainingResponseText);
+        logger.info("Training started successfully!", { id: training.id });
+      
+        // Save model reference in database using the correct schema
+        // Note: The models table has id, user_id, name, description, status, etc.
+        // But NOT model_id which we were trying to use before
+        const { data: model, error: modelError } = await supabase
+          .from("models")
+          .insert({
+            id: training.id,
+            user_id: supabaseUserId.toString(),
+            name: name || cleanTriggerWord,
+            description: `Model trained with trigger word "${cleanTriggerWord}"`,
+            status: "Processing",
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          })
+          .select()
+          .single();
+
+        if (modelError) {
+          logger.error("Error saving model to database", modelError);
+          return NextResponse.json(
+            { error: "Failed to save model information" },
+            { status: 500 }
+          );
+        }
+        
+        logger.info(`Model saved to database`, { modelId: model.id });
+        
+        // Double-check that we can retrieve the model we just saved
+        const verifyCheck = await supabase
+          .from("models")
+          .select("*")
+          .eq("id", model.id)
+          .eq("user_id", supabaseUserId.toString());
+          
+        logger.info(`Verification DB check:`, { 
+          count: verifyCheck.data?.length || 0,
+          error: verifyCheck.error,
+          modelId: model.id,
+          userId: supabaseUserId.toString()
+        });
+
+        // Save photo references for this model
+        for (const photoId of photoIds) {
+          await supabase
+            .from("model_photos")
+            .insert({
+              model_id: model.id,
+              photo_id: photoId,
+              user_id: supabaseUserId.toString()
+            });
+        }
+        
+        logger.info("Photo references saved for the model");
+
+        return NextResponse.json({
+          success: true,
+          model: {
+            id: model.id,
+            name: name || cleanTriggerWord,
+            description: `Model trained with trigger word "${cleanTriggerWord}"`,
+            trigger_word: cleanTriggerWord,
+            status: "Processing",
+            replicate_id: training.id,
+            user_id: supabaseUserId.toString(),
+            modelData: model
+          },
+          message: "Model training started successfully"
+        });
+      } catch (error: any) {
+        // Log and handle any errors from the API approach
+        logger.error("Error with Replicate API", error);
+        return NextResponse.json(
+          { error: error.message || "Failed to start model training - API error" },
+          { status: 500 }
+        );
+      }
+    } catch (error: any) {
+      logger.error("Error creating model", error);
+      return NextResponse.json(
+        { error: error.message || "Internal server error" },
+        { status: 500 }
       );
+    } finally {
+      // Clean up: remove temporary files regardless of success/failure
+      try {
+        if (fs.existsSync(tempDir)) {
+          fs.rmdirSync(tempDir, { recursive: true });
+          logger.info(`Cleaned up temporary directory`, { path: tempDir });
+        }
+        if (fs.existsSync(zipFilePath)) {
+          fs.unlinkSync(zipFilePath);
+          logger.info(`Cleaned up ZIP file`, { path: zipFilePath });
+        }
+      } catch (cleanupError) {
+        logger.error("Error during cleanup", cleanupError);
+      }
     }
   } catch (error: any) {
     logger.error("Error creating model", error);
@@ -533,20 +712,6 @@ export async function POST(req: NextRequest) {
       { error: error.message || "Internal server error" },
       { status: 500 }
     );
-  } finally {
-    // Clean up: remove temporary files regardless of success/failure
-    try {
-      if (fs.existsSync(tempDir)) {
-        fs.rmdirSync(tempDir, { recursive: true });
-        logger.info(`Cleaned up temporary directory`, { path: tempDir });
-      }
-      if (fs.existsSync(zipFilePath)) {
-        fs.unlinkSync(zipFilePath);
-        logger.info(`Cleaned up ZIP file`, { path: zipFilePath });
-      }
-    } catch (cleanupError) {
-      logger.error("Error during cleanup", cleanupError);
-    }
   }
 }
 

@@ -31,7 +31,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Slider } from "@/components/ui/slider"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Info, ChevronDown } from "lucide-react"
-import { uploadPhotos, createModel, fetchUserProfile, fetchUserModels, deleteModel, formatModelsForUI, debugPhotoAccess } from "@/utils/api"
+import { uploadPhotos, createModel, fetchUserProfile, fetchUserModels, deleteModel, formatModelsForUI, debugPhotoAccess, fetchModelById } from "@/utils/api"
 import { toast } from "react-toastify"
 
 // Badge Component
@@ -569,7 +569,7 @@ export default function TrainPage() {
 
   // Step progression checks
   const canProceedToStep2 = uploadedPhotos.length >= MIN_PHOTOS
-  const canProceedToStep3 = triggerWord.length > 0
+  const canProceedToStep3 = modelName.trim().length > 0 && triggerWord.trim().length > 0
 
   // Load user data function
   async function loadUserData() {
@@ -812,60 +812,112 @@ export default function TrainPage() {
     toast.success("Model created successfully! Training has started.")
 
     // Update the training status
-    // Simulate the training process with status updates
     setTrainingStatus("queued")
+    setModelCreationStatus("success")
     
-    // Queued for 2 seconds
-    setTimeout(() => {
-      setTrainingStatus("preparing")
-      
-      // Preparing takes about 5 seconds
-      let prepProgress = 0
-      const prepInterval = setInterval(() => {
-        prepProgress += 20
-        setTrainingProgress(prepProgress)
+    // Get the model ID for status polling
+    const modelId = newModel.id
+    const replicateId = newModel.replicate_id
+    
+    // Set up polling to check training status
+    const checkModelStatus = async () => {
+      try {
+        // Fetch the latest model status from the server
+        const response = await fetchModelById(modelId)
         
-        if (prepProgress >= 100) {
-          clearInterval(prepInterval)
-          setTrainingStatus("training")
-          
-          // Training stage - takes about 20 seconds total
-          let trainProgress = 0
-          const trainInterval = setInterval(() => {
-            trainProgress += 5
-            setTrainingProgress(trainProgress)
-            
-            if (trainProgress >= 100) {
-              clearInterval(trainInterval)
-              setTrainingStatus("finalizing")
-              
-              // Finalizing stage - takes about 5 seconds
-              let finalizeProgress = 0
-              const finalizeInterval = setInterval(() => {
-                finalizeProgress += 20
-                setTrainingProgress(finalizeProgress)
-                
-                if (finalizeProgress >= 100) {
-                  clearInterval(finalizeInterval)
-                  setTrainingStatus("completed")
-                  
-                  // Refresh the user data to show the updated model
-                  loadUserData()
-                  loadUserModels()
-                  
-                  // Set form back to initial state
-                  setIsSubmitting(false)
-                  setUploadedPhotos([])
-                  setModelName("")
-                  setTriggerWord("")
-                  setCurrentStep(0)
-                }
-              }, 1000)
-            }
-          }, 1000)
+        if (!response.success) {
+          console.error("Failed to get model status:", response.error)
+          return
         }
-      }, 1000)
-    }, 2000)
+        
+        const model = response.model
+        
+        if (!model) {
+          console.error("Model not found")
+          return
+        }
+        
+        console.log("Model status check:", model.status, "Progress:", model.progress || 0)
+        
+        // Map the model status to our UI status
+        let uiStatus: TrainingStatusProps["status"] = "queued"
+        
+        switch (model.status?.toLowerCase()) {
+          case "starting":
+          case "queued":
+            uiStatus = "queued"
+            setTrainingProgress(10)
+            break
+          case "processing":
+          case "pending":
+            uiStatus = "preparing"
+            setTrainingProgress(30)
+            break
+          case "training":
+            uiStatus = "training"
+            setTrainingProgress(model.progress || 50)
+            break
+          case "finalizing":
+            uiStatus = "finalizing"
+            setTrainingProgress(90)
+            break
+          case "succeeded":
+          case "completed":
+          case "ready":
+            uiStatus = "completed"
+            setTrainingProgress(100)
+            break
+          case "failed":
+          case "error":
+            uiStatus = "failed"
+            setTrainingProgress(0)
+            break
+          default:
+            uiStatus = "training"
+            setTrainingProgress(50)
+        }
+        
+        setTrainingStatus(uiStatus)
+        
+        // If training completed or failed, stop polling
+        if (uiStatus === "completed" || uiStatus === "failed") {
+          setIsSubmitting(false)
+          
+          if (uiStatus === "completed") {
+            // Refresh models list
+            loadUserModels()
+            loadUserData()
+            
+            // Reset form when completed
+            setModelName("")
+            setTriggerWord("")
+          }
+          
+          return false // Stop polling
+        }
+        
+        return true // Continue polling
+      } catch (error) {
+        console.error("Error checking model status:", error)
+        return true // Continue polling despite error
+      }
+    }
+    
+    // Start polling immediately
+    checkModelStatus()
+    
+    // Then set up an interval to check every 5 seconds
+    const pollingInterval = setInterval(async () => {
+      const shouldContinue = await checkModelStatus()
+      
+      if (!shouldContinue) {
+        clearInterval(pollingInterval)
+        console.log("Model training completed or failed, stopped polling")
+      }
+    }, 5000)
+    
+    // Clean up interval on component unmount
+    return () => clearInterval(pollingInterval)
   }
 
   // Reset training form
@@ -1071,6 +1123,33 @@ export default function TrainPage() {
                       </p>
 
                       <div className="space-y-6">
+                        {/* Model Name */}
+                        <div>
+                          <div className="flex items-center">
+                            <Label htmlFor="model-name" className="text-gray-300 mb-1">
+                              Model Name <span className="text-red-500">*</span>
+                            </Label>
+                            <div className="relative inline-block ml-1">
+                              <Button variant="ghost" size="icon" className="h-4 w-4 text-gray-400 hover:text-gray-300">
+                                <Info size={14} />
+                              </Button>
+                              <span className="sr-only">
+                                The name you want to give to your model
+                              </span>
+                            </div>
+                          </div>
+                          <Input
+                            id="model-name"
+                            placeholder="My Custom Model"
+                            value={modelName}
+                            onChange={(e) => setModelName(e.target.value)}
+                            className="bg-gray-900 border-gray-700 text-white"
+                          />
+                          <p className="mt-1 text-xs text-gray-500">
+                            Give your model a descriptive name to help you identify it later.
+                          </p>
+                        </div>
+
                         {/* Trigger Word */}
                         <div>
                           <div className="flex items-center">
@@ -1276,6 +1355,10 @@ export default function TrainPage() {
 
                       <div className="bg-gray-900/50 rounded-lg p-4 mb-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <h3 className="text-sm font-medium text-gray-400 mb-1">Model Name</h3>
+                            <p className="text-white">{modelName}</p>
+                          </div>
                           <div>
                             <h3 className="text-sm font-medium text-gray-400 mb-1">Trigger Word</h3>
                             <p className="text-white">{triggerWord}</p>

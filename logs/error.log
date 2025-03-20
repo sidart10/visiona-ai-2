@@ -44,3 +44,1299 @@ Error details: {
   "url": "https://api.replicate.com/v1/predictions"
 }
 
+[ERROR] [2025-03-17T04:54:29.886Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:385:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-17T04:54:29.890Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-17T05:17:57.403Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:385:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-17T05:17:57.408Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T21:06:48.534Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:385:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T21:06:48.537Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T21:49:08.099Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The requested resource could not be found.","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The requested resource could not be found.","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:374:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T21:49:08.101Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T21:49:40.585Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The requested resource could not be found.","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The requested resource could not be found.","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:374:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T21:49:40.586Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T21:54:39.474Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:376:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T21:54:39.476Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T21:58:07.906Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:387:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T21:58:07.910Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T22:03:35.354Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:368:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:03:35.356Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T22:09:26.275Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:391:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:09:26.278Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T22:18:08.198Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:393:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:18:08.200Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T22:19:36.856Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:393:32)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:19:36.859Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T22:33:04.390Z] SDK method failed, trying direct fetch as fallback
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:483:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:33:04.830Z] Both SDK and direct fetch methods failed
+Error: Direct fetch failed: 422 {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+
+Stack: Error: Direct fetch failed: 422 {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:513:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:33:04.831Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/predictions failed with status 422 Unprocessable Entity: {"title":"Invalid version or not permitted","detail":"The specified version does not exist (or perhaps you don't have permission to use it?)","status":422}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createPrediction (webpack-internal:///(rsc)/./node_modules/replicate/lib/predictions.js:39:16)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:483:30)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:33:04.832Z] Replicate API detailed error
+Error details: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/predictions"
+}
+
+[ERROR] [2025-03-19T22:47:49.162Z] Training API approach failed, error details:
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:447:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:47:49.532Z] Both SDK and direct fetch to Training API failed
+Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:503:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:47:49.533Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:447:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T22:47:49.534Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T23:06:28.797Z] Training API approach failed, error details:
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:447:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:06:29.078Z] Both SDK and direct fetch to Training API failed
+Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:503:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:06:29.079Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:447:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:06:29.079Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T23:33:15.473Z] Training API approach failed, error details:
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:452:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:33:15.801Z] Both SDK and direct fetch to Training API failed
+Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:511:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:33:15.801Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:452:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:33:15.802Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T23:43:07.453Z] Training API approach failed, error details:
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:452:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:43:07.702Z] Both SDK and direct fetch to Training API failed
+Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The specified training destination does not exist","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:511:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:43:07.703Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:452:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:43:07.703Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-19T23:48:01.252Z] Training API approach failed, error details:
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:458:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:48:01.385Z] Both SDK and direct fetch to Training API failed
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:518:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:48:01.385Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:458:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-19T23:48:01.385Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-20T00:04:31.170Z] Direct fetch approach failed, trying SDK...
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:499:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:04:31.529Z] Replicate API error during model creation
+Error: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+Stack: ApiError: Request to https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings failed with status 404 Not Found: {"detail":"The specified training destination does not exist","status":404}
+.
+    at Replicate.request (webpack-internal:///(rsc)/./node_modules/replicate/index.js:293:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Replicate.createTraining (webpack-internal:///(rsc)/./node_modules/replicate/lib/trainings.js:26:20)
+    at async POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:515:28)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:04:31.530Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "data": {
+    "parseError": "\"undefined\" is not valid JSON"
+  },
+  "url": "https://api.replicate.com/v1/models/ostris/flux-dev-lora-trainer/versions/b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef/trainings"
+}
+
+[ERROR] [2025-03-20T00:13:25.673Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "body": "{\"detail\":\"The requested resource could not be found.\",\"status\":404}\n",
+  "destination": "sidart10/sid",
+  "token": "r8_c..."
+}
+
+[ERROR] [2025-03-20T00:13:25.673Z] Error with direct fetch to Replicate API
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:502:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:14:32.473Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "body": "{\"detail\":\"The requested resource could not be found.\",\"status\":404}\n",
+  "destination": "sidart10/sid",
+  "token": "r8_c..."
+}
+
+[ERROR] [2025-03-20T00:14:32.473Z] Error with direct fetch to Replicate API
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:502:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:22:27.254Z] Error creating model on Replicate
+Error details: {
+  "status": 400,
+  "statusText": "Bad Request",
+  "body": "{\"status\":400,\"title\":\"Validation failed\",\"detail\":\"The following errors occurred:\\n- hardware: This field is required.\",\"errors\":[{\"pointer\":\"/hardware\",\"detail\":\"This field is required.\"}]}"
+}
+
+[ERROR] [2025-03-20T00:22:27.617Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "body": "{\"detail\":\"The requested resource could not be found.\",\"status\":404}\n",
+  "destination": "sidart10/sid",
+  "token": "r8_c..."
+}
+
+[ERROR] [2025-03-20T00:22:27.618Z] Error with direct fetch to Replicate API
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:531:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:30:18.333Z] Replicate API detailed error
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "body": "{\"detail\":\"The requested resource could not be found.\",\"status\":404}\n",
+  "destination": "sidart10/sid",
+  "token": "r8_c..."
+}
+
+[ERROR] [2025-03-20T00:30:18.333Z] Error with direct fetch to Replicate API
+Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+Stack: Error: Direct fetch failed: 404 {"detail":"The requested resource could not be found.","status":404}
+
+    at POST (webpack-internal:///(rsc)/./app/api/models/create/route.ts:532:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/sid/Desktop/1. Projects/Coding Projects/ai-clone-6/visiona-ai/node_modules/next/dist/server/lib/start-server.js:141:13)
+
+[ERROR] [2025-03-20T00:42:00.416Z] First approach failed (hash-only). Trying with full model identifier...
+
+[ERROR] [2025-03-20T00:42:00.570Z] Both approaches failed. Detailed error from second approach:
+Error details: {
+  "status": 404,
+  "statusText": "Not Found",
+  "body": "{\"detail\":\"The requested resource could not be found.\",\"status\":404}\n",
+  "destination": "sidart10/sid",
+  "token": "r8_c..."
+}
+
+[ERROR] [2025-03-20T00:42:01.263Z] Error saving model to database
+Error details: {
+  "code": "PGRST204",
+  "details": null,
+  "hint": null,
+  "message": "Could not find the 'model_id' column of 'models' in the schema cache"
+}
+
+[ERROR] [2025-03-20T00:56:55.786Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "krdd9e4w7xrmc0cnp46tczepj0",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T00:57:00.506Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "krdd9e4w7xrmc0cnp46tczepj0",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:03:00.966Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "63ypm3hdbsrmc0cnp49vtyd19g",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:03:05.160Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "63ypm3hdbsrmc0cnp49vtyd19g",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:05:07.534Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "mnnvpr8v7nrmc0cnp4as3pgn1r",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:05:11.667Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "mnnvpr8v7nrmc0cnp4as3pgn1r",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:05:37.089Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "hfzhc24hvnrme0cnp4atqg4hvm",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+
+[ERROR] [2025-03-20T01:05:42.036Z] Error fetching model from database
+Error details: {
+  "error": {
+    "code": "PGRST116",
+    "details": "The result contains 0 rows",
+    "hint": null,
+    "message": "JSON object requested, multiple (or no) rows returned"
+  },
+  "modelId": "hfzhc24hvnrme0cnp4atqg4hvm",
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+

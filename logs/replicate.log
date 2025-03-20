@@ -34,3 +34,725 @@
   }
 }
 
+[2025-03-17T04:54:29.275Z] Preparing prediction request
+{
+  "timestamp": "2025-03-17T04:54:29.275Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742187267841_9298b18f-d047-4fa0-9a4e-3dc39b6e98c8_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyMTg3MjY3ODQxXzkyOThiMThmLWQwNDctNGZhMC05YTRlLTNkYzM5YjZlOThjOF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDIxODcyNjksImV4cCI6MTc0MjE5MDg2OX0.CNXBz2hHT-sTP1ZwD6clKf5UpJ9Q-P9bOSj5dwAf0CI",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-17T05:17:57.072Z] Preparing prediction request
+{
+  "timestamp": "2025-03-17T05:17:57.072Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742188675755_437d7c5a-e1c8-45d6-902b-abb130c11910_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyMTg4Njc1NzU1XzQzN2Q3YzVhLWUxYzgtNDVkNi05MDJiLWFiYjEzMGMxMTkxMF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDIxODg2NzcsImV4cCI6MTc0MjE5MjI3N30.suEBYb48AYYNtwBtQLPsLqNlMrw068BG64C8DRc_8Yk",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T21:06:47.849Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T21:06:47.849Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742418406978_13e68c41-0178-4013-8a52-adbd22a7f32e_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDE4NDA2OTc4XzEzZTY4YzQxLTAxNzgtNDAxMy04YTUyLWFkYmQyMmE3ZjMyZV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MTg0MDcsImV4cCI6MTc0MjQyMjAwN30.NhcufzcZv7OGsV5bK_3Nl09KmFo395CNp3V7xBQVf-4",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T21:49:07.858Z] Preparing training request
+{
+  "timestamp": "2025-03-19T21:49:07.858Z",
+  "message": "Preparing training request",
+  "params": {
+    "modelOwner": "ostris",
+    "modelName": "flux-dev-lora-trainer",
+    "versionId": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "destination": "visiona/user2u91hL5Q5K21TjoD2nHMp2qWPr9-1742420947858",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742420946413_4e578ba9-b30a-439a-948b-4f334562395b_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIwOTQ2NDEzXzRlNTc4YmE5LWIzMGEtNDM5YS05NDhiLTRmMzM0NTYyMzk1Yl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjA5NDcsImV4cCI6MTc0MjQyNDU0N30.6thg-WqcRklmTV-MT4GeuQeSsmC9wgHDRWQiFyTfk4M",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T21:49:40.464Z] Preparing training request
+{
+  "timestamp": "2025-03-19T21:49:40.464Z",
+  "message": "Preparing training request",
+  "params": {
+    "modelOwner": "ostris",
+    "modelName": "flux-dev-lora-trainer",
+    "versionId": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "destination": "visiona/user2u91hL5Q5K21TjoD2nHMp2qWPr9-1742420980463",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742420979428_2eced030-576d-46e6-a077-50b940d25c82_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIwOTc5NDI4XzJlY2VkMDMwLTU3NmQtNDZlNi1hMDc3LTUwYjk0MGQyNWM4Ml90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjA5ODAsImV4cCI6MTc0MjQyNDU4MH0.xAAa0D7OYij1OOs2Z9xmo_nfkQAyjJEeY_Dcy5DLZLs",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T21:54:39.208Z] Preparing training request
+{
+  "timestamp": "2025-03-19T21:54:39.208Z",
+  "message": "Preparing training request",
+  "params": {
+    "modelOwner": "ostris",
+    "modelName": "flux-dev-lora-trainer",
+    "versionId": "b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "destination": "visiona/user2u91hL5Q5K21TjoD2nHMp2qWPr9-1742421279208",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742421277926_8cf58ee1-2122-4545-85f9-edfba9f2fe0a_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIxMjc3OTI2XzhjZjU4ZWUxLTIxMjItNDU0NS04NWY5LWVkZmJhOWYyZmUwYV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjEyNzksImV4cCI6MTc0MjQyNDg3OX0.jGwvxMA-phaaUgPcw1BbVg973627SlVqxonSRvOAJCI",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T21:58:07.493Z] Preparing training request
+{
+  "timestamp": "2025-03-19T21:58:07.493Z",
+  "message": "Preparing training request",
+  "params": {
+    "modelOwner": "ostris",
+    "modelName": "flux-dev-lora-trainer",
+    "versionId": "b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "destination": "sidart10/sid-1742421487493",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742421486101_1fed59af-7bee-4c90-96d7-c4d13c0471d6_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIxNDg2MTAxXzFmZWQ1OWFmLTdiZWUtNGM5MC05NmQ3LWM0ZDEzYzA0NzFkNl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjE0ODcsImV4cCI6MTc0MjQyNTA4N30.R55kmTGQ88g27l-Kk_aJkBBQ8xG7A46sVpbYIjVnTJ0",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:03:35.130Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:03:35.130Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742421814267_0fd0b4f5-5e7c-43ff-ab3e-38b74e804de9_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIxODE0MjY3XzBmZDBiNGY1LTVlN2MtNDNmZi1hYjNlLTM4Yjc0ZTgwNGRlOV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjE4MTUsImV4cCI6MTc0MjQyNTQxNX0.PnqA7rqR5Xji9_s1F6GJdG9Swq5GlH4lC9agwz-zza0",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:09:25.878Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:09:25.878Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422164731_8bc6175f-4adc-4d7b-958c-fdf176018f9c_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyMTY0NzMxXzhiYzYxNzVmLTRhZGMtNGQ3Yi05NThjLWZkZjE3NjAxOGY5Y190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjIxNjUsImV4cCI6MTc0MjQyNTc2NX0.NxSCpVkc2mdNA1INWwOM5K0t5U_4dmGEkE5HXXU0c5A",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:09:25.879Z] Final prediction request parameters
+{
+  "timestamp": "2025-03-19T22:09:25.879Z",
+  "message": "Final prediction request parameters",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422164731_8bc6175f-4adc-4d7b-958c-fdf176018f9c_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyMTY0NzMxXzhiYzYxNzVmLTRhZGMtNGQ3Yi05NThjLWZkZjE3NjAxOGY5Y190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjIxNjUsImV4cCI6MTc0MjQyNTc2NX0.NxSCpVkc2mdNA1INWwOM5K0t5U_4dmGEkE5HXXU0c5A",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1,
+      "optimizer": "adamw8bit",
+      "autocaption": true
+    }
+  }
+}
+
+[2025-03-19T22:18:07.938Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:18:07.938Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422686319_36785e2d-b156-4651-9282-4cd86e87c71f_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyNjg2MzE5XzM2Nzg1ZTJkLWIxNTYtNDY1MS05MjgyLTRjZDg2ZTg3YzcxZl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjI2ODcsImV4cCI6MTc0MjQyNjI4N30._IqwQO6gL5LzSIhqH4mfwUR2iU-FyOpMN4C-oJEStr8",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:18:07.939Z] Final prediction request parameters
+{
+  "timestamp": "2025-03-19T22:18:07.939Z",
+  "message": "Final prediction request parameters",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422686319_36785e2d-b156-4651-9282-4cd86e87c71f_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyNjg2MzE5XzM2Nzg1ZTJkLWIxNTYtNDY1MS05MjgyLTRjZDg2ZTg3YzcxZl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjI2ODcsImV4cCI6MTc0MjQyNjI4N30._IqwQO6gL5LzSIhqH4mfwUR2iU-FyOpMN4C-oJEStr8",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1,
+      "optimizer": "adamw8bit",
+      "autocaption": true
+    }
+  }
+}
+
+[2025-03-19T22:19:36.556Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:19:36.556Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422775539_b3e0afa1-880c-4876-8d8d-914b2641e67b_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyNzc1NTM5X2IzZTBhZmExLTg4MGMtNDg3Ni04ZDhkLTkxNGIyNjQxZTY3Yl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjI3NzYsImV4cCI6MTc0MjQyNjM3Nn0.zPyM3UGRKumQ-WjbTx1gCWoB537RYZYo-lZZfnvj4SE",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:19:36.556Z] Final prediction request parameters
+{
+  "timestamp": "2025-03-19T22:19:36.556Z",
+  "message": "Final prediction request parameters",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742422775539_b3e0afa1-880c-4876-8d8d-914b2641e67b_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIyNzc1NTM5X2IzZTBhZmExLTg4MGMtNDg3Ni04ZDhkLTkxNGIyNjQxZTY3Yl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjI3NzYsImV4cCI6MTc0MjQyNjM3Nn0.zPyM3UGRKumQ-WjbTx1gCWoB537RYZYo-lZZfnvj4SE",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1,
+      "optimizer": "adamw8bit",
+      "autocaption": true
+    }
+  }
+}
+
+[2025-03-19T22:33:03.586Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:33:03.586Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742423581642_df94bbd1-6eb6-4c7d-af27-d086ac9f895f_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIzNTgxNjQyX2RmOTRiYmQxLTZlYjYtNGM3ZC1hZjI3LWQwODZhYzlmODk1Zl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjM1ODMsImV4cCI6MTc0MjQyNzE4M30.zz7KfgOkocrLuBtp5J4JBjw8zb2wY2du9znQEDmUVnQ",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T22:33:03.910Z] Final prediction request parameters
+{
+  "timestamp": "2025-03-19T22:33:03.910Z",
+  "message": "Final prediction request parameters",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742423581642_df94bbd1-6eb6-4c7d-af27-d086ac9f895f_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDIzNTgxNjQyX2RmOTRiYmQxLTZlYjYtNGM3ZC1hZjI3LWQwODZhYzlmODk1Zl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjM1ODMsImV4cCI6MTc0MjQyNzE4M30.zz7KfgOkocrLuBtp5J4JBjw8zb2wY2du9znQEDmUVnQ",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1,
+      "optimizer": "adamw8bit",
+      "autocaption": true
+    }
+  }
+}
+
+[2025-03-19T22:47:48.186Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T22:47:48.186Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742424467404_46d873fb-5e78-4ddf-9e03-8ba0ddf77fae_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI0NDY3NDA0XzQ2ZDg3M2ZiLTVlNzgtNGRkZi05ZTAzLThiYTBkZGY3N2ZhZV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjQ0NjgsImV4cCI6MTc0MjQyODA2OH0.stun7JvGF4VPZ6XaeVUj3gan_SApr9bhCn-TkfBpX8A",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T23:06:28.397Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T23:06:28.397Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742425587331_aa7408f3-1e08-4ce4-8173-8554fc468eae_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI1NTg3MzMxX2FhNzQwOGYzLTFlMDgtNGNlNC04MTczLTg1NTRmYzQ2OGVhZV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjU1ODgsImV4cCI6MTc0MjQyOTE4OH0.EoVa0KJ1CG356wYafklrzrmUTTM8G8gu_5sPhhbxm1M",
+      "trigger_word": "SID",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T23:33:15.058Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T23:33:15.058Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742427193965_c12d49c2-1f11-4b6c-9cce-bd70cbfc50de_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI3MTkzOTY1X2MxMmQ0OWMyLTFmMTEtNGI2Yy05Y2NlLWJkNzBjYmZjNTBkZV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjcxOTUsImV4cCI6MTc0MjQzMDc5NX0.3CbzUBHwbRRkiIotgQGCuAfKNQwk2MvHxTaWrmHOvnc",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T23:43:06.727Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T23:43:06.727Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742427785261_3fdc43b9-3b7c-4cef-a069-7d9719f5a6f2_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI3Nzg1MjYxXzNmZGM0M2I5LTNiN2MtNGNlZi1hMDY5LTdkOTcxOWY1YTZmMl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0Mjc3ODYsImV4cCI6MTc0MjQzMTM4Nn0.I8mAhj8C2LuNrD6YT5zrDYP_TiNUZSRNmvg-3XKf660",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-19T23:48:00.886Z] Preparing prediction request
+{
+  "timestamp": "2025-03-19T23:48:00.886Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742428079896_76d1b503-4eff-439e-a08c-65c0a298dd4d_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI4MDc5ODk2Xzc2ZDFiNTAzLTRlZmYtNDM5ZS1hMDhjLTY1YzBhMjk4ZGQ0ZF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjgwODAsImV4cCI6MTc0MjQzMTY4MH0.xUplwLV09In8E6c_eGYzx6PK2AvkVkIRG_GBDpJrnRc",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:04:30.832Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:04:30.832Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742429069757_712b685b-698b-4692-8891-77b85870cb01_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI5MDY5NzU3XzcxMmI2ODViLTY5OGItNDY5Mi04ODkxLTc3Yjg1ODcwY2IwMV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MjkwNzAsImV4cCI6MTc0MjQzMjY3MH0.wM3jiN68YsbxU6oFXHMk25so5Lp7_pzzEbAkgA_g-3s",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:13:25.147Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:13:25.147Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742429604150_a03c60f0-84e7-421b-bf9d-c89b9d5507f1_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI5NjA0MTUwX2EwM2M2MGYwLTg0ZTctNDIxYi1iZjlkLWM4OWI5ZDU1MDdmMV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0Mjk2MDUsImV4cCI6MTc0MjQzMzIwNX0.I3Wu6Bg_W-a-PmIMpOtHOCHz9UhPFGDyp2gkKSwZqt4",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:14:32.219Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:14:32.219Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742429670908_db37f26e-77e5-4afc-b22a-40cc6a4fe2d8_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDI5NjcwOTA4X2RiMzdmMjZlLTc3ZTUtNGFmYy1iMjJhLTQwY2M2YTRmZTJkOF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0Mjk2NzIsImV4cCI6MTc0MjQzMzI3Mn0.icXEkDOPvos6_HIyAkPFU_d6KPD7O6oN1vvYTADFtkk",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:22:26.744Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:22:26.744Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742430145629_268d8123-9918-4f57-a53a-4fe0d9c0a43c_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMwMTQ1NjI5XzI2OGQ4MTIzLTk5MTgtNGY1Ny1hNTNhLTRmZTBkOWMwYTQzY190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzAxNDYsImV4cCI6MTc0MjQzMzc0Nn0.oMHigvFcif_dfStSAEyz56JlfnwM2cYTPe52lHeBbT8",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:30:17.460Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:30:17.460Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742430615619_61520c1e-e8b4-430f-b889-9727a93fd6a9_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMwNjE1NjE5XzYxNTIwYzFlLWU4YjQtNDMwZi1iODg5LTk3MjdhOTNmZDZhOV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzA2MTcsImV4cCI6MTc0MjQzNDIxN30.oGI_aMsdDxzOAosqRGEYIaKv8ba_CNsFrpcUArxkXiI",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:41:57.619Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:41:57.619Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742431316222_f814696e-c94a-4115-9c4e-83657314ef82_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMxMzE2MjIyX2Y4MTQ2OTZlLWM5NGEtNDExNS05YzRlLTgzNjU3MzE0ZWY4Ml90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzEzMTcsImV4cCI6MTc0MjQzNDkxN30.iUUxr9-1nGpjRK7ZlEBCahJ-pnJlsQcR1oGyD-fzN18",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:50:05.929Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:50:05.929Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742431804747_2a3f7415-f8e9-4373-9f3c-697e72c462cd_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMxODA0NzQ3XzJhM2Y3NDE1LWY4ZTktNDM3My05ZjNjLTY5N2U3MmM0NjJjZF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzE4MDUsImV4cCI6MTc0MjQzNTQwNX0.iACDiOH2Dd3FlN32SStz76GzxlxlbJYa265NaM-uR80",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:50:29.418Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:50:29.418Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742431825764_4e69d143-073d-476d-9199-599739ce7e45_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMxODI1NzY0XzRlNjlkMTQzLTA3M2QtNDc2ZC05MTk5LTU5OTczOWNlN2U0NV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzE4MjksImV4cCI6MTc0MjQzNTQyOX0.y-ZS3vzS4AYnmJSpeVHght_Rv_5WfhIM5WLDKmCQdIY",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:51:31.033Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:51:31.033Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742431889786_def6f6c5-95db-4776-bcba-cc3d7c29b554_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMxODg5Nzg2X2RlZjZmNmM1LTk1ZGItNDc3Ni1iY2JhLWNjM2Q3YzI5YjU1NF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzE4OTEsImV4cCI6MTc0MjQzNTQ5MX0.EYf-wok8Dblz1qyU9W1v9r5jpTfyLr5-K0tdcLse6cU",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T00:56:51.534Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T00:56:51.534Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742432210401_d14730e1-ee1b-4537-a120-e2cba5c2eb47_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMyMjEwNDAxX2QxNDczMGUxLWVlMWItNDUzNy1hMTIwLWUyY2JhNWMyZWI0N190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzIyMTEsImV4cCI6MTc0MjQzNTgxMX0.uG20WFE126fQZyGlc0yCZPKOsx6-BqKwHJbRkSDMELo",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:02:55.925Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:02:55.925Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742432574730_83d0c2ef-742c-4471-9d9c-3a87c42384ee_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMyNTc0NzMwXzgzZDBjMmVmLTc0MmMtNDQ3MS05ZDljLTNhODdjNDIzODRlZV90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzI1NzUsImV4cCI6MTc0MjQzNjE3NX0.kNkhxV5NkqJQ6o8gg4090FJu7PyR5teqQFYYP7UIsE8",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:05:02.563Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:05:02.563Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742432700807_a50ee9f8-42a7-424c-90ed-43302e3d1eb7_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMyNzAwODA3X2E1MGVlOWY4LTQyYTctNDI0Yy05MGVkLTQzMzAyZTNkMWViN190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzI3MDIsImV4cCI6MTc0MjQzNjMwMn0.b09U92tRtqnia1OpXDWGinBOur1zmNfa3EGnZVvidhc",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:05:32.674Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:05:32.674Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742432731146_cb56a496-128c-457d-b317-8fe2dbb2d384_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMyNzMxMTQ2X2NiNTZhNDk2LTEyOGMtNDU3ZC1iMzE3LThmZTJkYmIyZDM4NF90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzI3MzIsImV4cCI6MTc0MjQzNjMzMn0.898S8JDYwlloqmOVp23S_8gcnTAnogFRD_CDKjk42iA",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:12:22.865Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:12:22.865Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742433141021_469fbb64-2389-4b23-a1af-b768566417f2_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMzMTQxMDIxXzQ2OWZiYjY0LTIzODktNGIyMy1hMWFmLWI3Njg1NjY0MTdmMl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzMxNDIsImV4cCI6MTc0MjQzNjc0Mn0.jG390oZiKM4bpOaZFbvzrMDeERB9S8sJqAVLfjm8DVU",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:23:49.954Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:23:49.954Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742433828798_1497f433-0f1a-49fb-b866-1ff66a6cfccf_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDMzODI4Nzk4XzE0OTdmNDMzLTBmMWEtNDlmYi1iODY2LTFmZjY2YTZjZmNjZl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzM4MjksImV4cCI6MTc0MjQzNzQyOX0.klQVmWIpTAqL9afBd1OBGa9YzfEIclSCS8rQMQv2chY",
+      "trigger_word": "Sid",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:42:12.088Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:42:12.088Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742434930497_e3ea6499-bbc7-4c7c-a4e1-25dc739bf443_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDM0OTMwNDk3X2UzZWE2NDk5LWJiYzctNGM3Yy1hNGUxLTI1ZGM3MzliZjQ0M190cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzQ5MzIsImV4cCI6MTc0MjQzODUzMn0.OVNUbgyx45mPbtsM5xxZsFhDASreh-Y56eT-ilxMOak",
+      "trigger_word": "Alex",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:43:47.867Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:43:47.867Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742435026302_3b228d2f-97f7-4620-8c3c-096679fdf072_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDM1MDI2MzAyXzNiMjI4ZDJmLTk3ZjctNDYyMC04YzNjLTA5NjY3OWZkZjA3Ml90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzUwMjcsImV4cCI6MTc0MjQzODYyN30.X1uYAaZ3GflS6EMqEPnRuFKJiqBhL86LifmhDx2RNIA",
+      "trigger_word": "Alex",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
+[2025-03-20T01:46:53.353Z] Preparing prediction request
+{
+  "timestamp": "2025-03-20T01:46:53.353Z",
+  "message": "Preparing prediction request",
+  "params": {
+    "version": "ostris/flux-dev-lora-trainer:b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef",
+    "input": {
+      "input_images": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742435212270_cee4cb5f-6eb1-454b-981f-cf4425edc06b_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDM1MjEyMjcwX2NlZTRjYjVmLTZlYjEtNDU0Yi05ODFmLWNmNDQyNWVkYzA2Yl90cmFpbmluZy56aXAiLCJpYXQiOjE3NDI0MzUyMTMsImV4cCI6MTc0MjQzODgxM30.nvEeVZff2XguUNyUlyeMu-YnolMmnnh2QGq00CPv8tA",
+      "trigger_word": "hot",
+      "training_steps": 1000,
+      "learning_rate": 0.0004,
+      "lora_rank": 32,
+      "resolution": 512,
+      "batch_size": 1
+    }
+  }
+}
+
