@@ -57,15 +57,27 @@ export async function fetchUserProfile(): Promise<ApiResponse<UserProfile>> {
  */
 export async function fetchUserModels(options = { limit: 10, page: 1 }): Promise<ApiResponse<Model[]>> {
   try {
+    console.log('🔄 Fetching user models with options:', options);
+    
     const response = await fetch(`/api/models`);
+    console.log('📥 Models API response status:', response.status, response.statusText);
     
     if (!response.ok) {
       const errorData = await response.json();
+      console.error('❌ Error fetching models:', errorData);
       throw new Error(errorData.error || 'Failed to fetch user models');
     }
     
-    return response.json();
+    const responseData = await response.json();
+    console.log('✅ Models API successful response:', {
+      success: responseData.success,
+      hasModels: !!responseData.models,
+      modelCount: responseData.models?.length || 0,
+    });
+    
+    return responseData;
   } catch (error) {
+    console.error('❌ Exception in fetchUserModels:', error);
     return { success: false, ...handleApiError(error) };
   }
 }
@@ -316,12 +328,39 @@ export async function fetchModelById(modelId: string): Promise<ApiResponse<Model
 }
 
 /**
- * Helper function to determine if a model is active (completed and ready to use)
- * @param modelStatus The status string from the model object
- * @returns Boolean indicating if the model is active
+ * Determines if a model is considered active based on its status
  */
-export function isModelActive(modelStatus: string): boolean {
-  return modelStatus === "completed";
+export function isModelActive(status: string | undefined): boolean {
+  // Add detailed logging
+  console.log('📊 Checking if model is active:', { status });
+  
+  if (!status) {
+    console.log('⚠️ No status provided, returning false');
+    return false;
+  }
+  
+  // Convert to lowercase for case-insensitive comparison
+  const statusLower = status.toLowerCase();
+  
+  // Consider all non-error statuses as potentially active
+  // Only explicitly exclude statuses that indicate the model isn't ready
+  const isNotActive = [
+    'failed',
+    'error',
+    'cancelled',
+    'canceled'
+  ].includes(statusLower);
+  
+  // If it's explicitly not active, return false
+  if (isNotActive) {
+    console.log(`🔍 Model with status "${status}" is not active`);
+    return false;
+  }
+  
+  // For all other statuses (including 'completed', 'ready', 'processing', etc.)
+  // consider the model as potentially active
+  console.log(`🔍 Model with status "${status}" is considered active`);
+  return true;
 }
 
 /**
@@ -330,6 +369,8 @@ export function isModelActive(modelStatus: string): boolean {
  * @returns Array of formatted UserModel objects for the UI
  */
 export function formatModelsForUI(models: Model[]): UserModel[] {
+  console.log('🔍 Formatting models for UI, received:', models?.length || 0, 'models');
+  
   // Sort models to show completed models first
   const sortedModels = [...models].sort((a, b) => {
     // First by status (completed first)
@@ -340,16 +381,31 @@ export function formatModelsForUI(models: Model[]): UserModel[] {
     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   });
   
-  return sortedModels.map(model => ({
-    id: model.id,
-    name: model.name || model.trigger_word || "Untitled Model",
-    triggerWord: model.trigger_word || "",
-    status: model.status,
-    progress: model.progress || 0,
-    createdAt: new Date(model.created_at).toLocaleDateString(),
-    isActive: isModelActive(model.status),
-    thumbnailUrl: "/placeholder.svg?height=150&width=150"
-  }));
+  console.log('🔄 Models sorted by status and date');
+  
+  const formattedModels = sortedModels.map(model => {
+    const active = isModelActive(model.status);
+    console.log(`📝 Formatting model: ${model.name || model.id}`, { 
+      id: model.id,
+      status: model.status,
+      isActive: active,
+      triggerWord: model.trigger_word || ""
+    });
+    
+    return {
+      id: model.id,
+      name: model.name || model.trigger_word || "Untitled Model",
+      triggerWord: model.trigger_word || "",
+      status: model.status,
+      progress: model.progress || 0,
+      createdAt: new Date(model.created_at).toLocaleDateString(),
+      isActive: active,
+      thumbnailUrl: "/placeholder.svg?height=150&width=150"
+    };
+  });
+  
+  console.log('✅ Models formatted:', formattedModels.length);
+  return formattedModels;
 }
 
 /**

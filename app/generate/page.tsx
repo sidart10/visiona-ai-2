@@ -43,9 +43,69 @@ import { Input } from "@/components/ui/input"
 import { Upload, X } from "lucide-react"
 import { generateImages as apiGenerateImages, fetchUserModels, fetchUserProfile, formatModelsForUI } from "@/utils/api"
 import { toast } from "react-toastify"
+import { Generation } from "@/utils/types"
+
+// Custom Style Component
+interface CustomStyle {
+  id: string
+  name: string
+  prompt: string
+  aspectRatio: string
+  isDefault?: boolean
+}
+
+// Define proper types for our components
+interface BadgeProps {
+  children: React.ReactNode
+  variant?: "default" | "success" | "warning" | "danger" | "info"
+  className?: string
+}
+
+interface AvatarProps {
+  src?: string
+  alt?: string
+  size?: "sm" | "md" | "lg"
+  className?: string
+}
+
+interface PromptSuggestionProps {
+  children: React.ReactNode
+  onClick: () => void
+  active?: boolean
+}
+
+interface ModelPillProps {
+  model: {
+    id: string | number
+    name: string
+    thumbnailUrl?: string
+  }
+  isSelected: boolean
+  onSelect: (id: string | number) => void
+}
+
+interface GeneratedImageProps {
+  src?: string
+  prompt: string
+  onDownload: () => void
+  onSaveToGallery: () => void
+  onRegenerateVariation: () => void
+  loading?: boolean
+}
+
+interface UserModel {
+  id: string | number
+  name: string
+  triggerWord: string
+  thumbnailUrl?: string
+  description?: string
+  isActive?: boolean
+  status?: string
+  canGenerate?: boolean
+}
 
 // Badge Component
-const Badge = ({ children, variant = "default", className = "" }) => {
+const Badge = ({ children, variant = "default", className = "" }: BadgeProps) => {
   const variantStyles = {
     default: "bg-gray-700 text-gray-200",
     success: "bg-green-500/20 text-green-500",
@@ -64,7 +124,7 @@ const Badge = ({ children, variant = "default", className = "" }) => {
 }
 
 // Avatar Component
-const Avatar = ({ src, alt = "User avatar", size = "md", className = "" }) => {
+const Avatar = ({ src, alt = "User avatar", size = "md", className = "" }: AvatarProps) => {
   const sizeStyles = {
     sm: "w-8 h-8",
     md: "w-10 h-10",
@@ -91,7 +151,7 @@ const Avatar = ({ src, alt = "User avatar", size = "md", className = "" }) => {
 }
 
 // Prompt Suggestion Button
-const PromptSuggestion = ({ children, onClick, active = false }) => {
+const PromptSuggestion = ({ children, onClick, active = false }: PromptSuggestionProps) => {
   return (
     <button
       onClick={onClick}
@@ -107,7 +167,7 @@ const PromptSuggestion = ({ children, onClick, active = false }) => {
 }
 
 // Model Selection Pill
-const ModelPill = ({ model, isSelected, onSelect }) => {
+const ModelPill = ({ model, isSelected, onSelect }: ModelPillProps) => {
   return (
     <button
       onClick={() => onSelect(model.id)}
@@ -133,7 +193,7 @@ const ModelPill = ({ model, isSelected, onSelect }) => {
 }
 
 // Generated Image Component
-const GeneratedImage = ({ src, prompt, onDownload, onSaveToGallery, onRegenerateVariation, loading = false }) => {
+const GeneratedImage = ({ src, prompt, onDownload, onSaveToGallery, onRegenerateVariation, loading = false }: GeneratedImageProps) => {
   return (
     <div className="bg-black border border-gray-800/50 rounded-lg overflow-hidden group">
       {/* Image */}
@@ -194,15 +254,6 @@ const GeneratedImage = ({ src, prompt, onDownload, onSaveToGallery, onRegenerate
   )
 }
 
-// Custom Style Component
-interface CustomStyle {
-  id: string
-  name: string
-  prompt: string
-  aspectRatio: string
-  isDefault?: boolean
-}
-
 export default function GeneratePage() {
   // Navigation state
   const [activeNav, setActiveNav] = useState("generate-images")
@@ -221,17 +272,11 @@ export default function GeneratePage() {
   })
 
   // Available models state
-  const [models, setModels] = useState<{
-    id: string | number;
-    name: string;
-    triggerWord: string;
-    thumbnailUrl?: string;
-    description?: string;
-  }[]>([])
+  const [models, setModels] = useState<UserModel[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   // Selected model (will be set after models are loaded)
-  const [selectedModel, setSelectedModel] = useState("")
+  const [selectedModel, setSelectedModel] = useState<string>("")
   const [showModelSelector, setShowModelSelector] = useState(false)
 
   // Prompt state
@@ -307,10 +352,11 @@ export default function GeneratePage() {
     src: string;
     prompt: string;
   }[]>([])
+  const [generatedImagesLoading, setGeneratedImagesLoading] = useState(false)
 
   // UI state
   const [showSettings, setShowSettings] = useState(false)
-  const [activeSuggestion, setActiveSuggestion] = useState(null)
+  const [activeSuggestion, setActiveSuggestion] = useState<string | null>(null)
 
   // Advanced settings state
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false)
@@ -342,6 +388,18 @@ export default function GeneratePage() {
   // Add seed state
   const [seed, setSeed] = useState<number | null>(null);
   const [randomSeed, setRandomSeed] = useState(true);
+
+  // Helper function to generate a random seed
+  const generateRandomSeed = () => {
+    return Math.floor(Math.random() * 2147483647);
+  };
+
+  // Ensure seed is set when needed
+  useEffect(() => {
+    if (randomSeed && !seed) {
+      setSeed(generateRandomSeed());
+    }
+  }, [randomSeed, seed]);
 
   // Load user data and models
   useEffect(() => {
@@ -387,37 +445,93 @@ export default function GeneratePage() {
   // Load user models
   async function loadUserModels() {
     try {
-      const modelsData = await fetchUserModels({ limit: 10, page: 1 })
+      console.log("🔍 Starting to fetch user models...");
+      const modelsData = await fetchUserModels({ limit: 20, page: 1 });
+      console.log("📊 Raw API response:", modelsData);
+      console.log("📊 Raw models array:", modelsData.models);
       
       if (modelsData.models && modelsData.models.length > 0) {
-        // Format models using the helper function
-        const formattedModels = formatModelsForUI(modelsData.models);
+        console.log("✅ API returned models. Count:", modelsData.models.length);
         
-        // Filter to only show completed models
-        const availableModels = formattedModels.filter(model => model.isActive);
+        // Log each model's structure to understand their format
+        modelsData.models.forEach((model: any, index: number) => {
+          console.log(`Model ${index + 1}:`, {
+            id: model.id,
+            name: model.name,
+            trigger_word: model.trigger_word,
+            status: model.status,
+            progress: model.progress
+          });
+        });
+        
+        // Format models using the helper function - force the correct type
+        const formattedModels = formatModelsForUI(modelsData.models as any) as UserModel[];
+        console.log("🔄 After formatting:", formattedModels);
+        
+        // Log each formatted model
+        formattedModels.forEach((model, index) => {
+          console.log(`Formatted model ${index + 1}:`, {
+            id: model.id,
+            name: model.name,
+            triggerWord: model.triggerWord,
+            status: model.status,
+            isActive: model.isActive
+          });
+        });
+        
+        // Consider all models for display, but mark their status appropriately
+        const availableModels = formattedModels.filter(model => {
+          // We'll show all models, but only mark them as active if they meet our criteria
+          const isGenerationReady = 
+            model.isActive || 
+            model.status === "ready" || 
+            model.status === "completed" ||
+            model.status === "succeeded" ||
+            model.status === "active" ||
+            model.status === "done";
+            
+          // Add a property to indicate if the model can be used for generation
+          model.canGenerate = isGenerationReady;
+          
+          console.log(`Model ${model.name} (${model.id}) status check:`, {
+            status: model.status,
+            isActive: model.isActive,
+            canGenerate: model.canGenerate,
+            triggerWord: model.triggerWord || "none"
+          });
+          
+          // Show all models, even processing ones
+          return true;
+        });
+        
+        console.log("🔍 Available models after filtering:", availableModels);
         
         if (availableModels.length > 0) {
+          console.log("✅ Setting models state with available models:", availableModels.length);
           setModels(availableModels);
           
           // If there's no selected model or the selected model is no longer available,
           // set the first available model as selected
-          if (!selectedModel || !availableModels.some(m => m.id === selectedModel)) {
-            setSelectedModel(availableModels[0].id);
+          if (!selectedModel || !availableModels.some(m => String(m.id) === selectedModel)) {
+            console.log("🔄 Setting selected model to:", availableModels[0].id);
+            setSelectedModel(String(availableModels[0].id));
           }
+          
+          console.log("📌 Selected model ID:", selectedModel);
         } else {
           // No completed models found
+          console.log("⚠️ No available models found after filtering");
           setModels([]);
           setSelectedModel("");
-          console.log("No completed models found for user");
         }
       } else {
         // No models found at all
+        console.log("⚠️ No models returned from API");
         setModels([]);
         setSelectedModel("");
-        console.log("No models found for user");
       }
     } catch (error) {
-      console.error("Error loading user models:", error);
+      console.error("❌ Error loading user models:", error);
       toast.error("Failed to load your models");
     }
   }
@@ -429,10 +543,10 @@ export default function GeneratePage() {
 
   const getSelectedModelDetails = () => {
     if (!models || models.length === 0) {
-      return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "" };
+      return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "", canGenerate: false };
     }
     
-    const selectedModelObject = models.find((model) => model.id === selectedModel);
+    const selectedModelObject = models.find((model) => String(model.id) === selectedModel);
     
     // If we have a valid selection, return it
     if (selectedModelObject) {
@@ -442,12 +556,16 @@ export default function GeneratePage() {
     // If we don't have a valid selection but have models available, 
     // select the first one automatically
     if (models.length > 0) {
-      setSelectedModel(models[0].id);
+      console.log("No selected model found, automatically selecting the first available model");
+      // Use setTimeout to avoid state updates during render
+      setTimeout(() => {
+        setSelectedModel(String(models[0].id));
+      }, 0);
       return models[0];
     }
     
     // Fallback if nothing is found
-    return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "" };
+    return { id: null, name: "No models available", triggerWord: "", thumbnailUrl: "", canGenerate: false };
   }
 
   // Handle style selection
@@ -473,31 +591,73 @@ export default function GeneratePage() {
 
   // Handle prompt enhancement
   const enhancePrompt = async () => {
-    if (!prompt) return
+    if (!prompt) {
+      toast.warning("Please enter a prompt to enhance");
+      return;
+    }
+    
+    if (!selectedModel) {
+      toast.warning("Please select a model first");
+      setShowModelSelector(true);
+      return;
+    }
 
-    setIsEnhancingPrompt(true)
+    setIsEnhancingPrompt(true);
 
     try {
-      // In a real implementation, you would call an API to enhance the prompt
-      // For now, we'll use a simple enhancement logic
-      const modelDetails = getSelectedModelDetails()
-      const triggerWord = modelDetails.triggerWord
+      // Get the model details with trigger word
+      const modelDetails = getSelectedModelDetails();
+      const triggerWord = modelDetails.triggerWord || "";
       
-      if (!triggerWord) {
-        toast.warning("Please select a model first")
-        setIsEnhancingPrompt(false)
-        return
+      // In a real implementation, you would call an API to enhance the prompt
+      // For now, we'll use a simple enhancement logic with a delay to simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Make sure the trigger word is included
+      let enhancedPrompt = prompt;
+      if (triggerWord && !prompt.toLowerCase().includes(triggerWord.toLowerCase())) {
+        enhancedPrompt = `${triggerWord}, ${enhancedPrompt}`;
       }
-
-      // Create an enhanced version of the prompt with the trigger word
-      const enhancedPrompt = `${triggerWord}, ${prompt}, ${preset} style, high quality, detailed, 8k resolution, professional lighting`
-      setPrompt(enhancedPrompt)
-      toast.success("Prompt enhanced with model trigger word")
+      
+      // Add quality boosting terms based on selected style
+      const selectedStyle = customStyles.find(style => style.id === preset);
+      if (selectedStyle && selectedStyle.prompt) {
+        // Extract style-specific terms that aren't already in the prompt
+        const styleTerms = selectedStyle.prompt
+          .split(',')
+          .map(term => term.trim())
+          .filter(term => term && !enhancedPrompt.toLowerCase().includes(term.toLowerCase()));
+        
+        if (styleTerms.length > 0) {
+          enhancedPrompt = `${enhancedPrompt}, ${styleTerms.join(', ')}`;
+        }
+      }
+      
+      // Add general quality terms if not already present
+      const qualityTerms = [
+        "high quality", 
+        "detailed", 
+        "8k resolution", 
+        "sharp focus", 
+        "professional lighting"
+      ];
+      
+      const missingQualityTerms = qualityTerms.filter(
+        term => !enhancedPrompt.toLowerCase().includes(term.toLowerCase())
+      );
+      
+      if (missingQualityTerms.length > 0) {
+        enhancedPrompt = `${enhancedPrompt}, ${missingQualityTerms.join(', ')}`;
+      }
+      
+      // Update the prompt
+      setPrompt(enhancedPrompt);
+      toast.success("Prompt enhanced with quality improvements");
     } catch (error) {
-      console.error("Error enhancing prompt:", error)
-      toast.error("Failed to enhance prompt. Please try again.")
+      console.error("Error enhancing prompt:", error);
+      toast.error("Failed to enhance prompt. Please try again.");
     } finally {
-      setIsEnhancingPrompt(false)
+      setIsEnhancingPrompt(false);
     }
   }
 
@@ -513,7 +673,7 @@ export default function GeneratePage() {
     // Validate that we have a prompt
     if (!prompt || prompt.trim() === "") {
       toast.warning("Please enter a prompt");
-      if (promptInputRef.current) {
+      if (promptInputRef.current && promptInputRef.current instanceof HTMLTextAreaElement) {
         promptInputRef.current.focus();
       }
       return;
@@ -533,74 +693,123 @@ export default function GeneratePage() {
     
     try {
       // Get the model details with trigger word
-      const modelDetails = models.find(model => model.id === selectedModel);
+      const modelDetails = models.find(model => String(model.id) === selectedModel);
       if (!modelDetails) {
         throw new Error("Selected model not found");
       }
       
-      const triggerWord = modelDetails.triggerWord;
+      const triggerWord = modelDetails.triggerWord || "";
       
       // Combine trigger word with the prompt if it's not already included
       let fullPrompt = prompt;
       if (triggerWord && !prompt.toLowerCase().includes(triggerWord.toLowerCase())) {
+        toast.info(`Adding model trigger word: "${triggerWord}" to your prompt`);
         fullPrompt = `${triggerWord}, ${prompt}`;
       }
       
-      const result = await apiGenerateImages({
+      console.log("Generating images with prompt:", fullPrompt);
+      
+      // Set up parameters for the API call - matching the expected format from the API
+      const generationParams = {
         prompt: fullPrompt,
-        negativePrompt,
+        negativePrompt: negativePrompt,
         modelId: selectedModel,
-        count: imageCount,
-        guidanceScale: guidanceScale,
-        aspectRatio,
-      })
+        count: imageCount, // Use count instead of numberOfImages
+        guidanceScale: guidanceScale, // Use guidanceScale instead of guidance_scale
+        steps: inferenceSteps,
+        seed: randomSeed ? undefined : (seed || undefined), // Ensure we don't pass null
+      };
+      
+      console.log("Generation parameters:", generationParams);
+      
+      // Clear existing images and show loading state
+      setGeneratedImages([]);
+      setGeneratedImagesLoading(true);
+      
+      // Generate temporary loading images
+      const tempImages = new Array(imageCount).fill(0).map((_, i) => ({
+        id: `temp-${Date.now()}-${i}`,
+        src: "/placeholder.svg",
+        prompt: fullPrompt,
+      }));
+      
+      setGeneratedImages(tempImages);
+      
+      // Call the API to generate images
+      const result = await apiGenerateImages(generationParams);
+      console.log("API generation result:", result);
 
       if (result.success) {
-        // Generate temporary image URLs
-        const tempImages = new Array(imageCount).fill(0).map((_, i) => ({
-          id: `temp-${Date.now()}-${i}`,
-          url: "/placeholder.svg",
-          prompt: fullPrompt,
-        }))
-
-        // Clear existing images
-        setGeneratedImages([])
-
-        // Set loading state
-        setGeneratedImagesLoading(true)
-
-        // Simulate a delay for loading
+        // Wait a short time before checking for results - the API might need time to process
+        toast.info("Starting image generation, please wait...");
+        
+        // In a real implementation, we would poll the API for the generation results
+        // For now, we'll simulate a delay and show some sample images
         setTimeout(() => {
-          setGeneratedImages(
-            result.images.map((img, i) => ({
-              id: `gen-${Date.now()}-${i}`,
-              url: img.url,
-              prompt: fullPrompt,
-            }))
-          )
-          setGeneratedImagesLoading(false)
+          // Check the response structure
+          if (result.data?.generations) {
+            const generationsArray = result.data.generations;
+            console.log("Generations array:", generationsArray);
+            
+            if (generationsArray.length > 0) {
+              setGeneratedImages(
+                generationsArray.map((gen, i) => ({
+                  id: gen.id || `gen-${Date.now()}-${i}`,
+                  src: gen.image_url || "/placeholder.svg",
+                  prompt: fullPrompt,
+                }))
+              );
+              toast.success("Images generated successfully!");
+            } else {
+              // No generations found
+              toast.warning("No images were generated. Please try again.");
+            }
+          } else if (result.generations && Array.isArray(result.generations)) {
+            // Direct generations array in the result (old API format)
+            const generationsArray = result.generations;
+            console.log("Generations array (old format):", generationsArray);
+            
+            if (generationsArray.length > 0) {
+              setGeneratedImages(
+                generationsArray.map((gen: any, i: number) => ({
+                  id: gen.id || `gen-${Date.now()}-${i}`,
+                  src: gen.image_url || gen.url || "/placeholder.svg",
+                  prompt: fullPrompt,
+                }))
+              );
+              toast.success("Images generated successfully!");
+            } else {
+              toast.warning("No images were generated. Please try again.");
+            }
+          } else {
+            // If API returned success but in a different format than expected
+            console.log("Unexpected API response format:", result);
+            toast.info("Generation process started. Your images will appear in the gallery once ready.");
+          }
+          
+          setGeneratedImagesLoading(false);
           
           // Increment used generations
           setUserProfile({
             ...userProfile,
             dailyGenerations: userProfile.dailyGenerations + 1
-          })
-        }, 500)
-
-        toast.success("Images generated successfully!")
+          });
+        }, 2000);
       } else {
-        toast.error(result.error || "Failed to generate images")
+        setGeneratedImagesLoading(false);
+        toast.error(result.error || "Failed to generate images");
       }
     } catch (error) {
-      console.error("Error generating images:", error)
-      toast.error("Failed to generate images. Please try again.")
+      console.error("Error generating images:", error);
+      setGeneratedImagesLoading(false);
+      toast.error(`Failed to generate images: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
-      setIsGenerating(false)
+      setIsGenerating(false);
     }
   }
 
   // Handle download
-  const handleDownload = (index) => {
+  const handleDownload = (index: number) => {
     const image = generatedImages[index]
     if (!image || !image.src) return
     
@@ -616,14 +825,14 @@ export default function GeneratePage() {
   }
 
   // Handle save to gallery
-  const handleSaveToGallery = (index) => {
+  const handleSaveToGallery = (index: number) => {
     // Note: In a real app, you would call an API to save the image to the user's gallery
     // For now, we'll just show a success message
     toast.success("Image saved to gallery!")
   }
 
   // Handle regenerate variation
-  const handleRegenerateVariation = (index) => {
+  const handleRegenerateVariation = (index: number) => {
     const image = generatedImages[index]
     if (!image) return
     
@@ -635,7 +844,7 @@ export default function GeneratePage() {
   }
 
   // Handle suggestion click
-  const handleSuggestionClick = (suggestion) => {
+  const handleSuggestionClick = (suggestion: { id: string, text: string }) => {
     setActiveSuggestion(suggestion.id)
 
     const modelDetails = getSelectedModelDetails()
@@ -717,7 +926,7 @@ export default function GeneratePage() {
   }
 
   // Ref for prompt input
-  const promptInputRef = useRef(null)
+  const promptInputRef = useRef<HTMLTextAreaElement>(null)
 
   // Focus prompt input on mount
   useEffect(() => {
@@ -757,7 +966,7 @@ export default function GeneratePage() {
             href="/account"
             className="flex items-center text-gray-400 hover:text-white hover:bg-gray-800/20 p-2 rounded-md transition-colors cursor-pointer"
           >
-            <Avatar size="md" alt={userProfile.name} />
+            <Avatar src={userProfile.avatarUrl} size="md" alt={userProfile.name} />
             <div className="ml-3">
               <p className="text-sm font-medium text-white">{userProfile.name}</p>
               <Badge variant={userProfile.plan === "premium" ? "success" : "default"}>
@@ -769,6 +978,7 @@ export default function GeneratePage() {
             variant="ghost"
             size="sm"
             className="w-full justify-start text-gray-400 hover:text-white hover:bg-gray-800/20 mt-2"
+            onClick={handleSignOut}
           >
             <LogOut size={16} className="mr-2" />
             Sign out
@@ -818,7 +1028,7 @@ export default function GeneratePage() {
             <div className="mb-8">
               <div className="relative">
                 {/* Model selector button */}
-                <div className="flex flex-col w-full mb-3">
+                <div className="flex flex-col w-full mb-3 relative">
                   <Button
                     variant="outline"
                     className={`flex items-center ${
@@ -826,7 +1036,15 @@ export default function GeneratePage() {
                         ? "bg-gray-900 border-gray-700 hover:bg-gray-800 hover:border-gray-600" 
                         : "bg-amber-500/10 border-amber-500/30 text-amber-400 hover:bg-amber-500/20"
                     } w-full`}
-                    onClick={() => setShowModelSelector(!showModelSelector)}
+                    onClick={() => {
+                      console.log("🖱️ Model selector button clicked");
+                      console.log("📋 Current models state:", models);
+                      console.log("🔍 Models array length:", models ? models.length : 0);
+                      console.log("📌 Current selected model:", selectedModel);
+                      console.log("👁️ Current showModelSelector state:", showModelSelector);
+                      setShowModelSelector(!showModelSelector);
+                      console.log("👁️ New showModelSelector state:", !showModelSelector);
+                    }}
                   >
                     <User size={16} className={`mr-2 ${selectedModel ? "text-[#1eb8cd]" : "text-amber-400"}`} />
                     <span className="mr-1">Model:</span>
@@ -839,46 +1057,80 @@ export default function GeneratePage() {
                   </Button>
                   
                   {showModelSelector && models && models.length > 0 && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-                      <div className="p-2">
-                        {models.map((model) => (
-                          <button
-                            key={model.id}
-                            onClick={() => {
-                              setSelectedModel(model.id)
-                              setShowModelSelector(false)
-                            }}
-                            className={`flex items-center w-full p-2 rounded-md text-left ${
-                              selectedModel === model.id
-                                ? "bg-[#1eb8cd]/20 text-[#1eb8cd]"
-                                : "text-gray-300 hover:bg-gray-800"
-                            }`}
-                          >
-                            <div className="w-8 h-8 rounded-full bg-gray-800 mr-2 flex items-center justify-center overflow-hidden">
-                              {model.thumbnailUrl ? (
-                                <img
-                                  src={model.thumbnailUrl || "/placeholder.svg"}
-                                  alt={model.name}
-                                  className="w-full h-full object-cover"
-                                />
-                              ) : (
-                                <span className="text-xs font-bold">{model.name.charAt(0).toUpperCase()}</span>
-                              )}
-                            </div>
-                            <div className="flex-1">
-                              <p className="font-medium">{model.name}</p>
-                              <p className="text-xs text-gray-400 truncate">{model.triggerWord}</p>
-                            </div>
-                            {selectedModel === model.id && <CheckCircle size={16} className="text-[#1eb8cd]" />}
-                          </button>
-                        ))}
-                      </div>
+                    (() => {
+                      console.log("🔍 Dropdown render condition met:");
+                      console.log("  - showModelSelector:", showModelSelector);
+                      console.log("  - models exists:", !!models);
+                      console.log("  - models.length:", models?.length);
+                      return (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                          <div className="p-2 space-y-1">
+                            <div className="px-2 py-1 text-xs text-gray-400 font-medium">Your Models</div>
+                            {models.map((model) => (
+                              <button
+                                key={model.id}
+                                onClick={() => {
+                                  console.log("🖱️ Model selected:", model.id, model.name);
+                                  setSelectedModel(String(model.id));
+                                  setShowModelSelector(false);
+                                  // Reset the prompt when changing models
+                                  const newTriggerWord = model.triggerWord || "";
+                                  // Only update the prompt if it's empty or if the user confirms
+                                  if (!prompt || window.confirm("Would you like to update your prompt with the new model's trigger word?")) {
+                                    setPrompt(newTriggerWord ? `${newTriggerWord}, ` : "");
+                                  }
+                                }}
+                                className={`flex items-center w-full p-2 rounded-md text-left ${
+                                  selectedModel === String(model.id)
+                                    ? "bg-[#1eb8cd]/20 text-[#1eb8cd]"
+                                    : "text-gray-300 hover:bg-gray-800"
+                                }`}
+                              >
+                                <div className="w-8 h-8 rounded-full bg-gray-800 mr-2 flex items-center justify-center overflow-hidden">
+                                  {model.thumbnailUrl ? (
+                                    <img
+                                      src={model.thumbnailUrl || "/placeholder.svg"}
+                                      alt={model.name}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  ) : (
+                                    <span className="text-xs font-bold">{model.name.charAt(0).toUpperCase()}</span>
+                                  )}
+                                </div>
+                                <div className="flex-1">
+                                  <p className="font-medium">{model.name}</p>
+                                  <p className="text-xs text-gray-400 truncate">
+                                    {model.status === "processing" ? (
+                                      <span className="flex items-center">
+                                        <Loader size={10} className="animate-spin mr-1" />
+                                        Processing...
+                                      </span>
+                                    ) : model.triggerWord ? (
+                                      <span className="text-green-400">Trigger: {model.triggerWord}</span>
+                                    ) : (
+                                      <span className="text-amber-400">No trigger word</span>
+                                    )}
+                                  </p>
+                                </div>
+                                {selectedModel === String(model.id) && <CheckCircle size={16} className="text-[#1eb8cd]" />}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })()
+                  )}
+                  
+                  {(!models || models.length === 0) && !isLoading && (
+                    <div className="mt-2 text-sm text-amber-400">
+                      <p>You don't have any completed models yet. <Link href="/train" className="underline">Train a model</Link> to get started.</p>
                     </div>
                   )}
                   
-                  {(!models || models.length === 0) && (
-                    <div className="mt-2 text-sm text-amber-400">
-                      <p>You don't have any completed models yet. <Link href="/train" className="underline">Train a model</Link> to get started.</p>
+                  {isLoading && (
+                    <div className="mt-2 text-sm text-gray-400 flex items-center">
+                      <Loader size={14} className="animate-spin mr-2" />
+                      <span>Loading your models...</span>
                     </div>
                   )}
                 </div>
@@ -886,56 +1138,78 @@ export default function GeneratePage() {
                 {/* Prompt input with magic button */}
                 <div className="relative mb-3 group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#1eb8cd]/20 to-purple-500/20 rounded-xl blur-xl opacity-30 group-focus-within:opacity-50 transition-opacity"></div>
-                  <div className="relative flex items-center bg-gray-900/90 backdrop-blur-sm border border-gray-800 hover:border-gray-700 focus-within:border-[#1eb8cd]/50 rounded-xl overflow-hidden transition-all shadow-lg">
-                    <Textarea
-                      ref={promptInputRef}
-                      placeholder="Describe the image you want to generate..."
-                      value={prompt}
-                      onChange={(e) => setPrompt(e.target.value)}
-                      className="flex-grow bg-transparent border-0 focus-visible:ring-0 resize-none py-4 h-[60px] text-white placeholder-gray-500"
-                    />
+                  <div className="relative flex flex-col bg-gray-900/90 backdrop-blur-sm border border-gray-800 hover:border-gray-700 focus-within:border-[#1eb8cd]/50 rounded-xl overflow-hidden transition-all shadow-lg">
+                    {selectedModel && getSelectedModelDetails().triggerWord && (
+                      <div className="px-4 pt-2 pb-1 flex items-center">
+                        <Badge variant="info" className="mr-2">Trigger Word</Badge>
+                        <span className="text-xs text-gray-400">{getSelectedModelDetails().triggerWord}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center">
+                      <Textarea
+                        ref={promptInputRef}
+                        placeholder={selectedModel ? "Describe what you want to create with your model..." : "Select a model first, then describe what you want to generate..."}
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                        className="flex-grow bg-transparent border-0 focus-visible:ring-0 resize-none py-4 h-[60px] text-white placeholder-gray-500"
+                      />
 
-                    <div className="flex-shrink-0 pr-2">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button
-                              variant="outline"
-                              size="icon"
-                              onClick={enhancePrompt}
-                              disabled={!prompt || isEnhancingPrompt}
-                              className="rounded-lg bg-gray-800 border-gray-700 hover:bg-gray-700 hover:border-gray-600 mr-2"
-                            >
-                              {isEnhancingPrompt ? (
-                                <Loader size={18} className="animate-spin text-[#1eb8cd]" />
-                              ) : (
-                                <Sparkles size={18} className="text-[#1eb8cd]" />
-                              )}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Enhance Prompt</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                      <div className="flex-shrink-0 pr-2">
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={enhancePrompt}
+                                disabled={!prompt || isEnhancingPrompt || !selectedModel}
+                                className="rounded-lg bg-gray-800 border-gray-700 hover:bg-gray-700 hover:border-gray-600 mr-2"
+                              >
+                                {isEnhancingPrompt ? (
+                                  <Loader size={18} className="animate-spin text-[#1eb8cd]" />
+                                ) : (
+                                  <Sparkles size={18} className="text-[#1eb8cd]" />
+                                )}
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Enhance Prompt with AI</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
 
-                      <Button
-                        onClick={handleGenerateImages}
-                        disabled={!prompt || isGenerating}
-                        className="rounded-lg bg-[#1eb8cd] hover:bg-[#19a3b6] text-white"
-                      >
-                        {isGenerating ? (
-                          <>
-                            <Loader size={16} className="animate-spin mr-2" />
-                            Generating...
-                          </>
-                        ) : (
-                          <>
-                            <Wand2 size={16} className="mr-2" />
-                            Generate
-                          </>
-                        )}
-                      </Button>
+                        <Button
+                          onClick={handleGenerateImages}
+                          disabled={!prompt || isGenerating || !selectedModel || !getSelectedModelDetails().canGenerate}
+                          className={`rounded-lg ${
+                            getSelectedModelDetails().canGenerate 
+                              ? "bg-[#1eb8cd] hover:bg-[#19a3b6]"
+                              : "bg-gray-700 cursor-not-allowed"
+                          } text-white`}
+                        >
+                          {isGenerating ? (
+                            <>
+                              <Loader size={16} className="animate-spin mr-2" />
+                              Generating...
+                            </>
+                          ) : !selectedModel ? (
+                            <>
+                              <Wand2 size={16} className="mr-2" />
+                              Select a model
+                            </>
+                          ) : !getSelectedModelDetails().canGenerate ? (
+                            <>
+                              <Loader size={16} className="animate-spin mr-2" />
+                              Model processing...
+                            </>
+                          ) : (
+                            <>
+                              <Wand2 size={16} className="mr-2" />
+                              Generate
+                            </>
+                          )}
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1132,12 +1406,20 @@ export default function GeneratePage() {
             </div>
 
             {/* Generated images */}
-            {(isGenerating || generatedImages.length > 0) && (
-              <div>
-                <h2 className="text-lg font-medium mb-4">Generated Images</h2>
+            {(isGenerating || generatedImagesLoading || generatedImages.length > 0) && (
+              <div className="mt-8 border-t border-gray-800 pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-medium">Generated Images</h2>
+                  {(isGenerating || generatedImagesLoading) && (
+                    <div className="flex items-center text-gray-400">
+                      <Loader size={14} className="animate-spin mr-2" />
+                      <span className="text-sm">Generating...</span>
+                    </div>
+                  )}
+                </div>
 
                 {/* Loading placeholders */}
-                {isGenerating && (
+                {(isGenerating || generatedImagesLoading) && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {Array(imageCount)
                       .fill(null)
@@ -1156,11 +1438,11 @@ export default function GeneratePage() {
                 )}
 
                 {/* Actual generated images */}
-                {!isGenerating && generatedImages.length > 0 && (
+                {!isGenerating && !generatedImagesLoading && generatedImages.length > 0 && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {generatedImages.map((image, index) => (
                       <GeneratedImage
-                        key={`image-${index}`}
+                        key={`image-${String(image.id || index)}`}
                         src={image.src}
                         prompt={image.prompt}
                         onDownload={() => handleDownload(index)}
@@ -1185,6 +1467,52 @@ export default function GeneratePage() {
           </SheetHeader>
 
           <div className="py-6 space-y-6">
+            {/* Seed Settings */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <Label className="text-white">Seed</Label>
+                <div className="flex items-center space-x-2">
+                  <Label htmlFor="random-seed" className="text-sm text-gray-400">Random</Label>
+                  <input
+                    id="random-seed"
+                    type="checkbox"
+                    checked={randomSeed}
+                    onChange={(e) => setRandomSeed(e.target.checked)}
+                    className="rounded bg-gray-800 border-gray-600"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex space-x-2">
+                <Input
+                  value={seed !== null ? seed : ''}
+                  onChange={(e) => {
+                    const value = parseInt(e.target.value);
+                    if (!isNaN(value)) {
+                      setSeed(value);
+                    } else if (e.target.value === '') {
+                      setSeed(null);
+                    }
+                  }}
+                  type="number"
+                  placeholder="Enter seed value"
+                  className="bg-gray-900 border-gray-700 text-white"
+                  disabled={randomSeed}
+                />
+                <Button
+                  variant="outline"
+                  onClick={() => setSeed(generateRandomSeed())}
+                  className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                  disabled={randomSeed}
+                >
+                  Refresh
+                </Button>
+              </div>
+              <p className="text-xs text-gray-500">
+                Setting a specific seed allows you to reproduce the same image with identical parameters.
+              </p>
+            </div>
+
             {/* Image File */}
             <div className="space-y-2">
               <Label className="text-white">Image File</Label>

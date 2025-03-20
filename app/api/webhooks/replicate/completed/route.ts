@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     const { data: model, error: queryError } = await supabase
       .from("models")
       .select("id")
-      .eq("model_id", id)
+      .eq("id", id)
       .maybeSingle();
     
     if (queryError || !model) {
@@ -49,17 +49,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Model not found" }, { status: 404 });
     }
     
-    const modelStatus = status === "succeeded" ? "Ready" : 
-                        status === "failed" ? "Failed" : "Processing";
+    const modelStatus = status === "succeeded" ? "completed" : 
+                        status === "failed" ? "failed" : "processing";
     
     const updateData: any = {
       status: modelStatus,
+      updated_at: new Date().toISOString()
     };
     
-    // If the model training succeeded, store the output information
+    // If the model training succeeded, store the output information and update trained_at
     if (status === "succeeded" && output) {
       updateData.version_id = output.version || output.id;
       updateData.output_data = output;
+      updateData.trained_at = new Date().toISOString();
     }
     
     // If the model training failed, store the error information

@@ -292,6 +292,7 @@ export async function POST(req: NextRequest) {
           id: training.id,
           user_id: user.id,
           name: triggerWord,
+          trigger_word: triggerWord,
           description: `Model trained with trigger word "${triggerWord}"`,
           status: "Processing",
           created_at: new Date().toISOString(),
