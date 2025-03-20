@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { fetchUserProfile, fetchUserModels, fetchUserGenerations } from "@/utils/api"
+import { checkAndSyncModelStatus } from "@/utils/replicate/status-checker"
 
 // Badge Component
 const Badge = ({ children, variant = "default", className = "" }: { 
@@ -102,10 +103,8 @@ export default function Dashboard() {
   const { signOut } = useClerk()
   const { user, isLoaded: isUserLoaded } = useUser()
   
-  // Navigation state
-  const [activeNav, setActiveNav] = useState("dashboard")
-  
-  // User data state
+  // State
+  const [isLoading, setIsLoading] = useState(true)
   const [userData, setUserData] = useState<UserData>({
     name: "Loading...",
     email: "",
@@ -118,9 +117,7 @@ export default function Dashboard() {
     models: [],
     recentImages: [],
   })
-  
-  // Loading states
-  const [isLoading, setIsLoading] = useState(true)
+  const [activeNav, setActiveNav] = useState("dashboard")
   const [error, setError] = useState("")
 
   // Handle sign out
@@ -129,66 +126,97 @@ export default function Dashboard() {
   }
 
   // Fetch user data from the API
-  useEffect(() => {
-    async function loadUserData() {
-      if (!isUserLoaded || !user) return
+  const loadUserData = async () => {
+    if (!isUserLoaded || !user) return
+    
+    try {
+      setIsLoading(true)
+      setError("")
       
-      try {
-        setIsLoading(true)
-        setError("")
-        
-        // Fetch user profile data
-        const profileData = await fetchUserProfile()
-        
-        if (!profileData.success) {
-          console.error("Profile data error:", profileData.error)
-          toast.error(profileData.error || "Failed to fetch profile data")
-          setError(profileData.error || "Failed to load user profile")
-          setIsLoading(false)
-          return
-        }
-        
-        // Fetch recent models (limited to 2)
-        const modelsData = await fetchUserModels({ limit: 2, page: 1 })
-        
-        // Fetch recent generations (limited to 4)
-        const generationsData = await fetchUserGenerations({ limit: 4, page: 1, modelId: undefined })
-        
-        // Update user data state with fetched information
-        setUserData({
-          name: user.firstName || user.username || user.emailAddresses[0]?.emailAddress?.split('@')[0] || "User",
-          email: user.emailAddresses[0]?.emailAddress || "",
-          avatarUrl: user.imageUrl || "",
-          plan: profileData.profile?.subscription?.status || "free",
-          modelsCreated: profileData.profile?.stats?.models || 0,
-          modelsLimit: profileData.profile?.quotas?.models?.total || 5,
-          dailyGenerations: profileData.profile?.quotas?.generations?.used || 0,
-          dailyGenerationsLimit: profileData.profile?.quotas?.generations?.total || 20,
-          models: modelsData.models?.map((model: any) => ({
-            id: model.id,
-            name: model.name,
-            status: model.status,
-            progress: model.progress || null,
-            createdAt: new Date(model.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-          })) || [],
-          recentImages: generationsData.generations?.map((generation: any) => ({
-            id: generation.id,
-            thumbnail: generation.image_url,
-            prompt: generation.prompt,
-            createdAt: new Date(generation.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-          })) || [],
-        })
-      } catch (err) {
-        console.error("Error fetching user data:", err)
-        toast.error("Failed to load user data. Please try again later.")
-        setError("Failed to load user data. Please try again later.")
-      } finally {
+      // Fetch user profile data
+      const profileData = await fetchUserProfile()
+      
+      if (!profileData.success) {
+        console.error("Profile data error:", profileData.error)
+        toast.error(profileData.error || "Failed to fetch profile data")
+        setError(profileData.error || "Failed to load user profile")
         setIsLoading(false)
+        return
+      }
+      
+      // Fetch recent models (limited to 2)
+      const modelsData = await fetchUserModels({ limit: 2, page: 1 })
+      
+      // Fetch recent generations (limited to 4)
+      const generationsData = await fetchUserGenerations({ limit: 4, page: 1, modelId: undefined })
+      
+      // Update user data state with fetched information
+      setUserData({
+        name: user.firstName || user.username || user.emailAddresses[0]?.emailAddress?.split('@')[0] || "User",
+        email: user.emailAddresses[0]?.emailAddress || "",
+        avatarUrl: user.imageUrl || "",
+        plan: profileData.profile?.subscription?.status || "free",
+        modelsCreated: profileData.profile?.stats?.models || 0,
+        modelsLimit: profileData.profile?.quotas?.models?.total || 5,
+        dailyGenerations: profileData.profile?.quotas?.generations?.used || 0,
+        dailyGenerationsLimit: profileData.profile?.quotas?.generations?.total || 20,
+        models: modelsData.models?.map((model: any) => ({
+          id: model.id,
+          name: model.name,
+          status: model.status,
+          progress: model.progress || null,
+          createdAt: new Date(model.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        })) || [],
+        recentImages: generationsData.generations?.map((generation: any) => ({
+          id: generation.id,
+          thumbnail: generation.image_url,
+          prompt: generation.prompt,
+          createdAt: new Date(generation.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+        })) || [],
+      })
+    } catch (err) {
+      console.error("Error fetching user data:", err)
+      toast.error("Failed to load user data. Please try again later.")
+      setError("Failed to load user data. Please try again later.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+  
+  useEffect(() => {
+    loadUserData()
+  }, [isUserLoaded, user])
+
+  // Check for stuck models
+  useEffect(() => {
+    // Check if any models have been stuck in processing for too long
+    async function checkStuckModels() {
+      if (!userData.models || userData.models.length === 0) return;
+      
+      for (const model of userData.models) {
+        if (model.status?.toLowerCase() === "processing") {
+          console.log(`Found processing model ${model.id}, checking if it's stuck...`);
+          
+          // Try to sync status with Replicate
+          const wasUpdated = await checkAndSyncModelStatus(String(model.id));
+          
+          if (wasUpdated) {
+            console.log(`Model ${model.id} status was updated, refreshing model list`);
+            // Refresh the model list to show the updated status
+            loadUserData();
+            break; // Only handle one model at a time to avoid rate limits
+          }
+        }
       }
     }
     
-    loadUserData()
-  }, [isUserLoaded, user])
+    checkStuckModels();
+    
+    // Set up interval to periodically check for stuck models
+    const intervalId = setInterval(checkStuckModels, 5 * 60 * 1000); // Check every 5 minutes
+    
+    return () => clearInterval(intervalId);
+  }, [userData.models]);
 
   const navItems = [
     { id: "dashboard", label: "Dashboard", icon: <Home size={20} />, href: "/dashboard" },

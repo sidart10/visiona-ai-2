@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     // Update the model status in the database
     const { data: model, error: queryError } = await supabase
       .from("models")
-      .select("id")
+      .select("id, trigger_word")
       .eq("id", id)
       .maybeSingle();
     
@@ -49,8 +49,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Model not found" }, { status: 404 });
     }
     
-    const modelStatus = status === "succeeded" ? "completed" : 
+    // Map Replicate status to our application status
+    const modelStatus = status === "succeeded" ? "completed" :
                         status === "failed" ? "failed" : "processing";
+    
+    console.log(`Processing status update for model ${model.id}: ${status} → ${modelStatus}`);
     
     const updateData: any = {
       status: modelStatus,
@@ -59,9 +62,19 @@ export async function POST(req: NextRequest) {
     
     // If the model training succeeded, store the output information and update trained_at
     if (status === "succeeded" && output) {
-      updateData.version_id = output.version || output.id;
+      const versionId = output.version || output.id;
+      updateData.version_id = versionId;
+      updateData.replicate_version = versionId; // Ensure replicate_version is also set
       updateData.output_data = output;
       updateData.trained_at = new Date().toISOString();
+      
+      console.log(`Setting version information: version_id=${versionId}, replicate_version=${versionId}`);
+      
+      // Ensure we have the trigger_word if it was passed in the output
+      if (output.trigger_word && (!model.trigger_word || model.trigger_word === "")) {
+        updateData.trigger_word = output.trigger_word;
+        console.log(`Setting missing trigger_word to "${output.trigger_word}"`);
+      }
     }
     
     // If the model training failed, store the error information

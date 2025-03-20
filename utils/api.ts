@@ -357,54 +357,74 @@ export function isModelActive(status: string | undefined): boolean {
     return false;
   }
   
-  // For all other statuses (including 'completed', 'ready', 'processing', etc.)
-  // consider the model as potentially active
-  console.log(`🔍 Model with status "${status}" is considered active`);
+  // For "processing" status, we want to show the model but not allow generation
+  if (statusLower === 'processing') {
+    console.log(`🔍 Model with status "${status}" is in processing state`);
+    return false;
+  }
+  
+  // These statuses definitely mean the model is ready to use
+  const isDefinitelyReady = [
+    'completed',
+    'ready',
+    'succeeded',
+    'active',
+    'done'
+  ].includes(statusLower);
+  
+  if (isDefinitelyReady) {
+    console.log(`🔍 Model with status "${status}" is ready for generation`);
+    return true;
+  }
+  
+  // For all other statuses, assume the model might be usable but log a warning
+  console.log(`⚠️ Model with unknown status "${status}" - assuming it's potentially active`);
   return true;
 }
 
 /**
- * Helper function to format models for UI display
- * @param models Array of model objects from the API
- * @returns Array of formatted UserModel objects for the UI
+ * Formats model data from the API for UI consumption
  */
-export function formatModelsForUI(models: Model[]): UserModel[] {
-  console.log('🔍 Formatting models for UI, received:', models?.length || 0, 'models');
+export function formatModelsForUI(models: any[]): any[] {
+  if (!models || models.length === 0) {
+    console.log('No models to format');
+    return [];
+  }
   
-  // Sort models to show completed models first
-  const sortedModels = [...models].sort((a, b) => {
-    // First by status (completed first)
-    if (a.status === 'completed' && b.status !== 'completed') return -1;
-    if (a.status !== 'completed' && b.status === 'completed') return 1;
+  console.log('💾 Raw models data from API:', JSON.stringify(models, null, 2));
+  
+  const formattedModels = models.map(model => {
+    // If already formatted, just return as is to avoid double processing
+    if (model.hasOwnProperty('triggerWord')) {
+      console.log(`Model ${model.id} already formatted, returning as is`);
+      return model;
+    }
     
-    // Then by creation date (newest first)
-    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-  });
-  
-  console.log('🔄 Models sorted by status and date');
-  
-  const formattedModels = sortedModels.map(model => {
-    const active = isModelActive(model.status);
-    console.log(`📝 Formatting model: ${model.name || model.id}`, { 
-      id: model.id,
-      status: model.status,
-      isActive: active,
-      triggerWord: model.trigger_word || ""
-    });
+    // Extract values with explicit fallbacks
+    const id = model.id;
+    const name = model.name || 'Unnamed Model';
+    // Try different property variations for trigger word (camelCase vs snake_case)
+    const triggerWord = model.triggerWord || model.trigger_word || '';
+    // Get status with fallback and convert to lowercase for consistency
+    const status = (model.status || 'processing').toLowerCase();
+    
+    console.log(`🔄 Formatting model: id=${id}, name=${name}, triggerWord=${triggerWord}, status=${status}`);
     
     return {
-      id: model.id,
-      name: model.name || model.trigger_word || "Untitled Model",
-      triggerWord: model.trigger_word || "",
-      status: model.status,
-      progress: model.progress || 0,
-      createdAt: new Date(model.created_at).toLocaleDateString(),
-      isActive: active,
-      thumbnailUrl: "/placeholder.svg?height=150&width=150"
+      id,
+      name,
+      triggerWord,
+      status,
+      isActive: isModelActive(status),
+      // Other properties with fallbacks
+      thumbnailUrl: model.thumbnailUrl || model.thumbnail_url || null,
+      description: model.description || '',
+      createdAt: model.createdAt || model.created_at || new Date().toISOString()
     };
   });
   
-  console.log('✅ Models formatted:', formattedModels.length);
+  console.log('✅ Formatted models for UI:', formattedModels);
+  
   return formattedModels;
 }
 
@@ -444,5 +464,39 @@ export async function debugPhotoAccess(photoIds: string[], options = { fix: fals
   } catch (error) {
     console.error('Error in debugPhotoAccess:', error);
     return { success: false, ...handleApiError(error) };
+  }
+}
+
+/**
+ * Check and sync model status for a model that appears to be in processing
+ * @param modelId The ID of the model to check
+ * @returns Whether the status was updated
+ */
+export async function checkAndSyncModelStatus(modelId: string): Promise<boolean> {
+  try {
+    console.log(`🔄 Checking model status for ${modelId}`);
+    
+    // Call the API endpoint to check status
+    const response = await fetch(`/api/models/${modelId}/sync`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error(`❌ Error syncing model ${modelId}:`, errorData);
+      return false;
+    }
+    
+    const result = await response.json();
+    console.log(`✅ Sync result for model ${modelId}:`, result);
+    
+    // Return true if the status changed
+    return result.status_changed || false;
+  } catch (error) {
+    console.error(`❌ Error in checkAndSyncModelStatus for ${modelId}:`, error);
+    return false;
   }
 } 

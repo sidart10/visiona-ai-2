@@ -44,6 +44,7 @@ import { Upload, X } from "lucide-react"
 import { generateImages as apiGenerateImages, fetchUserModels, fetchUserProfile, formatModelsForUI } from "@/utils/api"
 import { toast } from "react-toastify"
 import { Generation } from "@/utils/types"
+import { checkAndSyncModelStatus } from "@/utils/replicate/status-checker"
 
 // Custom Style Component
 interface CustomStyle {
@@ -535,6 +536,50 @@ export default function GeneratePage() {
       toast.error("Failed to load your models");
     }
   }
+
+  // Add a status sync effect within the component, after the loadUserModels function
+  // This helps ensure that model statuses are up to date
+  useEffect(() => {
+    // Function to check and update stuck model statuses
+    async function syncModelStatuses() {
+      if (!models || models.length === 0) return;
+      
+      // Check for any processing models
+      const processingModels = models.filter(model => 
+        model.status?.toLowerCase() === "processing"
+      );
+      
+      if (processingModels.length === 0) return;
+      
+      console.log(`Found ${processingModels.length} processing models, checking status...`);
+      
+      // Try to sync each one, starting with the selected model if it's processing
+      let modelToCheck = processingModels.find(m => String(m.id) === selectedModel);
+      
+      // If the selected model isn't processing, take the first one
+      if (!modelToCheck && processingModels.length > 0) {
+        modelToCheck = processingModels[0];
+      }
+      
+      if (modelToCheck) {
+        console.log(`Checking status for model ${modelToCheck.id}...`);
+        const wasUpdated = await checkAndSyncModelStatus(String(modelToCheck.id));
+        
+        if (wasUpdated) {
+          console.log(`Model ${modelToCheck.id} status was updated, refreshing models...`);
+          loadUserModels();
+        }
+      }
+    }
+    
+    // Run once immediately
+    syncModelStatuses();
+    
+    // Then set up an interval to run every few minutes
+    const intervalId = setInterval(syncModelStatuses, 2 * 60 * 1000); // Every 2 minutes
+    
+    return () => clearInterval(intervalId);
+  }, [models, selectedModel]);
 
   // Handle sign out
   const handleSignOut = async () => {
@@ -1041,15 +1086,20 @@ export default function GeneratePage() {
                       console.log("📋 Current models state:", models);
                       console.log("🔍 Models array length:", models ? models.length : 0);
                       console.log("📌 Current selected model:", selectedModel);
-                      console.log("👁️ Current showModelSelector state:", showModelSelector);
                       setShowModelSelector(!showModelSelector);
-                      console.log("👁️ New showModelSelector state:", !showModelSelector);
                     }}
                   >
                     <User size={16} className={`mr-2 ${selectedModel ? "text-[#1eb8cd]" : "text-amber-400"}`} />
                     <span className="mr-1">Model:</span>
                     {selectedModel ? (
-                      <span className="font-medium text-[#1eb8cd]">{getSelectedModelDetails().name}</span>
+                      <div className="flex items-center">
+                        <span className="font-medium text-[#1eb8cd]">{getSelectedModelDetails().name}</span>
+                        {getSelectedModelDetails().triggerWord && (
+                          <span className="text-xs ml-2 px-1.5 py-0.5 bg-[#1eb8cd]/20 text-[#1eb8cd] rounded-full">
+                            {getSelectedModelDetails().triggerWord}
+                          </span>
+                        )}
+                      </div>
                     ) : (
                       <span className="font-medium text-amber-400">Please select a model</span>
                     )}
@@ -1086,33 +1136,24 @@ export default function GeneratePage() {
                                     : "text-gray-300 hover:bg-gray-800"
                                 }`}
                               >
-                                <div className="w-8 h-8 rounded-full bg-gray-800 mr-2 flex items-center justify-center overflow-hidden">
-                                  {model.thumbnailUrl ? (
-                                    <img
-                                      src={model.thumbnailUrl || "/placeholder.svg"}
-                                      alt={model.name}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  ) : (
-                                    <span className="text-xs font-bold">{model.name.charAt(0).toUpperCase()}</span>
-                                  )}
+                                <div className="w-8 h-8 rounded-full bg-gray-800 mr-2 flex items-center justify-center">
+                                  <span className="text-xs font-bold">{model.name.charAt(0).toUpperCase()}</span>
                                 </div>
-                                <div className="flex-1">
-                                  <p className="font-medium">{model.name}</p>
-                                  <p className="text-xs text-gray-400 truncate">
-                                    {model.status === "processing" ? (
-                                      <span className="flex items-center">
-                                        <Loader size={10} className="animate-spin mr-1" />
-                                        Processing...
-                                      </span>
-                                    ) : model.triggerWord ? (
-                                      <span className="text-green-400">Trigger: {model.triggerWord}</span>
-                                    ) : (
-                                      <span className="text-amber-400">No trigger word</span>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex justify-between items-center">
+                                    <span className="font-medium truncate">{model.name}</span>
+                                    {!model.canGenerate && (
+                                      <Badge variant="warning" className="ml-2 text-xs">Processing</Badge>
                                     )}
-                                  </p>
+                                  </div>
+                                  <div className="text-xs text-gray-400 truncate">
+                                    {model.triggerWord ? (
+                                      <span>Trigger: <span className="text-[#1eb8cd]">{model.triggerWord}</span></span>
+                                    ) : (
+                                      <span className="text-red-400">Missing trigger word</span>
+                                    )}
+                                  </div>
                                 </div>
-                                {selectedModel === String(model.id) && <CheckCircle size={16} className="text-[#1eb8cd]" />}
                               </button>
                             ))}
                           </div>

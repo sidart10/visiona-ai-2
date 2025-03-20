@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { currentUser, auth } from "@clerk/nextjs/server";
 import { createClient } from "@supabase/supabase-js";
 import { getOrCreateUser } from "@/utils/supabase-admin";
+import { isModelActive } from "@/utils/api";
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -76,6 +77,7 @@ export async function GET(req: NextRequest) {
         updated_at,
         trained_at,
         error_message,
+        trigger_word,
         model_photos (
           id,
           photo_id,
@@ -96,9 +98,30 @@ export async function GET(req: NextRequest) {
       );
     }
     
+    console.log("Models API - Raw models from database:", models);
+
+    const formattedModels = models.map((model: any) => {
+      console.log(`Processing model ${model.id}: name=${model.name}, trigger_word=${model.trigger_word || 'none'}, status=${model.status}`);
+      
+      return {
+        id: model.id,
+        user_id: model.user_id || null,
+        name: model.name,
+        description: model.description,
+        triggerWord: model.trigger_word || '',
+        status: model.status,
+        version_id: model.version_id || null,
+        created_at: model.created_at,
+        progress: model.progress || 0,
+        isActive: isModelActive(model.status),
+      };
+    });
+
+    console.log("Models API - Formatted models for frontend:", formattedModels);
+
     return NextResponse.json({
       success: true,
-      models: models || []
+      models: formattedModels || []
     });
     
   } catch (error) {

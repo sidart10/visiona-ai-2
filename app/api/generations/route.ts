@@ -108,6 +108,8 @@ export async function GET(req: NextRequest) {
 // POST to create new generation
 export async function POST(req: NextRequest) {
   try {
+    console.log("🚀 Processing image generation request");
+    
     // Authenticate user with Clerk
     const session = await auth();
     let clerkUserId = session?.userId;
@@ -116,6 +118,7 @@ export async function POST(req: NextRequest) {
     if (!clerkUserId) {
       user = await currentUser();
       if (!user || !user.id) {
+        console.log("❌ Authentication failed: No user found");
         return NextResponse.json(
           { error: "Unauthorized" },
           { status: 401 }
@@ -126,15 +129,27 @@ export async function POST(req: NextRequest) {
       user = await currentUser();
     }
 
+    console.log(`✅ User authenticated: ${clerkUserId}`);
+
     // Get Supabase user from Clerk ID
     const email = user?.emailAddresses?.[0]?.emailAddress || '';
     const supabaseUser = await getOrCreateUser(clerkUserId, email);
+    console.log(`✅ Supabase user found: ${supabaseUser.id}`);
 
     // Parse request body
-    const { modelId, prompt, negativePrompt, numberOfImages = 1 } = await req.json();
+    const body = await req.json();
+    const { modelId, prompt, negativePrompt, numberOfImages = 1 } = body;
+    
+    console.log("📦 Request payload:", { 
+      modelId, 
+      promptLength: prompt?.length,
+      hasNegativePrompt: !!negativePrompt,
+      numberOfImages
+    });
 
     // Validate input
     if (!modelId) {
+      console.log("❌ Validation failed: Missing modelId");
       return NextResponse.json(
         { error: "Model ID is required" },
         { status: 400 }
@@ -142,6 +157,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!prompt || typeof prompt !== "string") {
+      console.log("❌ Validation failed: Invalid prompt", { prompt });
       return NextResponse.json(
         { error: "Valid prompt is required" },
         { status: 400 }
@@ -156,17 +172,49 @@ export async function POST(req: NextRequest) {
       .eq("user_id", supabaseUser.id)
       .single();
 
-    if (modelError || !model) {
+    if (modelError) {
+      console.log("❌ Model query error:", modelError);
+      return NextResponse.json(
+        { error: "Error fetching model details" },
+        { status: 500 }
+      );
+    }
+    
+    if (!model) {
+      console.log("❌ Model not found:", { modelId, userId: supabaseUser.id });
       return NextResponse.json(
         { error: "Model not found or you don't have permission" },
         { status: 404 }
       );
     }
+    
+    console.log("📋 Model details:", { 
+      id: model.id,
+      name: model.name,
+      status: model.status,
+      version_id: model.version_id,
+      replicate_version: model.replicate_version,
+      trigger_word: model.trigger_word,
+    });
 
     // Check if the model is ready
-    if (model.status !== "ready") {
+    if (model.status?.toLowerCase() !== "completed" && 
+        model.status?.toLowerCase() !== "ready") {
+      console.log("❌ Model not ready:", { status: model.status });
       return NextResponse.json(
         { error: "Model is not ready for generation" },
+        { status: 400 }
+      );
+    }
+    
+    // Check for required version information
+    if (!model.version_id && !model.replicate_version) {
+      console.log("❌ Missing version information:", { 
+        version_id: model.version_id,
+        replicate_version: model.replicate_version 
+      });
+      return NextResponse.json(
+        { error: "Model is missing required version information" },
         { status: 400 }
       );
     }
@@ -202,17 +250,53 @@ export async function POST(req: NextRequest) {
     
     // Create predictions in Replicate
     const predictions = [];
-    for (let i = 0; i < imagesToGenerate; i++) {
-      const prediction = await replicate.predictions.create({
-        version: model.replicate_version,
-        input: {
-          prompt: `${enhancedPrompt}`,
-          negative_prompt: negativePrompt || "",
-          num_inference_steps: 40,
-          guidance_scale: 7.5,
-        },
-      });
-      predictions.push(prediction);
+    try {
+      console.log("⏳ Starting image generation with Replicate");
+      
+      // Determine which version ID to use
+      const versionToUse = model.replicate_version || model.version_id;
+      if (!versionToUse) {
+        console.log("❌ No valid version ID found for model:", model.id);
+        return NextResponse.json(
+          { error: "Model does not have a valid version ID" },
+          { status: 400 }
+        );
+      }
+      
+      console.log("✅ Using version:", versionToUse);
+      
+      for (let i = 0; i < imagesToGenerate; i++) {
+        console.log(`⏳ Creating prediction ${i+1}/${imagesToGenerate}`);
+        
+        try {
+          const prediction = await replicate.predictions.create({
+            version: versionToUse,
+            input: {
+              prompt: `${enhancedPrompt}`,
+              negative_prompt: negativePrompt || "",
+              num_inference_steps: 40,
+              guidance_scale: 7.5,
+            },
+          });
+          
+          console.log(`✅ Prediction ${i+1} created:`, { id: prediction.id });
+          predictions.push(prediction);
+        } catch (predictionError: any) {
+          console.error(`❌ Error creating prediction ${i+1}:`, predictionError.message);
+          // Log more details from the error
+          if (predictionError.response) {
+            console.error('Response status:', predictionError.response.status);
+            console.error('Response data:', predictionError.response.data);
+          }
+          throw predictionError; // Re-throw to be handled by outer catch
+        }
+      }
+    } catch (error: any) {
+      console.error("❌ Failed to generate images:", error.message);
+      return NextResponse.json(
+        { error: `Failed to generate images: ${error.message}` },
+        { status: 500 }
+      );
     }
 
     // Create generation records in database

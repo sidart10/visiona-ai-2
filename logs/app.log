@@ -18933,3 +18933,4152 @@
   "newStatus": "Ready",
   "progress": 100
 }
+[INFO] [2025-03-20T06:54:36.853Z] Checking environment variables {
+  "hasReplicateToken": true,
+  "tokenPrefix": "r8_c...",
+  "replicateUsername": "sidart10"
+}
+[INFO] [2025-03-20T06:54:37.025Z] Photo IDs received from frontend {
+  "photoIds": [
+    626,
+    627,
+    628,
+    629,
+    630,
+    631,
+    632,
+    633,
+    634,
+    635
+  ],
+  "userId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9"
+}
+[INFO] [2025-03-20T06:54:37.217Z] User mapping found {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseId": 1
+}
+[INFO] [2025-03-20T06:54:37.217Z] Validating photo ownership {
+  "clerkId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1,
+  "photoCount": 10
+}
+[INFO] [2025-03-20T06:54:37.317Z] Photos found in database {
+  "count": 10
+}
+[INFO] [2025-03-20T06:54:37.317Z] Processing photo 1/10 {
+  "photoId": 626,
+  "storagePath": "uploads/1/9ba51199-4b64-4922-890d-2382934325fa.jpg"
+}
+[INFO] [2025-03-20T06:54:37.318Z] Got public URL for photo 1 {
+  "photoId": 626,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.512Z] Saved photo 1 to temporary location {
+  "photoId": 626,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_1.jpg",
+  "size": 1280383
+}
+[INFO] [2025-03-20T06:54:37.512Z] Processing photo 2/10 {
+  "photoId": 627,
+  "storagePath": "uploads/1/6e6dfb25-a003-4d85-b450-1176eb444e38.jpg"
+}
+[INFO] [2025-03-20T06:54:37.512Z] Got public URL for photo 2 {
+  "photoId": 627,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.605Z] Saved photo 2 to temporary location {
+  "photoId": 627,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_2.jpg",
+  "size": 733812
+}
+[INFO] [2025-03-20T06:54:37.605Z] Processing photo 3/10 {
+  "photoId": 628,
+  "storagePath": "uploads/1/7724032c-e049-45f9-a778-9e56a7cf2483.JPG"
+}
+[INFO] [2025-03-20T06:54:37.605Z] Got public URL for photo 3 {
+  "photoId": 628,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.679Z] Saved photo 3 to temporary location {
+  "photoId": 628,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_3.jpg",
+  "size": 93190
+}
+[INFO] [2025-03-20T06:54:37.679Z] Processing photo 4/10 {
+  "photoId": 629,
+  "storagePath": "uploads/1/3a85e971-e805-4926-8bf0-7bfba08598a0.jpg"
+}
+[INFO] [2025-03-20T06:54:37.680Z] Got public URL for photo 4 {
+  "photoId": 629,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.760Z] Saved photo 4 to temporary location {
+  "photoId": 629,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_4.jpg",
+  "size": 575734
+}
+[INFO] [2025-03-20T06:54:37.761Z] Processing photo 5/10 {
+  "photoId": 630,
+  "storagePath": "uploads/1/6b4f89ab-b2bd-44b6-a7a4-e0fb43edfa0d.jpg"
+}
+[INFO] [2025-03-20T06:54:37.761Z] Got public URL for photo 5 {
+  "photoId": 630,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.859Z] Saved photo 5 to temporary location {
+  "photoId": 630,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_5.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-20T06:54:37.859Z] Processing photo 6/10 {
+  "photoId": 631,
+  "storagePath": "uploads/1/e08faf30-f051-48d1-829d-7d837cd110fa.jpg"
+}
+[INFO] [2025-03-20T06:54:37.859Z] Got public URL for photo 6 {
+  "photoId": 631,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:37.977Z] Saved photo 6 to temporary location {
+  "photoId": 631,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_6.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-20T06:54:37.977Z] Processing photo 7/10 {
+  "photoId": 632,
+  "storagePath": "uploads/1/e663601b-d349-4210-8304-0b295a93db3d.JPG"
+}
+[INFO] [2025-03-20T06:54:37.977Z] Got public URL for photo 7 {
+  "photoId": 632,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:38.094Z] Saved photo 7 to temporary location {
+  "photoId": 632,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_7.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-20T06:54:38.094Z] Processing photo 8/10 {
+  "photoId": 633,
+  "storagePath": "uploads/1/e5297266-8625-40e1-afca-272aa3b88143.jpg"
+}
+[INFO] [2025-03-20T06:54:38.094Z] Got public URL for photo 8 {
+  "photoId": 633,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:38.198Z] Saved photo 8 to temporary location {
+  "photoId": 633,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_8.jpg",
+  "size": 500847
+}
+[INFO] [2025-03-20T06:54:38.198Z] Processing photo 9/10 {
+  "photoId": 634,
+  "storagePath": "uploads/1/a13f2e30-5504-4cd7-8813-0d987a79a85d.jpg"
+}
+[INFO] [2025-03-20T06:54:38.199Z] Got public URL for photo 9 {
+  "photoId": 634,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:38.263Z] Saved photo 9 to temporary location {
+  "photoId": 634,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_9.jpg",
+  "size": 502465
+}
+[INFO] [2025-03-20T06:54:38.263Z] Processing photo 10/10 {
+  "photoId": 635,
+  "storagePath": "uploads/1/cd963fb5-d1a6-48fd-8401-8b10d2d06e15.JPG"
+}
+[INFO] [2025-03-20T06:54:38.263Z] Got public URL for photo 10 {
+  "photoId": 635,
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:39.197Z] Saved photo 10 to temporary location {
+  "photoId": 635,
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6/photo_10.jpg",
+  "size": 2776522
+}
+[INFO] [2025-03-20T06:54:39.198Z] Photo download summary {
+  "successful": 10,
+  "failed": 0,
+  "total": 10
+}
+[INFO] [2025-03-20T06:54:39.198Z] Creating ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0aa744d5-265b-41a7-b631-f453c1602891.zip"
+}
+[INFO] [2025-03-20T06:54:39.211Z] Zip command is available, using system ZIP 
+[INFO] [2025-03-20T06:54:39.442Z] ZIP creation output {
+  "stdout": "  adding: photo_8.jpg (deflated 1%)\n  adding: photo_9.jpg (deflated 1%)\n  adding: photo_1.jpg (deflated 0%)\n  adding: photo_10.jpg (deflated 5%)\n  adding: photo_2.jpg (deflated 0%)\n  adding: photo_3.jpg (deflated 9%)\n  adding: photo_7.jpg (deflated 5%)\n  adding: photo_6.jpg (deflated 1%)\n  adding: photo_4.jpg (deflated 0%)\n  adding: photo_5.jpg (deflated 1%)\n",
+  "stderr": ""
+}
+[INFO] [2025-03-20T06:54:39.443Z] ZIP file read from disk {
+  "size": 9934992
+}
+[INFO] [2025-03-20T06:54:40.133Z] ZIP file uploaded to storage {
+  "path": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742453679443_41473360-8ba9-4531-a3c5-b717f2532e48_training.zip"
+}
+[INFO] [2025-03-20T06:54:40.134Z] Verifying ZIP file structure 
+[INFO] [2025-03-20T06:54:40.140Z] ZIP file contains 10 entries {
+  "fileTypes": [
+    {
+      "name": "photo_8.jpg",
+      "size": 500847,
+      "compressed": 497356,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_9.jpg",
+      "size": 502465,
+      "compressed": 499848,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_1.jpg",
+      "size": 1280383,
+      "compressed": 1279168,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_10.jpg",
+      "size": 2776522,
+      "compressed": 2634361,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_2.jpg",
+      "size": 733812,
+      "compressed": 733326,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_3.jpg",
+      "size": 93190,
+      "compressed": 84837,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_7.jpg",
+      "size": 2776522,
+      "compressed": 2634361,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_6.jpg",
+      "size": 502465,
+      "compressed": 499848,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_4.jpg",
+      "size": 575734,
+      "compressed": 573007,
+      "isDirectory": false
+    },
+    {
+      "name": "photo_5.jpg",
+      "size": 500847,
+      "compressed": 497356,
+      "isDirectory": false
+    }
+  ],
+  "totalFiles": 10,
+  "imageFiles": 10
+}
+[INFO] [2025-03-20T06:54:40.266Z] Generated signed URL for training ZIP {
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v..."
+}
+[INFO] [2025-03-20T06:54:40.266Z] Starting model training with Replicate 
+[INFO] [2025-03-20T06:54:40.267Z] Making Replicate API call for prediction with fine-tuning 
+[INFO] [2025-03-20T06:54:40.268Z] Testing signed URL accessibility 
+[INFO] [2025-03-20T06:54:40.426Z] Signed URL check result: 200 OK {
+  "headers": {
+    "accept-ranges": "bytes",
+    "access-control-allow-origin": "*",
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cf-cache-status": "MISS",
+    "cf-ray": "92334cadc8832ab3-LAX",
+    "connection": "close",
+    "content-length": "9934992",
+    "content-type": "application/zip",
+    "date": "Thu, 20 Mar 2025 06:54:40 GMT",
+    "etag": "\"3db6383fcd044d675dae4f05847875ae-2\"",
+    "expires": "Thu, 20 Mar 2025 07:54:40 GMT",
+    "last-modified": "Thu, 20 Mar 2025 06:54:40 GMT",
+    "sb-gateway-mode": "direct",
+    "sb-gateway-version": "1",
+    "sb-project-ref": "zwdzwagipncnyjvqujut",
+    "server": "cloudflare",
+    "strict-transport-security": "max-age=31536000; includeSubDomains; preload",
+    "vary": "Accept-Encoding"
+  },
+  "url": "https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/s...",
+  "contentType": "application/zip",
+  "contentLength": "9934992"
+}
+[INFO] [2025-03-20T06:54:40.426Z] Trigger word analysis: {
+  "original": "sid",
+  "trimmed": "sid",
+  "length": 3,
+  "hasSpaces": false,
+  "hasSpecialChars": false
+}
+[INFO] [2025-03-20T06:54:40.426Z] Making direct fetch to Replicate Training API... 
+[INFO] [2025-03-20T06:54:40.426Z] Replicate API configuration details: {
+  "tokenExists": true,
+  "tokenPrefix": "r8_c...",
+  "replicateApiUsername": "NOT SET",
+  "replicateUsername": "sidart10",
+  "usedUsername": "sidart10",
+  "destination": "sidart10/sid-flux"
+}
+[INFO] [2025-03-20T06:54:40.427Z] Using simplified destination format: sidart10/sid-flux {
+  "originalName": "Sid-Flux",
+  "sanitizedName": "sid-flux"
+}
+[INFO] [2025-03-20T06:54:40.427Z] First creating model on Replicate via /v1/models... 
+[INFO] [2025-03-20T06:54:40.948Z] Create model response: 201 Created {
+  "responseBody": "{\"cover_image_url\":null,\"created_at\":\"2025-03-20T06:54:40.725367Z\",\"default_example\":null,\"description\":\"Model trained on Sid-Flux images\",\"github_url\":null,\"latest_version\":null,\"license_url\":null,\"name\":\"sid-flux\",\"owner\":\"sidart10\",\"paper_url\":null,\"run_count\":0,\"url\":\"https://replicate.com/sidart10/sid-flux\",\"visibility\":\"private\",\"weights_url\":null}"
+}
+[INFO] [2025-03-20T06:54:40.948Z] Adding delay to allow model creation to propagate... 
+[INFO] [2025-03-20T06:54:42.950Z] Using model-specific fine-tuning endpoint... 
+[INFO] [2025-03-20T06:54:43.376Z] Training API response: 201 Created {
+  "responseBody": "{\"id\":\"t949gqsmdxrme0cnp9ar97sa60\",\"model\":\"ostris/flux-dev-lora-trainer\",\"version\":\"b6af14222e6bd9be257cbc1ea4afda3cd0503e1133083b9d1de0364d8568e6ef\",\"input\":{\"autocaption\":true,\"batch_size\":1,\"input_images\":\"https://zwdzwagipncnyjvqujut.supabase.co/storage/v1/object/sign/training/user_2u91hL5Q5K21TjoD2nHMp2qWPr9/1742453679443_41473360-8ba9-4531-a3c5-b717f2532e48_training.zip?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0cmFpbmluZy91c2VyXzJ1OTFoTDVRNUsyMVRqb0QybkhNcDJxV1ByOS8xNzQyNDUzN"
+}
+[INFO] [2025-03-20T06:54:43.377Z] Training started successfully! {
+  "id": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:54:43.519Z] Model saved to database {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:54:43.559Z] Verification DB check: {
+  "count": 1,
+  "error": null,
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "userId": "1"
+}
+[INFO] [2025-03-20T06:54:44.037Z] Photo references saved for the model 
+[INFO] [2025-03-20T06:54:44.042Z] Cleaned up temporary directory {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0a193944-727c-4af0-9201-c36a44615dd6"
+}
+[INFO] [2025-03-20T06:54:44.043Z] Cleaned up ZIP file {
+  "path": "/var/folders/b3/73dhvxl958x_m9mx0jztrxdr0000gn/T/training-0aa744d5-265b-41a7-b631-f453c1602891.zip"
+}
+[INFO] [2025-03-20T06:54:45.040Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:54:45.131Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:54:45.168Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:54:45.168Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:54:49.307Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:54:49.408Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:54:49.484Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:54:49.484Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:54:54.394Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:54:54.490Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:54:54.557Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:54:54.557Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:54:59.433Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:54:59.539Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:54:59.614Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:54:59.614Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:04.319Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:04.409Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:04.488Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:04.489Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:09.304Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:09.399Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:09.477Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:09.477Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:14.325Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:14.413Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:14.449Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:14.449Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:19.309Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:19.402Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:19.476Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:19.476Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:24.285Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:24.375Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:24.413Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:24.413Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:29.387Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:29.491Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:29.566Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:29.567Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:34.413Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:34.512Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:34.563Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:34.564Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:39.332Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:39.428Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:39.521Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:39.522Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:44.310Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:44.399Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:44.517Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:44.517Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:49.335Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:49.440Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:49.521Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:49.521Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:54.325Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:54.418Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:54.466Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:54.466Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:55:59.451Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:55:59.555Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:55:59.630Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:55:59.631Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:04.424Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:04.525Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:04.585Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:04.585Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:09.324Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:09.418Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:09.491Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:09.492Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:14.285Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:14.377Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:14.426Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:14.426Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:19.560Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:19.665Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:19.740Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:19.740Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:24.423Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:24.522Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:24.569Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:24.569Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:29.303Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:29.391Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:29.466Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:29.466Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:34.323Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:34.411Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:34.455Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:34.455Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:39.307Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:39.398Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:39.475Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:39.475Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:44.322Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:44.417Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:44.459Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:44.459Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:49.327Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:49.424Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:49.498Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:49.498Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:54.318Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:54.361Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:54.438Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:54.438Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:56:59.337Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:56:59.431Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:56:59.506Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:56:59.506Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:04.544Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:04.653Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:04.708Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:04.708Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:09.372Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:09.470Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:09.544Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:09.544Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:14.364Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:14.407Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:14.500Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:14.500Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:19.316Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:19.408Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:19.463Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:19.463Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:24.293Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:24.382Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:24.457Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:24.457Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:29.304Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:29.393Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:29.443Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:29.444Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:34.381Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:34.482Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:34.558Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:34.558Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:39.585Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:39.764Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:39.891Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:39.892Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:44.414Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:44.508Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:44.581Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:44.581Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:49.326Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:49.419Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:49.470Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:49.470Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:54.353Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:54.448Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:54.523Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:54.524Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:57:59.367Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:57:59.466Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:57:59.540Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:57:59.540Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:04.365Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:04.464Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:04.536Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:04.536Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:09.462Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:09.572Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:09.645Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:09.646Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:14.287Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:14.330Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:14.405Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:14.405Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:19.313Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:19.404Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:19.479Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:19.479Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:24.359Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:24.455Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:24.513Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:24.513Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:29.412Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:29.517Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:29.589Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:29.589Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:34.502Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:34.608Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:34.648Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:34.648Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:39.382Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:39.475Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:39.549Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:39.549Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:44.312Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:44.406Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:44.476Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:44.477Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:49.344Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:49.444Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:49.562Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:49.562Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:54.308Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:54.398Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:54.473Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:54.473Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:58:59.405Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:58:59.505Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:58:59.553Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:58:59.553Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:04.341Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:04.437Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:04.510Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:04.510Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:09.375Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:09.471Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:09.543Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:09.543Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:14.428Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:14.530Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:14.603Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:14.603Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:19.305Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:19.359Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:19.428Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:19.429Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:24.373Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:24.431Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:24.510Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:24.511Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:29.317Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:29.412Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:29.486Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:29.487Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:34.305Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:34.391Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:34.440Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:34.440Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:39.306Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:39.406Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:39.483Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:39.483Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:44.298Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:44.393Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:44.466Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:44.466Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:49.349Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:49.446Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:49.503Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:49.503Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:54.381Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:54.480Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:54.552Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:54.552Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T06:59:59.330Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T06:59:59.423Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T06:59:59.498Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T06:59:59.498Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:05.058Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:05.453Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:05.544Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:05.544Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:09.441Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:09.546Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:09.619Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:09.620Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:14.414Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:14.520Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:14.686Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:14.687Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:19.990Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:20.100Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:20.171Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:20.171Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:24.373Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:24.476Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:24.684Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:24.684Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:29.450Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:29.561Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:29.637Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:29.637Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:34.610Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:34.712Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:34.761Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:34.761Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:39.605Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:39.708Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:39.889Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:39.890Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:44.576Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:44.689Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:44.763Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:44.763Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:49.378Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:49.476Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:49.524Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:49.524Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:54.329Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:54.424Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:54.530Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:54.530Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:00:59.332Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:00:59.426Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:00:59.501Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:00:59.501Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:04.395Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:04.501Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:04.574Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:04.574Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:09.346Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:09.440Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:09.498Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:09.498Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:14.332Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:14.429Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:14.504Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:14.504Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:19.324Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:19.419Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:19.453Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:19.454Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:24.398Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:24.501Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:24.573Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:24.574Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:29.297Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:29.385Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:29.426Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:29.427Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:34.309Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:34.402Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:34.477Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:34.477Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:39.516Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:39.617Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:39.663Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:39.663Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:44.323Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:44.420Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:44.494Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:44.494Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:49.347Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:49.444Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:49.520Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:49.520Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:54.317Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:54.410Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:54.484Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:54.484Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:01:59.333Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:01:59.427Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:01:59.467Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:01:59.467Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:04.392Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:04.493Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:04.567Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:04.567Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:09.389Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:09.492Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:09.564Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:09.565Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:14.315Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:14.399Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:14.435Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:14.435Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:19.346Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:19.442Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:19.517Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:19.518Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:24.286Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:24.375Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:24.413Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:24.413Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:29.464Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:29.596Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:29.672Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:29.672Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:34.390Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:34.489Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:34.599Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:34.599Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:39.349Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:39.449Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:39.522Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:39.522Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:44.311Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:44.404Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:44.477Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:44.478Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:49.365Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:49.465Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:49.538Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:49.538Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:54.287Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:54.373Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:54.416Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:54.416Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:02:59.563Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:02:59.661Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:02:59.739Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:02:59.739Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:04.330Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:04.422Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:04.461Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:04.461Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:09.405Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:09.440Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:09.511Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:09.511Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:14.292Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:14.400Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:14.443Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:14.443Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:19.309Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:19.402Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:19.476Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:19.476Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:24.443Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:24.555Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:24.597Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:24.597Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:29.312Z] Fetching model by ID {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "clerkUserId": "user_2u91hL5Q5K21TjoD2nHMp2qWPr9",
+  "supabaseUserId": 1
+}
+[INFO] [2025-03-20T07:03:29.405Z] Model query details {
+  "query": {
+    "id": "t949gqsmdxrme0cnp9ar97sa60",
+    "user_id": 1
+  },
+  "result": "Found",
+  "error": null
+}
+[INFO] [2025-03-20T07:03:29.479Z] Debug: All recent models in database {
+  "count": 3,
+  "models": [
+    {
+      "id": "gpkr732e5xrm80cnp4k9dw66n0",
+      "user_id": "1",
+      "name": "Sid"
+    },
+    {
+      "id": "k47q9w3bd1rm80cnp4xsgd7c10",
+      "user_id": "1",
+      "name": "Hot"
+    },
+    {
+      "id": "t949gqsmdxrme0cnp9ar97sa60",
+      "user_id": "1",
+      "name": "Sid-Flux"
+    }
+  ]
+}
+[INFO] [2025-03-20T07:03:29.479Z] Checking training status with Replicate {
+  "trainingId": "t949gqsmdxrme0cnp9ar97sa60"
+}
+[INFO] [2025-03-20T07:03:29.869Z] Updating model status in database {
+  "modelId": "t949gqsmdxrme0cnp9ar97sa60",
+  "oldStatus": "Processing",
+  "newStatus": "Ready",
+  "progress": 100
+}
